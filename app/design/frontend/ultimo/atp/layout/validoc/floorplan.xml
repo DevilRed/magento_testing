@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+
+<layout version="0.1.0">
+    <validoc_floorplan_floorplan_list>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="content">
+            <block type="validoc_floorplan/view" name="designer.floorplans" template="validoc/floorplan/view.phtml">
+                <block type="validoc_floorplan/list" name="floorplan_list" template="validoc/floorplan/list.phtml">
+                    <block type="core/text_list" name="floorplan_list.name.after" as="name.after" />
+                    <block type="core/text_list" name="floorplan_list.after" as="after" />
+                    <block type="validoc_floorplan/list_toolbar" name="floorplan_list_toolbar" template="validoc/floorplan/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>floorplan_list_toolbar</name></action>
+                    <!-- Since the addColumnCountLayoutDepend does not work, we are manually setting the max columns -->
+                    <action method="setColumnCount"><count>4</count></action>
+                </block>
+            </block>
+        </reference>
+    </validoc_floorplan_floorplan_list>
+
+    <validoc_floorplan_floorplan_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>validoc/floorplan/floorplan.js</script></action>
+            <action method="addItem"><type>skin_js</type><script>js/lib/elevatezoom/jquery.elevateZoom-3.0.8.min.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="validoc_floorplan/detail_view" name="floorplan.info" template="validoc/floorplan/detail/view.phtml">
+                <block type="validoc_floorplan/detail_view_media" name="floorplan.info.media" as="media" template="validoc/floorplan/detail/view/media.phtml">
+                    <block type="core/text_list" name="floorplan.info.media.after" as="after"/>
+                </block>
+                <block type="validoc_floorplan/product_related" name="floorplan.product.related" as="floorplan_related_products" template="validoc/floorplan/product/related.phtml"></block>
+            </block>
+        </reference>
+    </validoc_floorplan_floorplan_view>
+</layout>

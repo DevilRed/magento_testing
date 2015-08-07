@@ -1,0 +1,111 @@
+<?php
+/**
+ * Designer view template
+ *
+ * @see Validoc_Fabric_Block_Detail_View
+ */
+?>
+<?php $_fabric = $this->getFabric(); ?>
+<?php //$_designer = $this->getDesigner(); ?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view atp fabrics-view">
+    <div class="product-essential">
+        <form action="<?php echo $this->getSubmitUrl($_fabric) ?>" method="post" id="product_addtocart_form"<?php if($_fabric->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_fabric->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+            <div class="grid-container">
+                <div class="grid12-6">
+                    <div class="product-shop">
+                        <!--<div class="designer">
+                            <?php
+                            /*$_imgSize = 100;
+                            $_imageUrl = Mage::helper('validoc_fabric/image')->init($_fabric, 'image')->resize($_imgSize);
+                            ?>
+                            <img src="<?php echo $_imageUrl;*/ ?>">
+                        </div>-->
+                        <div class="product-name">
+                            <h1><?php echo $_fabric->getName(); ?></h1>
+                        </div>
+                        <!--<div class="product-name">
+                            <span class="h1"><?php /*echo $_fabric->getName(); */?></span>
+                        </div>-->
+        
+                        <div class="price-info">
+                            <?php echo $this->getPriceHtml($_fabric); ?>
+                            <?php echo $this->getChildHtml('bundle_prices') ?>
+                            <?php echo $this->getTierPriceHtml() ?>
+                        </div>
+        
+                        <div class="extra-info">
+                            <?php echo $this->getReviewsSummaryHtml($_fabric, 'default', false)?>
+                            <?php echo $this->getChildHtml('product_type_availability'); ?>
+                        </div>
+        
+                        <?php echo $this->getChildHtml('alert_urls') ?>
+        
+                        <?php if ($_fabric->getManufacturer()):?>
+                            <div class="short-description">
+                                <!--<div class="std"><?php //echo nl2br($_fabric->getManufacturer()); ?></div>-->
+                                <p>
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec.  
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec. 
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec. 
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec. Loren 
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec. 
+                                    Quisquam est qui dolorem ipsum 
+                                    12 x 45 x 32 
+                                </p>
+                                <p>
+                                    Quisquam est qui dolorem ipsum 
+                                    quia dolor sit amet, consec.
+                                </p>
+                            </div>
+                        <?php endif;?>
+        
+                        <?php echo $this->getChildHtml('other');?>
+        
+                    </div>
+                </div>
+                <div class="grid12-6">
+                    <div class="product-img-box">
+                        <!--<div class="product-name">
+                            <h1><?php //echo $_fabric->getName(); ?></h1>
+                        </div>-->
+                        <?php echo $this->getChildHtml('media'); ?>
+                    </div>
+                </div>
+            </div>
+
+            <?php echo $this->getChildHtml('fabric_related_boards'); ?>
+
+            <?php echo $this->getChildHtml('fabric_related_designers'); ?>
+
+            <?php /*echo $this->getChildHtml('related_products') */?><!--
+
+            --><?php /*echo $this->getChildHtml('board_related_products') */?>
+            <div class="clearer"></div>
+        </form>
+    </div>
+
+
+
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    <?php echo $this->getChildHtml('product_additional_data') ?>
+
+</div>
+
+<div class="clearer"></div>
+
+<div class="box-header-design">
+    <span class="box-header-title">
+        <img src="<?php echo $this->getSkinUrl('images/media/design-logo.png') ?>" alt="" />
+    </span>
+</div> 

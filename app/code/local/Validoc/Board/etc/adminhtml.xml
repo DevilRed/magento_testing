@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <ats>
+            <title>ATS</title>
+            <sort_order>20</sort_order>
+            <children>
+                <manage_boards translate="title" module="validoc_board">
+                    <title>Manage Rooms</title>
+                    <sort_order>60</sort_order>
+                    <action>adminhtml/board/index</action>
+                </manage_boards>
+            </children>
+        </ats>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <ats>
+                        <title>A Tailored Space</title>
+                        <children>
+                            <atp translate="title" module="validoc_board">
+                                <title>Manage Designers Boards</title>
+                                <children>
+                                    <manage_boards translate="title" module="validoc_board">
+                                        <title>Manage Designers Boards</title>
+                                        <sort_order>9</sort_order>
+                                        <action>adminhtml/board/index</action>
+                                    </manage_boards>
+                                </children>
+                            </atp>
+                        </children>
+                    </ats>
+                </children>
+            </admin>
+        </resources>    
+    </acl>
+</config>

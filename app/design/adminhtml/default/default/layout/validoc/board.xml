@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+
+    </default>
+
+    <!-- To Manage Designers boards -->
+    <adminhtml_board_list>
+        <reference name="content">
+            <block type="validoc_board/adminhtml_board" name="validoc_board.board.list"/>
+        </reference>
+    </adminhtml_board_list>
+
+    <adminhtml_board_grid>
+        <remove name="root"/>
+        <block type="validoc_board/adminhtml_board_grid" name="validoc_board.board.grid" output="toHtml"/>
+    </adminhtml_board_grid>
+
+    <adminhtml_board_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="addJs">
+                <script>validoc/board/adminhtml/board.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="validoc_board/adminhtml_board_edit" name="validoc_board.board.form"/>
+        </reference>
+        <reference name="left">
+            <block type="validoc_board/adminhtml_board_edit_tabs" name="validoc_board.board.tabs"></block>
+        </reference>
+
+        <reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </adminhtml_board_edit>
+
+    <adminhtml_board_categories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="validoc_board/adminhtml_board_edit_tab_categories" name="validoc_board.edit.tab.categories"/>
+        </block>
+    </adminhtml_board_categories>
+
+</layout>

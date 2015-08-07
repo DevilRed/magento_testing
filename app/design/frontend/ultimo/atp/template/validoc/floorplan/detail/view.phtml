@@ -1,0 +1,833 @@
+<?php
+/**
+ * Designer floorplan view template
+ *
+ * @see Validoc_Floorplan_Block_Detail_View
+ */
+
+    $_floorplan = $this->getFloorplan();
+    $_designer = $this->getDesigner();
+    $_floorplan_products = $this->getFloorplanProducts();
+
+    $productsId = array();
+    foreach ($_floorplan_products as $id => $qty) {
+        array_push($productsId, $id);
+    }
+    $attributes = Mage::getSingleton('catalog/config')->getProductAttributes();
+    $_productCollection = Mage::getModel('catalog/product')
+                            ->getCollection()
+                            ->addAttributeToSort('created_at', 'DESC')
+                            ->addAttributeToFilter('entity_id',  array('in' => $productsId))
+                            ->addAttributeToSelect($attributes)
+                            ->load();
+
+    $productsFloorplan = $_productCollection->getItems();
+    //total
+    $totalPrice = 0;
+    foreach ($productsFloorplan as $p) {
+        $totalPrice = $totalPrice + $p->getPrice();
+    }
+
+    $indexes = array_keys($productsFloorplan);
+
+    if(array_key_exists(0, $indexes)){
+        //2 elements per row
+        $firstRow = array_slice($productsFloorplan, 0, 2);
+    }
+    if(array_key_exists(2, $indexes)){
+        //3 elements per row
+        $secondRow = array_slice($productsFloorplan, 2, 3);
+    }
+    if(array_key_exists(5, $indexes)){
+        //3 elements per row
+        $thirdRow = array_slice($productsFloorplan, 5, 3);
+    }
+    if(array_key_exists(8, $indexes)){
+        //4 elements per row
+        $fourthRow = array_slice($productsFloorplan, 8, 4);
+    }
+    if(array_key_exists(12, $indexes)){
+        //3 elements per row
+        $fiveRow = array_slice($productsFloorplan, 12, 3);
+    }
+    if(array_key_exists(15, $indexes)){
+        //2 elements per row
+        $sixRow = array_slice($productsFloorplan, 15, 2);
+    }
+    if(array_key_exists(17, $indexes)){
+        //4 elements per row
+        $sevenRow = array_slice($productsFloorplan, 17, 4);
+    }
+    if(array_key_exists(21, $indexes)){
+        //2 elements per row
+        $eightRow = array_slice($productsFloorplan, 21, 2);
+    }
+    if(array_key_exists(23, $indexes)){
+        //4 elements per row
+        $nineRow = array_slice($productsFloorplan, 23, 4);
+    }
+    if(array_key_exists(27, $indexes)){
+        $tenRow = array_slice($productsFloorplan, 27, 3);
+    }
+
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view atp designer-floorplan">
+    <div class="product-essential">
+        <?php
+            $board = $this->getBoard();
+            $_helper = $this->helper('catalog/output');
+            $floorplanCategoryIds = $board->getCategoryIds();
+            if(count($floorplanCategoryIds) > 0){
+                $title_1 = '';
+                $title_2 = '';
+                $count = 0;
+                foreach ($floorplanCategoryIds as $categoryId) {
+                    if($count > 0){
+                        $parent = Mage::getModel('catalog/category')->load($categoryId);
+                        $title_2 .= ' | ' . $_helper->categoryAttribute($parent, $parent->getName(), 'name') . ' ' . $_helper->categoryAttribute($parent, $parent->getNameSuffix(), 'name_suffix');
+                    }else {
+                        $parent = Mage::getModel('catalog/category')->load($categoryId);
+                        $title_1 .= $_helper->categoryAttribute($parent, $parent->getName(), 'name') . ' <span>' . $_helper->categoryAttribute($parent, $parent->getNameSuffix(), 'name_suffix') . '</span>  ';
+                        $superParent = $parent->getParentCategory();
+                    }
+                    $count++;
+                }
+            }
+        ?>
+            <div class="page-title">
+                <h1>
+                    <span class="title_1"><?php echo $superParent->getName()." <span>".$superParent->getNameSuffix()."</span>"; ?></span>
+                    <span class="title_2" style="font-weight: 100;"> <?php echo Mage::getSingleton('core/session')->getBoardTitle2(); ?></span>
+                </h1>
+            </div>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_floorplan->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+
+            <div class="product-shop" style="display: none;">
+                <div class="designer">
+                    <?php
+                    $_imgSize = 300;
+                    Mage::log(Mage::helper('validoc_designer/image')->init($_designer, 'image'));
+                    $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'image')->resize($_imgSize);
+                    ?>
+                    <img src="<?php echo $_imageUrl; ?>">
+                </div>
+                <div class="product-name">
+                    <span class="h1"><?php echo $_designer->getName(); ?></span>
+                </div>
+                <div class="product-name">
+                    <span class="h1"><?php echo $_floorplan->getName(); ?></span>
+                </div>
+
+                <div class="price-info">
+                    <?php echo $this->getPriceHtml($_floorplan); ?>
+                    <?php echo $this->getChildHtml('bundle_prices') ?>
+                    <?php echo $this->getTierPriceHtml() ?>
+                </div>
+
+                <div class="extra-info">
+                    <?php echo $this->getReviewsSummaryHtml($_floorplan, 'default', false)?>
+                    <?php echo $this->getChildHtml('product_type_availability'); ?>
+                </div>
+
+                <?php echo $this->getChildHtml('alert_urls') ?>
+
+                <?php if ($_floorplan->getShortDescription()):?>
+                    <div class="short-description">
+                        <div class="std"><?php echo nl2br($_floorplan->getDescription()); ?></div>
+                    </div>
+                <?php endif;?>
+
+                <?php echo $this->getChildHtml('other');?>
+
+            </div>
+
+            <div class="bg-box">
+                <div class="container-board">
+                    <div class="product-img-box">
+                        <?php echo $this->getChildHtml('media') ?>
+                    </div>
+                    <div class="product-name to-uppercase grid-container">
+                        <h1><?php echo $board->getName(); ?></h1>
+                    </div>
+                </div>
+            </div>
+            <h4 class="slogan to-uppercase"><?php echo $_designer->getName() . ", " .$_designer->getFirmName() . " <span class='separator'>|</span> order your custom fabric & design kit"; ?><div class="line"></div></h4>
+
+            <div class="grid12-6 description-floorplan" style="display: none;">
+                <p><?php echo $_floorplan->getDescription(); ?><br><a href="#"><span class="more">More ></span></a></p>
+            </div>
+            <!-- designer list -->
+            <div class="grid12-6 designers-list" style="display: none;">
+                <div class="grid12-4 designer-img">
+                    <?php
+                    $_imgSize = 300;
+                    Mage::log(Mage::helper('validoc_designer/image')->init($_designer, 'image'));
+                    $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'image')->resize($_imgSize);
+                    ?>
+                    <img src="<?php echo $_imageUrl; ?>">
+                </div>
+                <div class="grid12-8 info">
+                    <h4 class="Yesteryear title">Designer</h4>
+                    <h5><?php echo $_designer->getName() ?> <br> gallupi dessign inc.</h5>
+                    <a href="#" class="more">See more designs from <?php echo $_designer->getName() ?> ></a>
+                </div>
+                <div class="clearer"></div>
+                <!-- get started -->
+                <div class="grid12-4 started">
+                    <img src="<?php echo $this->getSkinUrl('images'); ?>/started-img.png">
+                </div>
+                <div class="grid12-8 info">
+                    <h4 class="Yesteryear">Get started</h4>
+                    <h5>order your custom fabric & design kit</h5>
+                    <a href="#" class="more">Learn more ></a>
+                </div>
+            </div>
+            <div class="floorplan-featured-title grid-container">
+                <h5><?php echo "Pieces Featured in this Floorplan"; ?></h5>
+                <div class="grid12-4 add-quote-list">
+                    <a href="#">ADD ALL to MY QUOTE LIST</a>
+                    <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                </div>
+            </div>
+            <?php $counter = 0; ?>
+
+            <div class="products-list grid-container">
+                <!-- 8-4 per line -->
+                <?php if(isset($firstRow)): ?>
+                <div class="product-row 8-4-line">
+                    <?php for($i = 0; $i < count($firstRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-8 on">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$firstRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $firstRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 two">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$firstRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $firstRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- 3 per line -->
+                <?php if(isset($secondRow)): ?>
+                <div class="product-row 3-line">
+                    <?php for($i = 0; $i < count($secondRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 three">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $secondRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 four">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $secondRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 five">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $secondRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- 3 per line -->
+                <?php if(isset($thirdRow)): ?>
+                <div class="product-row 3-line">
+                    <?php for($i = 0; $i < count($thirdRow); $i ++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 six">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $thirdRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 seven">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $thirdRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 eight">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $thirdRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- 4-8 per line -->
+                <?php if(isset($fourthRow)): ?>
+                <div class="product-row 4-8-line">
+                    <?php for($i = 0; $i < count($fourthRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 nine big">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                <!-- <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p> -->
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fourthRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                            <!-- <div class="grid12-8"> -->
+                                <?php if($i == 1): ?>
+                                    <?php $counter++; ?>
+                                    <div class="ten">
+                                        <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                        <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fourthRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($i == 2): ?>
+                                    <?php $counter++; ?>
+                                    <div class="grid12-6 eleven">
+                                        <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                        <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fourthRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($i == 3): ?>
+                                    <?php $counter++; ?>
+                                    <div class="grid12-6 twelve">
+                                        <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                        <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fourthRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                                    </div>
+                                <?php endif; ?>
+                            <!-- </div> -->
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 3 per line -->
+                <?php if(isset($fiveRow)): ?>
+                <div class="product-row 3-line">
+                    <?php for($i = 0; $i < count($fiveRow); $i ++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 thirteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fiveRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 fourteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fiveRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 fifteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $fiveRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 8-4 per line -->
+                <?php if(isset($sixRow)): ?>
+                <div class="product-row 8-4-line estito">
+                    <?php for($i = 0; $i < count($sixRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-8 sixteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sixRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $sixRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-4 seventeen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sixRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $sixRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 8-4 per line -->
+                <?php if(isset($sevenRow)): ?>
+                <div class="product-row 8-4-line">
+                    <?php for($i = 0; $i < count($sevenRow); $i++): ?>
+                    <!-- <div class="grid12-8"> -->
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-6 nineteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $sevenRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-6 twenty">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $sevenRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <?php $counter++; ?>
+                            <div class="eighteen">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $sevenRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <!-- </div> -->
+                    <?php if($i == 3): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 twenty-one big">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $sevenRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 4-8 per line -->
+                <?php if(isset($eightRow)): ?>
+                <div class="product-row 4-8-line">
+                <?php for($i = 0; $i < count($eightRow); $i++): ?>
+                    <?php if($i == 0): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 twenty-two">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$eightRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $eightRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($i == 1): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-8 twenty-three">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$eightRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $eightRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 8-4 per line -->
+                <?php if(isset($nineRow)): ?>
+                <div class="product-row 8-4-line">
+                <?php for($i = 0; $i < count($nineRow); $i++): ?>
+                    <!-- <div class="grid12-8"> -->
+                        <?php if($i == 0): ?>
+                            <?php $counter++; ?>
+                            <div class="twenty-four">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $nineRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-6 twenty-five">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $nineRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <?php $counter++; ?>
+                            <div class="grid12-6 twenty-six">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
+                                    <?php
+                                        $_productId = $nineRow[$i]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <!-- </div> -->
+                    <?php if($i == 3): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 twenty-seven big">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $nineRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <!-- 3 per line -->
+                <?php if(isset($tenRow)): ?>
+                <div class="product-row 3-line">
+                <?php for($i = 0; $i < count($tenRow); $i++): ?>
+                    <?php if($i == 0): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 twenty-eight">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $tenRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($i == 1): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 twenty-nine">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $tenRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($i == 2): ?>
+                        <?php $counter++; ?>
+                        <div class="grid12-4 thirty">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                            <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
+                                <?php
+                                    $_productId = $tenRow[$i]->getEntityId();
+                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                    if(isset($_manufacturerName))
+                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                <?php endif; ?>
+                <?php
+                    $k = 30;
+                    $extraCounter = 31;
+                    while(array_key_exists($k, $indexes)):
+                        $genericRow = array_slice($productsFloorplan, $k, 3);
+                ?>
+                    <?php //var_dump($genericRow); ?>
+                        <div class="product-row 3-line extra">
+                            <?php for($j = 0; $j < count($genericRow); $j++): ?>
+                            <div class="grid12-4">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($genericRow[$j]->getSmallImage()); ?>" alt="">
+                                <p class="image-name">
+                                    <?php echo "# ".$extraCounter." <span class='separator-name'>|</span> ".$genericRow[$j]->getName(); ?>
+                                    <?php
+                                        $_productId = $genericRow[$j]->getEntityId();
+                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                        if(isset($_manufacturerName))
+                                            echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                    ?>
+                                </p>
+                            </div>
+                            <?php $extraCounter++; ?>
+                        <?php endfor; ?>
+                        </div>
+                <?php
+                    $k = $k + 3;
+                    endwhile;
+                ?>
+                <div class="floorplan-featured-title grid-container bottom">
+                    <div class="grid12-4 add-quote-list">
+                        <a href="#">ADD ALL to MY QUOTE LIST</a>
+                        <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <?php echo $this->getChildHtml('related_products') ?>
+
+            <?php echo $this->getChildHtml('floorplan_related_products') ?>
+            <div class="clearer"></div>
+        </form>
+    </div>
+
+
+
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    <?php echo $this->getChildHtml('product_additional_data') ?>
+
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        /*//banner bg
+        var heightImgBox = jQuery('.product-image').height();
+        var heightToAdd = jQuery('.product-name h1').height() + 30;
+        jQuery('.bg-box').height((heightImgBox + heightToAdd) + 'px');*/
+        //slider
+        var flagString = new RegExp("[Ff]loorplan");
+        jQuery('.product-image-thumbs li a').each(function(){
+            var stringView = jQuery(this).find('h4').text()
+                if(flagString.test(stringView)){
+                    jQuery(this).addClass('floorplan');
+                }
+            });
+
+        var bannerImg = jQuery('.product-image-gallery img');
+        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
+            var src = jQuery(this).find('img').attr('src');
+            bannerImg.attr('src', src);
+            var currentImg = jQuery(this).find('img').attr('class');
+            bannerImg.attr('src', src);
+            //session storage
+            if(window.sessionStorage){
+                sessionStorage.setItem('floorplan-img', currentImg);
+            }
+            jQuery('.product-image-thumbs li').removeClass('active');
+            jQuery(this).parent().addClass('active');
+
+            return false;
+        });
+        /*if(window.sessionStorage){
+            var value = sessionStorage.getItem('floorplan-img');
+            var savedImg = jQuery('.product-image-thumbs li a .'+ value).attr('src');
+            jQuery('.product-image-gallery img').attr('src', savedImg);
+        }*/
+        //wrap
+        jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
+        jQuery('.eighteen, .nineteen, .twenty').wrapAll("<div class='grid12-8'></div>");
+        jQuery('.twenty-four, .twenty-five, .twenty-six').wrapAll("<div class='grid12-8'></div>");
+        //equalizer
+        jQuery('.product-row div:not(.big)').equalizer({
+            min: 226,
+            max: 226,
+            columns: '> img',
+        });
+        jQuery('.product-row div.big').equalizer({
+            min: 603,
+            max: 603,
+            columns: '> img',
+        });
+    });
+</script>

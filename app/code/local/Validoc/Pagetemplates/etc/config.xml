@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+     <modules>
+        <Home_page>
+        <version>0.1.0</version>
+        </Home_page>
+     </modules>
+           <global>
+               <page>
+                 <layouts>
+                    <homepage translate="label">
+                           <label>How to shop page template</label>
+                             <template>page/how_to_shop.phtml</template>
+                           <layout_handle>how-to_shop</layout_handle>
+                    </homepage>
+                <!-- add more layouts here -->
+                 </layouts>
+               </page>
+          </global>
+ </config>

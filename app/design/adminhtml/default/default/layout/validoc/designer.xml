@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+
+    </default>
+
+    <!-- To Manage Designers -->
+    <adminhtml_designer_list>
+        <reference name="content">
+            <block type="validoc_designer/adminhtml_designer" name="validoc_designer.designer.list"/>
+        </reference>
+    </adminhtml_designer_list>
+
+    <adminhtml_designer_grid>
+        <remove name="root"/>
+        <block type="validoc_designer/adminhtml_designer_grid" name="validoc_designer.designer.grid" output="toHtml"/>
+    </adminhtml_designer_grid>
+
+    <adminhtml_designer_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>validoc/designer/adminhtml/designer.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="validoc_designer/adminhtml_designer_edit" name="validoc_designer.designer.form"/>
+        </reference>
+        <reference name="left">
+            <block type="validoc_designer/adminhtml_designer_edit_tabs" name="validoc_designer.designer.tabs"></block>
+        </reference>
+    </adminhtml_designer_edit>
+
+</layout>

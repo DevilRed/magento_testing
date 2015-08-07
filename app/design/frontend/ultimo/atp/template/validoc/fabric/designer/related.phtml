@@ -1,0 +1,37 @@
+<?php
+/**
+ * Designer board view template
+ *
+ * @see Validoc_Fabric_Block_Designer_Related
+ */
+?>
+<?php
+$_designersCollection = $this->getDesigners();
+?>
+<div class="product-collateral toggle-content">
+    <?php if ($_designersCollection->getSize() > 0) { ?>
+        <div class="page-title">
+            <h2><?php echo $this->__('Designers') ?></h2>
+        </div>
+        <?php foreach($_designersCollection as $_designer) { ?>
+            <?php $_designer->load($_designer->getId()); ?>
+            <div class="news-item grid-container">
+                <a href="<?php echo $this->getUrl('designers/designer/view/', array('id'=>$_designer->getId())); ?>">
+                    <div class="image-detail grid12-3">
+                        <?php
+                        $_imgSize = 270;
+                        $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'small_image')->resize($_imgSize);
+                        ?>
+                        <img id="image-main" class="" title="<?php echo $_designer->getName() ?>" alt="<?php echo $_designer->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+                    </div>
+                </a>
+                <div class="board-detail grid12-9">
+                    <!--<h5><a href="<?php /*echo $this->getUrl('designers/designer/view/', array('id'=>$_designer->getId())); ?>"><?php echo $_designer->getName();*/ ?></a></h5>-->
+                    <div class="short-description">
+                        <?php echo $_designer->getBiography(); ?>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>

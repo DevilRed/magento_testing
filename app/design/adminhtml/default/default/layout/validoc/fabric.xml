@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+
+    </default>
+
+    <!-- To Manage Fabrics -->
+    <adminhtml_fabric_list>
+        <reference name="content">
+            <block type="validoc_fabric/adminhtml_fabric" name="validoc.fabric.list"/>
+        </reference>
+    </adminhtml_fabric_list>
+
+    <adminhtml_fabric_grid>
+        <remove name="root"/>
+        <block type="validoc_fabric/adminhtml_fabric_grid" name="validoc.fabric.grid" output="toHtml"/>
+    </adminhtml_fabric_grid>
+
+    <adminhtml_fabric_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>validoc/fabric/adminhtml/fabric.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="validoc_fabric/adminhtml_fabric_edit" name="validoc.fabric.form"/>
+        </reference>
+        <reference name="left">
+            <block type="validoc_fabric/adminhtml_fabric_edit_tabs" name="validoc.fabric.tabs"></block>
+        </reference>
+    </adminhtml_fabric_edit>
+
+</layout>

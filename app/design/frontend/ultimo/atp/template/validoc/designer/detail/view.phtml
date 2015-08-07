@@ -1,0 +1,129 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Designer view template
+ *
+ * @see Validoc_Designer_Block_Detail_View
+ */
+?>
+<?php $_designer = $this->getDesigner(); ?>
+<?php $_boardsCollection = $this->getBoards();
+?>
+<?php $designerImgs = $this->getBiographyImages(); ?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view atp designers-view">
+    <div class="product-essential">
+        <div class="grid-container">
+            <div class="grid12-12 no-gutter">
+                <div class="product-name">
+                    <?php if($_designer->getType() == 1): ?>
+                        <h1>
+                            <?php echo $this->__('Meet Our'); ?> <span><?php echo $this->__('Designers'); ?></span>
+                        </h1>
+                    <?php else: ?>
+                        <h1>
+                            <?php echo $this->__('Meet Our'); ?> <span><?php echo $this->__('Collaborators'); ?></span>
+                        </h1>
+                    <?php endif; ?>
+                    <span class="designer-name"> | <?php echo $_designer->getName(); ?></span>
+                    <!--<span class="h1"><?php /*echo $_designer->getName(); ?></span>
+                    <div>
+                        <?php foreach($_boardsCollection as $board) { ?>
+                            <p><span class="h1"><?php echo $board->getName();?></span></p>
+                        <?php }*/ ?>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div class="grid12-3 no-left-gutter">
+                <div class="product-shop">
+                    <div class="designer">
+                        <?php
+                        $_imgSizeWidth = 200;
+                        $_imgSizeHeight = 275;
+                        //Mage::log(Mage::helper('validoc_designer/image')->init($_designer, 'image'));
+                        $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'image')->resize($_imgSizeWidth,$_imgSizeHeight);
+                        ?>
+                        <img src="<?php echo $_imageUrl; ?>">
+                    </div>
+                    <div class="designer-details">
+                        <h2>
+                            <?php echo $_designer->getName(); ?><br />
+                            <?php echo $_designer->getFirmName(); ?>
+                        </h2>
+                        <address><a href="<?php echo $_designer->getWebSiteDesigner(); ?>" title="<?php echo $this->helper('validoc_designer')->parseUrl($_designer->getWebSiteDesigner()); ?>" target="_blank"><?php echo $this->helper('validoc_designer')->parseUrl($_designer->getWebSiteDesigner()); ?></a></address>
+                    </div>
+        
+                    <?php //echo $this->getChildHtml('other');?>
+        
+                </div>
+            </div>
+            <div class="grid12-9 no-right-gutter">
+                <div class="designer-biography">
+                    <div class="wrapper-excerpt">
+                        <div class="designer-excerpt">
+                            <p><?php echo $_designer->getExcerpt(); ?></p>
+                        </div>
+                    </div>
+                    <?php if ($_designer->getBiography()):?>
+                        <div class="short-description">
+                            <div class="grid12-6 no-gutter">
+                                <h3 class="title-bio"><?php echo $this->__('Bio'); ?></h3>
+                                <div class="content-bio">
+                                    <?php echo nl2br($_designer->getBiography()); ?>
+                                </div>
+                            </div>
+                            <div class="grid12-6 no-gutter">
+                                <?php foreach($designerImgs as $d_img): ?>
+                                    <?php if($d_img->label == 'biography'): ?>
+
+                                            <div class="designer-banner">
+                                                <img src="<?php echo $this->helper('validoc_designer/image')->init($_designer, 'image', $d_img->getFile()); ?>">
+                                            </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif;?>
+                    <?php //echo $this->getChildHtml('media') ?>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container">
+            <?php echo $this->getChildHtml('designer_related_boards') ?>
+        </div>
+    </div>
+    <?php //echo $this->getChildHtml('upsell_products') ?>
+    <?php //echo $this->getChildHtml('product_additional_data') ?>
+</div>
+<div class="clearer"></div>
+<!--<div class="box-header-design">
+    <span class="box-header-title">
+        <img src="<?php //echo $this->getSkinUrl('images/media/design-logo.png') ?>" alt="" />
+    </span>
+</div>-->

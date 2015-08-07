@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <ats>
+            <title>ATS</title>
+            <sort_order>20</sort_order>
+            <children>
+                <manage_fabrics translate="title" module="validoc_fabric">
+                    <title>Manage Fabrics</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/fabric/index</action>
+                </manage_fabrics>
+            </children>
+        </ats>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+
+                    </catalog>
+                    <ats>
+                        <title>A Tailored Space</title>
+                        <children>
+                            <fabric translate="title" module="validoc_fabric">
+                                <title>Validoc Fabric</title>
+                                <children>
+                                    <manage_fabrics translate="title" module="validoc_fabric">
+                                        <title>Manage Fabrics</title>
+                                        <sort_order>3</sort_order>
+                                        <action>adminhtml/fabric/index</action>
+                                    </manage_fabrics>
+                                </children>
+                            </fabric>
+                        </children>
+                    </ats>
+                </children>
+            </admin>
+        </resources>    
+    </acl>
+</config>

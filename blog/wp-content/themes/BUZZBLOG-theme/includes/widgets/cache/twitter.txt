@@ -1,0 +1,1 @@
+O:8:"stdClass":1:{s:6:"errors";a:1:{i:0;O:8:"stdClass":2:{s:7:"message";s:23:"Bad Authentication data";s:4:"code";i:215;}}}

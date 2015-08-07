@@ -1,0 +1,24 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $_designers = $this->getDesigners(); ?>
+<?php if ($_designers->getSize() > 0) { ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('Designers') ?></h1>
+    </div>
+    <?php foreach($_designers as $designer) { ?>
+        <div class="news-item">
+            <div class="image-detail">
+                <?php
+                $_imgSize = 150;
+                $_imageUrl = Mage::helper('validoc_board/image')->init($designer, 'small_image')->resize($_imgSize);
+                ?>
+                <img id="image-main" class="" width="80" title="<?php echo $designer->getName() ?>" alt="<?php echo $designer->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+            </div>
+
+            <span>
+                <h5><a href="<?php echo Mage::getUrl("designers/designer/view",array("id"=>$designer->getId())); ?>"><?php echo $designer->getName(); ?></a></h5>
+                <?php echo $designer->getBiography(); ?>
+            </span>
+        </div>
+    <?php } ?>
+<?php } ?>
+

@@ -1,0 +1,96 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost() ?>
+<?php if ($post): ?>
+	<?php $helper = $this->helper('wordpress') ?>
+	<?php $author = $post->getAuthor() ?>
+<?php echo $this->getBeforePostContentHtml() ?>
+
+<?php 
+	if($post->isViewableForVisitor())
+	{?>
+<?php
+require_once (Mage::getBaseDir()."/wpblog/wp-config.php");
+
+$mysqli = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+if ($mysqli->connect_errno) {
+  printf("Connect failed: %s\n", $mysqli->connect_error);
+  exit();
+}
+
+$queryID 		= "SELECT meta_value FROM `".DB_NAME."`.wp_postmeta WHERE post_id=".$post->getId()." and meta_key='front_image'";
+$query 			= "SELECT guid FROM `".DB_NAME."`.wp_posts WHERE id= (".$queryID.")";
+$frontImage = "";
+// echo $query;
+if ($result = $mysqli->query($query)) {
+  while ($row = $result->fetch_assoc()) {
+  	$frontImage = $row["guid"];
+  }
+  $result->free();
+}
+$mysqli->close();
+?>
+<article id="post-<?php echo $post->getId() ?>" class="post- post type-post status-publish format-image hentry category-photography tag-print-2 tag-video-2 post__holder cat-7-id main-holder">
+	<div class="post-formats hidden-phone"><i class="icon-picture icon-2x"></i></div>	
+	<header class="post-header">	
+		<h2 class="post-title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+	</header>
+	<!-- Post Meta -->
+	<div class="meta-space">
+		<!-- <span>By <a href="" title="" rel="author"></a></span> -->
+		<span><i class="icon-calendar-2"></i> Monday, December 23, 2013</span>
+		<span><i class="icon-comment-2"></i> <a href="" class="comments-link" title="Comment on First graphic design – image type post"> 2</a></span>
+		<span class="post_category"><i class="icon-cloud-2"></i><a href="http://www.buzzblog.hercules-design.com/category/photography/" title="View all posts in Photography">Photography</a></span>
+		<span><i class="icon-tag-2"></i>
+		<a href="http://www.buzzblog.hercules-design.com/tag/print-2/" rel="tag">Print</a>, <a href="http://www.buzzblog.hercules-design.com/tag/video-2/" rel="tag">Video</a>								</span>
+		<span class="post_permalink"><i class="icon-attach-2"></i><a href="http://www.buzzblog.hercules-design.com/first-graphic-design/" title="Permalink First graphic design – image type post">Permalink</a></span>
+		<span><a href="#" class="zilla-likes" id="zilla-likes-2308" title="Like this">60</a></span>	
+	</div>
+	<!--// Post Meta -->
+	<?php 
+		if ($featuredImage = $post->getFeaturedImage()){
+			$img_src=  Mage::getBaseUrl()."/timthumb.php?src=".$featuredImage->getFullSizeImage()."&w=690&h=431";
+			$handle = @fopen($img_src,'r');
+			if($handle !== false){
+	?>
+	<?php
+		}
+	}?>
+	<div class="post-thumb clearfix">
+		<figure class="featured-thumbnail thumbnail large">
+			<div class="hider-page" style="display: none;"></div>
+			<a class="image-wrap image-popup-no-margins" title="" href="">
+				<img src="<?php echo  $frontImage?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+				<span class="zoom-icon"></span>
+			</a>
+		</figure>
+		<div class="clear"></div>
+	</div>
+	
+
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- Post Content -->
+			<div class="post_content">	
+				<?php echo $post->getPostContent() ?>
+				<div class="clear"></div>
+			</div>
+			<!-- //Post Content -->	
+		</div>		
+	</div>
+</article>
+	<?php 
+		}
+		else
+		{?>
+			<?php echo $this->getPasswordProtectHtml() ?>
+			<?php
+		}?>
+<?php endif; ?>

@@ -1,0 +1,72 @@
+<?php
+
+/* @var $this Validoc_Board_Block_Detail_View_Media */
+?>
+<?php
+$_board = $this->getBoard();
+$mainImage = $this->getMainImage();
+?>
+<div class="product-image product-image-zoom grid12-10">
+    <div class="product-image-gallery">
+        <img id="image-main"
+             class="gallery-image visible"
+             src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $mainImage->getFile()); ?>"
+             alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>"
+             title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>" />
+
+        <?php
+        if(false):
+        $i=0;
+        foreach ($this->getGalleryImages() as $_image):
+            $_imageUrl = $this->helper('validoc_board/image')
+                ->init($_board, 'image', $_image->getFile())
+                ->keepFrame(false)
+                ->constrainOnly(true)
+                ->resize(1200);
+            ?>
+            <img id="image-<?php echo $i; ?>"
+                 class="gallery-image"
+                 src="<?php echo $_imageUrl; ?>"
+                 data-zoom-image="<?php echo  $_imageUrl; ?>" />
+            <?php
+            $i++;
+        endforeach;
+        endif;
+        ?>
+    </div>
+</div>
+
+<?php 
+$m = Mage::getModel("validoc_board/board");
+$floorplans = $m->getFloorplans($this->getBoard()->getId());
+if (count($this->getGalleryImages()) > 0 || !empty($floorplans)): ?>
+    <div class="more-views grid12-2">
+        <h2><img src="<?php echo $this->getSkinUrl('images/view-title.png'); ?>"></h2>
+        <ul class="product-image-thumbs">
+            <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+                <li class="<?php echo ($mainImage->getPosition() == $_image->getPosition()) ? 'active' : '' ?>">
+                    <a class="thumb-link" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image->getLabel(); ?></h4>
+                        <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $_image->getFile()); ?>"
+                              alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" class="<?php echo $i; ?>" />
+                    </a>
+                </li>
+                <?php $i++; endforeach; ?>
+                <?php
+                    if(!empty($floorplans)): ?>
+                    <ul>
+                  <?php foreach($floorplans as $floorplan): ?>
+                      <li>
+                        <a class="floorplan" href="<?php echo Mage::getBaseUrl()."designer-floorplan/floorplan/view/id/".$floorplan["floorplan_id"]; ?>" title="<?php echo $floorplan["name"]; ?>">
+                          <h4 class="to-uppercase"><?php echo $floorplan["name"]; ?>
+                          </h4>
+                          <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$floorplan["image"]; ?>">
+                        </a>
+                      </li>
+                    <?php endforeach; ?>
+                    </ul>
+                  <?php endif; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('after'); ?>

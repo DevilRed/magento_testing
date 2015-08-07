@@ -1,0 +1,147 @@
+<?php
+/**
+ * Designer list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+/* @var $this Validoc_Designer_Block_List */
+?>
+<?php
+$_designerCollection=$this->getLoadedDesignerCollection();
+$_helper = $this->helper('catalog/output');
+?>
+<?php if(!$_designerCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no designer matching the selection.') ?></p>
+<?php else: ?>
+    <div class="category-products designers-list">
+        <?php //echo $this->getToolbarHtml() ?>
+        <div class="page-title category-title">
+            <h1><?php echo __('Meet Our')?><span> <?php echo $this->__('Designers'); ?></span></h1>
+        </div>
+
+
+        <?php // Grid Mode ?>
+
+        <?php $_collectionSize = $_designerCollection->count() ?>
+        <?php $_columnCount = $this->getColumnCount(); ?>
+        <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+            <?php $i=0; foreach ($_designerCollection as $_designer): ?>
+                <?php $_designer->load($_designer->getId()); ?>
+                <?php /*if ($i++%$_columnCount==0): ?>
+        <?php endif*/ ?>
+
+                <!--<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">-->
+                <li class="grid12-3">
+
+                    <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" class="product-image">
+                        <?php $_imgSizeWidth = 200; ?>
+                        <?php $_imgSizeHeight = 275; ?>
+                        <img id="product-collection-image-<?php echo $_designer->getId(); ?>"
+                             src="<?php echo $this->helper('validoc_designer/image')->init($_designer, 'small_image')->resize($_imgSizeWidth,$_imgSizeHeight); ?>"
+                             alt="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" />
+                    </a>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php echo $this->stripTags($_designer->getName(), null, true) ?>">
+                                <?php echo $_designer->getName(); ?><br />
+                                <?php echo $_designer->getFirmName(); ?>
+                            </a>
+                        </h2>
+
+                        <?php
+                        $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
+                        foreach($_nameAfterChildren as $_nameAfterChildName):
+                            $_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
+                            $_nameAfterChild->setProduct($_designer);
+                            ?>
+                            <?php echo $_nameAfterChild->toHtml(); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </li>
+                <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        <?php endif*/ ?>
+            <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+
+    </div>
+<?php endif; ?>
+
+<div class="clearer"></div>
+
+<?php
+$_collaboratorCollection=$this->getLoadedCollaboratorCollection();
+$_helper = $this->helper('catalog/output');
+?>
+<?php if(!$_collaboratorCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no collaborato matching the selection.') ?></p>
+<?php else: ?>
+    <div class="category-products designers-list">
+        <?php //echo $this->getToolbarHtml() ?>
+        <div class="page-title category-title">
+            <h1><?php echo __('Meet Our')?> <span><?php echo $this->__('Collaborators'); ?></span></h1>
+        </div>
+
+        <?php // Grid Mode ?>
+
+        <?php $_collectionSize = $_collaboratorCollection->count() ?>
+        <?php $_columnCount = $this->getColumnCount(); ?>
+        <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+            <?php $i=0; foreach ($_collaboratorCollection as $_designer): ?>
+                <?php $_designer->load($_designer->getId()); ?>
+                <?php /*if ($i++%$_columnCount==0): ?>
+        <?php endif*/ ?>
+
+                <!--<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">-->
+                <li class="grid12-6">
+
+                    <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" class="product-image">
+                        <?php $_imgSizeWidth = 200; ?>
+                        <?php $_imgSizeHeight = 275; ?>
+                        <img id="product-collection-image-<?php echo $_designer->getId(); ?>"
+                             src="<?php echo $this->helper('validoc_designer/image')->init($_designer, 'small_image')->resize($_imgSizeWidth,$_imgSizeHeight); ?>"
+                             alt="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" />
+                    </a>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php echo $this->stripTags($_designer->getName(), null, true) ?>">
+                                <?php echo $_designer->getName(); ?><br />
+                                <?php echo $_designer->getFirmName(); ?>
+                            </a>
+                        </h2>
+
+                        <?php
+                        $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
+                        foreach($_nameAfterChildren as $_nameAfterChildName):
+                            $_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
+                            $_nameAfterChild->setProduct($_designer);
+                            ?>
+                            <?php echo $_nameAfterChild->toHtml(); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </li>
+                <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        <?php endif*/ ?>
+            <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    </div>
+<?php endif; ?>
+
+<div class="clearer"></div>
+
+<!--<div class="box-header-design">
+    <span class="box-header-title">
+        <img src="<?php //echo $this->getSkinUrl('images/media/design-logo.png') ?>" alt="" />
+    </span>
+</div>-->
+
+<?php
+//set product collection on after blocks
+$_afterChildren = $this->getChild('after')->getSortedChildren();
+foreach($_afterChildren as $_afterChildName):
+    $_afterChild = $this->getChild('after')->getChild($_afterChildName);
+    $_afterChild->setProductCollection($_designerCollection);
+    ?>
+    <?php echo $_afterChild->toHtml(); ?>
+<?php endforeach; ?>

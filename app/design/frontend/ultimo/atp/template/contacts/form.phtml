@@ -1,0 +1,105 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title contact-title">
+    <h1><?php echo Mage::helper('contacts')->__('Contact us') ?></h1>
+    <p>
+        We'd love to hear from you and there are lots of ways to get in touch with us. You can use the contact form, call us, email us, or message us on social media. For quick answers, check out our <a href="<?php echo Mage::getBaseUrl(); ?>faq" class="link-faq">FAQ's</a>.
+    </p>
+</div>
+<div class="contact-content">
+    <div class="contact-box grid12-6">
+        <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+            <div class="fieldset">
+                <ul class="form-list contact-form">
+                    <li class="fields half">
+                        <div class="grid12-6">
+                            <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('First name') ?></label>
+                            <div class="input-box">
+                                <input name="name" id="firstname" title="<?php echo Mage::helper('contacts')->__('First Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                            </div>
+                        </div>
+                        <div class="grid12-6">
+                            <label for="telephone"><?php echo Mage::helper('contacts')->__('Last name') ?></label>
+                            <div class="input-box">
+                                <input name="telephone" id="lastname" title="<?php echo Mage::helper('contacts')->__('Last Name') ?>" value="" class="input-text" type="text" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                            <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+                            <div class="input-box">
+                                <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                            </div>
+                    </li>
+                    <li class="wide">
+                        <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Message') ?></label>
+                        <div class="input-box">
+                            <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text textarea" cols="5" rows="3"></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- <div>
+                <p>800.649.1406</p>
+                <p>hello@atailoredspace.com</p>
+            </div> -->
+
+            <div class="buttons-set">
+                <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+                <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+            </div>
+        </form>                
+    </div>
+    <div class="contact-box last grid12-6">
+        <div class="info">
+            <div class="info-item">
+                <span class="c-icon tel"></span>
+                800.649.1406
+            </div>
+            <div class="info-item">
+                <span class="c-icon mail"></span>
+                hello@atailoredspace.com 
+            </div>
+        </div>
+        <div class="csocial">
+            <a href="https://www.facebook.com/atailoredspace" class="csocial-item" title="Facebook" target="_blank"><span class="c-icon fb"></span></a>
+            <a href="https://twitter.com/atailoredspace" class="csocial-item" title="Twitter" target="_blank"><span class="c-icon tw"></span></a>
+            <a href="https://www.pinterest.com/atailoredspace" class="csocial-item" title="Pinterest" target="_blank"><span class="c-icon pinterest"></span></a>
+            <a href="https://instagram.com/atailoredspace" class="csocial-item" title="Instagram" target="_blank"><span class="c-icon in"></span></a>
+        </div>
+        <p>Questions? Check out our  <a href="<?php echo Mage::getBaseUrl(); ?>faq" class="link-faq">FAQ's</a></p>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

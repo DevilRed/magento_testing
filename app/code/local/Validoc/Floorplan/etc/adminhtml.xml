@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <ats>
+            <title>ATS</title>
+            <sort_order>20</sort_order>
+            <children>
+                <manage_floorplans translate="title" module="validoc_floorplan">
+                    <title>Manage Floorplans</title>
+                    <sort_order>60</sort_order>
+                    <action>adminhtml/floorplan/index</action>
+                </manage_floorplans>
+            </children>
+        </ats>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <ats>
+                        <title>A Tailored Space</title>
+                        <children>
+                            <atp translate="title" module="validoc_floorplan">
+                                <title>Manage Floorplans</title>
+                                <children>
+                                    <manage_floorplans translate="title" module="validoc_floorplan">
+                                        <title>Manage Designers Floorplans</title>
+                                        <sort_order>9</sort_order>
+                                        <action>adminhtml/floorplan/index</action>
+                                    </manage_floorplans>
+                                </children>
+                            </atp>
+                        </children>
+                    </ats>
+                </children>
+            </admin>
+        </resources>    
+    </acl>
+</config>

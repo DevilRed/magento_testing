@@ -1,0 +1,572 @@
+<?php
+    $m = Mage::getModel("validoc_board/board");
+    $floorplans = $m->getFloorplans($this->getBoard()->getId());
+    $floorplan_products = array();
+    foreach($floorplans as $f){
+        $a = Mage::getModel('validoc_floorplan/floorplan')->load($f["floorplan_id"]);
+        $b = $a->getSelectedProducts();
+        foreach($b as $p){
+            if(!isset($floorplan_products[$p->_data["entity_id"]]))
+                $floorplan_products[$p->_data["entity_id"]] = $p->_data["quantity"];
+        }
+    }
+    $productsId = array();
+    foreach ($floorplan_products as $id => $qty) {
+        array_push($productsId, $id);
+    }
+
+    $_board = $this->getBoard();
+    $_designer = $this->getDesigner();
+    $attributes = Mage::getSingleton('catalog/config')->getProductAttributes();
+    $_productCollection = Mage::getModel('catalog/product')
+                        ->getCollection()
+                        ->addAttributeToSort('created_at', 'DESC')
+                        ->addAttributeToFilter('entity_id',  array('in' => $productsId))
+                        ->addAttributeToSelect($attributes)
+                        ->load();
+
+    if($_board->getType() == 2){
+        $catIds = $m->getCustomCategoriesId($this->getBoard()->getId());
+        if(!empty($catIds)){
+            $ctf = array();//categories to filter
+            foreach ($catIds as $k => $cat) {
+                $ctf[]['finset'] = $cat;
+            }
+        }
+        $_productCollection = Mage::getModel('catalog/product')
+                            ->getCollection()
+                            ->addAttributeToSelect('*')
+                            ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
+                            ->addAttributeToFilter('category_id', array($ctf))
+                            ->addAttributeToSort('created_at', 'DESC')
+                            ->load();
+    }
+
+    $productsBoard = $_productCollection->getItems();
+    $indexes = array_keys($productsBoard);
+
+    if(array_key_exists(0, $indexes)){
+        //2 elements per row
+        $firstRow = array_slice($productsBoard, 0, 2);
+    }
+    if(array_key_exists(2, $indexes)){
+        //3 elements per row
+        $secondRow = array_slice($productsBoard, 2, 3);
+    }
+    if(array_key_exists(5, $indexes)){
+        //3 elements per row
+        $thirdRow = array_slice($productsBoard, 5, 3);
+    }
+    if(array_key_exists(8, $indexes)){
+        //4 elements per row
+        $fourthRow = array_slice($productsBoard, 8, 4);
+    }
+    if(array_key_exists(12, $indexes)){
+        //3 elements per row
+        $fiveRow = array_slice($productsBoard, 12, 3);
+    }
+    if(array_key_exists(15, $indexes)){
+        //2 elements per row
+        $sixRow = array_slice($productsBoard, 15, 2);
+    }
+    if(array_key_exists(17, $indexes)){
+        //4 elements per row
+        $sevenRow = array_slice($productsBoard, 17, 4);
+    }
+    if(array_key_exists(21, $indexes)){
+        //2 elements per row
+        $eightRow = array_slice($productsBoard, 21, 2);
+    }
+    if(array_key_exists(23, $indexes)){
+        //4 elements per row
+        $nineRow = array_slice($productsBoard, 23, 4);
+    }
+    if(array_key_exists(27, $indexes)){
+        $tenRow = array_slice($productsBoard, 27, 3);
+    }
+
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view atp designer-board">
+    <div class="product-essential">
+        <?php
+            $_helper = $this->helper('catalog/output');
+            $boardCategoryIds = $_board->getCategoryIds();
+            if(count($boardCategoryIds) > 0){
+                $title_1 = '';
+                $title_2 = '';
+                $count = 0;
+                foreach ($boardCategoryIds as $categoryId) {
+                    if($count > 0){
+                        $parent = Mage::getModel('catalog/category')->load($categoryId);
+                        $title_2 .= ' | ' . $_helper->categoryAttribute($parent, $parent->getName(), 'name') . ' ' . $_helper->categoryAttribute($parent, $parent->getNameSuffix(), 'name_suffix');
+                    }else {
+                        $parent = Mage::getModel('catalog/category')->load($categoryId);
+                        $title_1 .= $_helper->categoryAttribute($parent, $parent->getName(), 'name') . ' <span>' . $_helper->categoryAttribute($parent, $parent->getNameSuffix(), 'name_suffix') . '</span>  ';
+                        $superParent = $parent->getParentCategory();
+                    }
+                    $count++;
+                }
+            }
+        ?>
+        <?php
+            if($_board->getType() == 2){
+                $title2 = "| " . Mage::getModel('catalog/category')->load($catIds[0]['category_id'])->getName();
+            }else{
+                $title2 = Mage::getSingleton('core/session')->getBoardTitle2();
+            }
+        ?>
+        <div class="container-board">
+            <div class="page-title">
+                <h1>
+                    <span class="title_1"><?php echo $superParent->getName()." <span>".$superParent->getNameSuffix()."</span>"; ?></span>
+                    <span class="title_2"> <?php echo $title2; ?></span><!-- aca este span es -->
+                </h1>
+            </div>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_board->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+        
+            <div class="product-shop" style="display: none;">
+                <div class="designer">
+                    <?php
+                    $_imgSize = 300;
+                    Mage::log(Mage::helper('validoc_designer/image')->init($_designer, 'image'));
+                    $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'image')->resize($_imgSize);
+                    ?>
+                    <img src="<?php echo $_imageUrl; ?>">
+                </div>
+                <div class="product-name">
+                    <span class="h1"><?php echo $_designer->getName(); ?></span>
+                </div>
+                <div class="product-name">
+                    <span class="h1"><?php echo $_board->getName(); ?></span>
+                </div>
+
+                <div class="price-info">
+                    <?php echo $this->getPriceHtml($_board); ?>
+                    <?php echo $this->getChildHtml('bundle_prices') ?>
+                    <?php echo $this->getTierPriceHtml() ?>
+                </div>
+
+                <div class="extra-info">
+                    <?php echo $this->getReviewsSummaryHtml($_board, 'default', false)?>
+                    <?php echo $this->getChildHtml('product_type_availability'); ?>
+                </div>
+
+                <?php echo $this->getChildHtml('alert_urls') ?>
+
+                <?php if ($_board->getShortDescription()):?>
+                    <div class="short-description">
+                        <div class="std"><?php echo nl2br($_board->getDescription()); ?></div>
+                    </div>
+                <?php endif;?>
+
+                <?php echo $this->getChildHtml('other');?>
+
+            </div>
+        </div>
+
+        <?php if($_board->getType() != 2): ?>
+            <div class="bg-box">
+                <div class="container-board">
+                    <div class="product-img-box">
+                        <?php echo $this->getChildHtml('media') ?>
+                    </div>
+                    <div class="product-name to-uppercase grid-container">
+                    <h1><?php echo $_board->getName(); ?></h1>
+                    </div>
+                </div>
+
+            </div>
+        <?php endif; ?>
+        
+        <div class="container-board">    
+            
+            <div class="inner-container-board">
+                <?php if($_board->getType() != 2): ?>
+                    <div class="grid12-6 description-board">
+                        <p><?php echo $_board->getDescription(); ?><br><a href="#"><span class="more">More ></span></a></p>
+                    </div>
+                    <!-- designer list -->
+                    <div class="grid12-6 designers-list">
+                        <div class="grid12-4 designer-img">
+                            <?php
+                            $_imgSize = 300;
+                            Mage::log(Mage::helper('validoc_designer/image')->init($_designer, 'image'));
+                            $_imageUrl = Mage::helper('validoc_designer/image')->init($_designer, 'image')->resize($_imgSize);
+                            ?>
+                            <img src="<?php echo $_imageUrl; ?>">
+                        </div>
+                        <div class="grid12-8 info">
+                            <h4 class="Yesteryear title">Designer</h4>
+                            <h5><?php echo $_designer->getName() ?> <br> gallupi dessign inc.</h5>
+                            <a href="#" class="more">See more designs from <?php echo $_designer->getName() ?> ></a>
+                        </div>
+                        <div class="clearer"></div>
+                        <!-- get started -->
+                        <div class="grid12-4 started">
+                            <img src="<?php echo $this->getSkinUrl('images'); ?>/started-img.png">
+                        </div>
+                        <div class="grid12-8 info">
+                            <h4 class="Yesteryear">Get started</h4>
+                            <h5>order your custom fabric & design kit</h5>
+                            <a href="#" class="more">Learn more ></a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if($_board->getType() == 2): ?>
+                    <h3 class="vignette-type">featured in <span class="board-name "><?php echo $_board->getName(); ?></span> by <span><?php echo $_designer->getFirmName(); ?></span></h3>
+                <?php endif; ?>
+
+                <div class="products-list grid-container">
+                    <!-- 8-4 per line -->
+                    <?php if(isset($firstRow)): ?>
+                    <div class="product-row 8-4-line">
+                        <?php for($i = 0; $i < count($firstRow); $i++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-8 on">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $firstRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-4 two">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $firstRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- 3 per line -->
+                    <?php if(isset($secondRow)): ?>
+                    <div class="product-row 3-line">
+                        <?php for($i = 0; $i < count($secondRow); $i++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-4 three">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-4 four">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 2): ?>
+                                <div class="grid12-4 five">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- 3 per line -->
+                    <?php if(isset($thirdRow)): ?>
+                    <div class="product-row 3-line">
+                        <?php for($i = 0; $i < count($thirdRow); $i ++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-4 six">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-4 seven">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 2): ?>
+                                <div class="grid12-4 eight">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- 4-8 per line -->
+                    <?php if(isset($fourthRow)): ?>
+                    <div class="product-row 4-8-line">
+                        <?php for($i = 0; $i < count($fourthRow); $i++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-4 nine big">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                                <!-- <div class="grid12-8"> -->
+                                    <?php if($i == 1): ?>
+                                        <div class="ten">
+                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                            <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if($i == 2): ?>
+                                        <div class="grid12-6 eleven">
+                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                            <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if($i == 3): ?>
+                                        <div class="grid12-6 twelve">
+                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
+                                            <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
+                                        </div>
+                                    <?php endif; ?>
+                                <!-- </div> -->
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 3 per line -->
+                    <?php if(isset($fiveRow)): ?>
+                    <div class="product-row 3-line">
+                        <?php for($i = 0; $i < count($fiveRow); $i ++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-4 thirteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-4 fourteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 2): ?>
+                                <div class="grid12-4 fifteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 8-4 per line -->
+                    <?php if(isset($sixRow)): ?>
+                    <div class="product-row 8-4-line estito">
+                        <?php for($i = 0; $i < count($sixRow); $i++): ?>
+                            <?php if($i == 0): ?>
+                                <div class="grid12-8 sixteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $sixRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-4 seventeen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
+                                    <p class="image-name"><?php echo $sixRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 8-4 per line -->
+                    <?php if(isset($sevenRow)): ?>
+                    <div class="product-row 8-4-line">
+                        <?php for($i = 0; $i < count($sevenRow); $i++): ?>
+                        <!-- <div class="grid12-8"> -->
+                            <?php if($i == 0): ?>
+                                <div class="grid12-6 nineteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-6 twenty">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 2): ?>
+                                <div class="eighteen">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <!-- </div> -->
+                        <?php if($i == 3): ?>
+                            <div class="grid12-4 twenty-one big">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 4-8 per line -->
+                    <?php if(isset($eightRow)): ?>
+                    <div class="product-row 4-8-line">
+                    <?php for($i = 0; $i < count($eightRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <div class="grid12-4 twenty-two">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo $eightRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <div class="grid12-8 twenty-three">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo $eightRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 8-4 per line -->
+                    <?php if(isset($nineRow)): ?>
+                    <div class="product-row 8-4-line">
+                    <?php for($i = 0; $i < count($nineRow); $i++): ?>
+                        <!-- <div class="grid12-8"> -->
+                            <?php if($i == 0): ?>
+                                <div class="twenty-four">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 1): ?>
+                                <div class="grid12-6 twenty-five">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($i == 2): ?>
+                                <div class="grid12-6 twenty-six">
+                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                    <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <!-- </div> -->
+                        <?php if($i == 3): ?>
+                            <div class="grid12-4 twenty-seven big">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
+                                <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+                    <!-- 3 per line -->
+                    <?php if(isset($tenRow)): ?>
+                    <div class="product-row 3-line">
+                    <?php for($i = 0; $i < count($tenRow); $i++): ?>
+                        <?php if($i == 0): ?>
+                            <div class="grid12-4 twenty-eight">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 1): ?>
+                            <div class="grid12-4 twenty-nine">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($i == 2): ?>
+                            <div class="grid12-4 thirty">
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
+                                <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php
+                        $i = 30;
+                        while(array_key_exists($i, $indexes)):
+                            $genericRow = array_slice($productsBoard, $i, 3);
+                    ?>
+                            <div class="product-row 3-line extra">
+                                <?php for($j = 0; $j < count($genericRow); $j++): ?>
+                                    <div class="grid12-4">
+                                        <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($genericRow[$j]->getSmallImage()); ?>" alt="">
+                                        <p class="image-name"><?php echo $genericRow[$j]->getName(); ?></p>
+                                    </div>
+                                <?php endfor; ?>
+                            </div>
+                    <?php
+                        $i = $i + 3;
+                        endwhile;
+                    ?>
+                </div>
+
+
+                <?php echo $this->getChildHtml('related_products') ?>
+
+                <?php echo $this->getChildHtml('board_related_products') ?>
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    <?php echo $this->getChildHtml('product_additional_data') ?>
+
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+                    //banner bg
+                    /*var heightImgBox = jQuery('.product-image').height();
+                    var heightToAdd = jQuery('.product-name h1').height() + 30;
+                    jQuery('.bg-box').height((heightImgBox + heightToAdd) + 'px');
+                    */
+
+    //slider
+    var flagString = new RegExp("[Ff]loorplan");
+    jQuery('.product-image-thumbs li a').each(function(){
+        var stringView = jQuery(this).find('h4').text()
+            if(flagString.test(stringView)){
+                jQuery(this).addClass('floorplan');
+            }
+        });
+        //
+        var bannerImg = jQuery('.product-image-gallery img');
+        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
+                var src = jQuery(this).find('img').attr('src');
+                bannerImg.attr('src', src);
+                var currentImg = jQuery(this).find('img').attr('class');
+                bannerImg.attr('src', src);
+                        //session storage
+                if(window.sessionStorage){
+                    sessionStorage.setItem('board-img', currentImg);
+                }
+                jQuery('.product-image-thumbs li').removeClass('active');
+                jQuery(this).parent().addClass('active');
+
+                return false;
+            });
+        /*if(window.sessionStorage){
+            var value = sessionStorage.getItem('board-img');
+            var savedImg = jQuery('.product-image-thumbs li a .'+ value).attr('src');
+            jQuery('.product-image-gallery img').attr('src', savedImg);
+        }*/
+        //wrap
+        jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
+        jQuery('.eighteen, .nineteen, .twenty').wrapAll("<div class='grid12-8'></div>");
+        jQuery('.twenty-four, .twenty-five, .twenty-six').wrapAll("<div class='grid12-8'></div>");
+        //equalizer
+        jQuery('.product-row div:not(.big)').equalizer({
+            min: 226,
+            max: 226,
+            columns: '> img',
+        });
+        jQuery('.product-row div.big').equalizer({
+            min: 603,
+            max: 603,
+            columns: '> img',
+        });
+    });
+</script>
+

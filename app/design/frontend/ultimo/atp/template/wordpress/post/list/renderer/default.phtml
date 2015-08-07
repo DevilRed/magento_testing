@@ -1,0 +1,77 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+
+<?php $post = $this->getPost() ?>
+<article id="post-<?php echo $post->getId() ?>" class="post__holder wp-buzz">
+	<?php echo $this->getBeforePostContentHtml() ?>
+	<div class="row-fluid">
+		<?php if ($post->isViewableForVisitor()): ?>
+			<div class="span12">
+				<header class="post-header">	
+					<h2 class="post-title entry-title">
+						<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+							<?php echo $this->escapeHtml($post->getPostTitle()) ?>
+						</a>
+					</h2>
+				</header>
+				<!-- Post Meta -->
+				<div class="meta-space">
+					<span class="vcard author"><span>By <i class="fn"><a href="http://atp.local.com/wpblog/author/admin/" title="Posts by A Tailored Space" rel="author">A Tailored Space</a></i></span></span>
+					<span class="post-date date updated"><i class="icon-calendar-2"></i> Wednesday, April 29, 2015</span>
+					<span><i class="icon-comment-2"></i> <span class="comments-link">0</span></span>
+					<span class="post_category"><i class="icon-cloud-2"></i><a href="http://atp.local.com/wpblog/category/uncategorized/">Uncategorized</a></span>
+					<span><i class="icon-tag-2"></i>No tags</span>
+					<span class="post_permalink"><i class="icon-attach-2"></i><a href="http://atp.local.com/wpblog/test-post/" title="Permalink Test post">Permalink</a></span>
+				</div>
+					<!--// Post Meta -->
+
+					<!-- Post Content -->
+					<div class="post_content">
+						<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+
+						<?php							
+						$img_src=  Mage::getBaseUrl()."/timthumb.php?src=".$featuredImage->getFullSizeImage()."&w=300&h=173";
+						$handle = @fopen($img_src,'r');
+						if($handle !== false){ ?>
+								<figure class="featured-thumbnail thumbnail large">
+									<!-- <div class="hider-page"></div> -->
+									<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+										<img src="<?php echo $img_src?>" class="attachment-standard-large wp-post-image" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"> 
+									</a>
+								</figure>
+							<?php } ?>
+						<?php endif; ?>
+
+						<div class="excerpt">
+							<p>
+								<?php
+								ob_start();
+								?>
+								<?php if ($this->displayExcerptInFeed() || $post->hasMoreTag()): ?>
+									<?php echo $post->getPostExcerpt() ?>
+								<?php else: ?>
+									<?php echo $post->getPostContent() ?>
+								<?php endif; ?>			
+								<?php
+									$str_text = ob_get_clean();
+									echo substr(strip_tags($str_text), 0, 170);
+								?>
+							</p>
+						</div>
+						<div class="readmore-button">
+							<a href="<?php echo $post->getPermalink()?>" class="">Continue Reading...</a>
+						</div>	
+						<div class="clear"></div>
+					</div>
+			</div>
+		<?php else: ?>
+			<?php echo $this->getPasswordProtectHtml($post) ?>
+		<?php endif; ?>
+	</div>
+</article>

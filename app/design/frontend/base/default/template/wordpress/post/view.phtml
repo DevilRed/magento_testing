@@ -1,0 +1,52 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost() ?>
+<?php if ($post): ?>
+	<?php $helper = $this->helper('wordpress') ?>
+	<?php $author = $post->getAuthor() ?>
+	
+	<div class="post-view">
+		<!-- <p class="post-date when"><?php echo stripslashes($this->__('This entry was posted on %s<span class=\"by-author\"> by %s</span>.', $post->getPostDate(), $post->getAuthor()->getDisplayName())) ?></p> -->
+		<?php echo $this->getBeforePostContentHtml() ?>
+		<div class="text_style post-entry entry std<?php if ($post->getFeaturedImage()): ?> post-entry-with-image<?php endif; ?>">
+			<?php 
+			if($post->isViewableForVisitor())
+			{?>
+				<?php 
+				if ($featuredImage = $post->getFeaturedImage())
+				{
+					$img_src=  Mage::getBaseUrl()."/timthumb.php?src=".$featuredImage->getFullSizeImage()."&w=690&h=431";
+
+					$handle = @fopen($img_src,'r');
+					if($handle !== false)							
+					{						
+						?>
+					<div class="blog_detail_image_container featured-image">
+						<!-- <img src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/> -->
+						<img class="blog_detail_image" src="<?php echo  $img_src?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>	
+					</div>					
+					<?php
+					}
+				}?>
+				<div class="page-title post-title">
+					<h1 class="blog_detail_title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></h1>
+				</div>
+				<?php echo $post->getPostContent() ?>
+			<?php 
+			}
+			else
+			{?>
+				<?php echo $this->getPasswordProtectHtml() ?>
+				<?php
+			}?>
+		</div>
+		<?php echo $this->getAfterPostContentHtml() ?>
+		<?php echo $this->getCommentsHtml() ?>
+	</div>
+<?php endif; ?>

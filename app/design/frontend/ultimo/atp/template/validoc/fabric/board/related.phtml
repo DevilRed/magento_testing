@@ -1,0 +1,35 @@
+<?php
+/**
+ * Designer board view template
+ *
+ * @see Validoc_Fabric_Block_Board_Related
+ */
+?>
+<?php $_boardsCollection = $this->getBoards(); ?>
+<div class="product-collateral toggle-content">
+    <?php if ($_boardsCollection->getSize() > 0) { ?>
+        <div class="page-title">
+            <h2><?php echo $this->__('Room Boards') ?></h2>
+        </div>
+        <?php foreach($_boardsCollection as $_board) { ?>
+            <?php $_board->load($_board->getId()); ?>
+            <div class="news-item grid-container">
+                <a href="<?php echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>">
+                    <div class="image-detail grid12-3">
+                        <?php
+                        $_imgSize = 270;
+                        $_imageUrl = Mage::helper('validoc_board/image')->init($_board, 'small_image')->resize($_imgSize);
+                        ?>
+                        <img id="image-main" class="" title="<?php echo $_board->getName() ?>" alt="<?php echo $_board->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+                    </div>
+                </a>
+                <div class="board-detail grid12-9">
+                    <!--<h5><a href="<?php /*echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>"><?php echo $_board->getName();*/ ?></a></h5>-->
+                    <div class="short-description">
+                        <?php echo $_board->getDescription(); ?>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>

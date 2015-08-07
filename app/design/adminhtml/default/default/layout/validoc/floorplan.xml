@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+
+    </default>
+
+    <!-- To Manage Designers floorplans -->
+    <adminhtml_floorplan_list>
+        <reference name="content">
+            <block type="validoc_floorplan/adminhtml_floorplan" name="validoc_floorplan.floorplan.list"/>
+        </reference>
+    </adminhtml_floorplan_list>
+
+
+    <adminhtml_floorplan_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="addJs">
+                <script>validoc/floorplan/adminhtml/floorplan.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="validoc_floorplan/adminhtml_floorplan_edit" name="validoc_floorplan.floorplan.form"/>
+        </reference>
+        <reference name="left">
+            <block type="validoc_floorplan/adminhtml_floorplan_edit_tabs" name="validoc_floorplan.floorplan.tabs"></block>
+        </reference>
+
+        <reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </adminhtml_floorplan_edit>
+
+
+	<adminhtml_floorplan_products>
+	    <block type="core/text_list" name="root" output="toHtml">
+	        <block type="validoc_floorplan/adminhtml_floorplan_edit_tab_product" name="floorplan.edit.tab.product"/>
+	        <block type="adminhtml/widget_grid_serializer" name="product_grid_serializer">
+	            <reference name="product_grid_serializer">
+	                <action method="initSerializerBlock">
+	                    <grid_block_name>floorplan.edit.tab.product</grid_block_name>
+	                        <data_callback>getSelectedProducts</data_callback>
+	                        <hidden_input_name>products</hidden_input_name>
+	                        <reload_param_name>floorplan_products</reload_param_name>
+	                </action>
+	                <action method="addColumnInputName">
+	                    <input_name>quantity</input_name>
+	                    <input_name>position</input_name>
+	                </action>
+	            </reference>
+	        </block>
+	    </block>
+	</adminhtml_floorplan_products>
+	
+	<adminhtml_floorplan_productsgrid>
+	    <block type="core/text_list" name="root" output="toHtml">
+	        <block type="validoc_floorplan/adminhtml_floorplan_edit_tab_product" name="floorplan.edit.tab.product"/>
+	    </block>
+	</adminhtml_floorplan_productsgrid>
+
+</layout>

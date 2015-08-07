@@ -1,0 +1,30 @@
+<div class="toolbar">
+    <div class="sort-by">
+        <label><?php echo $this->__('Filter by Manufacturer') ?></label>
+        <?php $_key = $this->getManufacturer(); ?>
+        <select onchange="setLocation(this.value)" title="<?php echo $this->__('Sort By') ?>">
+
+            <?php for($i=0;$i < count($_key); $i++){ ?>
+                <option value="<?php echo $_key[$i]['value']; ?>">
+                    <?php echo $_key[$i]['label']; ?>
+                </option>
+            <?php } ?>
+        </select>
+    </div>
+    <div class="sort-by">
+        <label><?php echo $this->__('Filter by Color') ?></label>
+        <?php $_color = $this->getColor(); ?>
+        <?php if( $_color ): ?>
+        <select onchange="setLocation(this.value)" title="<?php echo $this->__('Sort By') ?>">
+            <?php for($i=0;$i < count($_color); $i++){ ?>
+                <!--<span>
+                    <input onchange="setOrder(this.value)" type="checkbox" name="<?php /*echo $_color[$i]['value']; ?>>" value="<?php echo $_color[$i]['value']; ?>"> <?php echo $_color[$i]['label'];*/ ?>
+                </span>-->
+                <option value="<?php echo $_color[$i]['value']; ?>">
+                    <?php echo $_color[$i]['label']; ?>
+                </option>
+            <?php } ?>
+        </select>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Juan Carlos
+ * Date: 5/29/2015
+ * Time: 1:06 PM
+ */
+
+$_current_category = Mage::registry('current_category');
+$boardsCollection = $_current_category->getBoardsCollection();
+
+?>
+<?php if ($boardsCollection->count() > 0) { ?>
+    <ul class="products-grid products-grid--max-2-col">
+        <?php $i=1; foreach ($boardsCollection as $_board): ?>
+            <?php if($_board->getIsActive()): ?>
+                <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
+                <li class="grid12-6 <?php if($i%2 == 0) echo 'no-right-gutter'; else echo 'no-left-gutter';echo ($_board->getType() == 2) ? ' vignettes': ''; ?>">
+                    <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->htmlEscape($cur_board->getName()) ?>" class="product-image">
+                        <?php $_imgSizeWidth = 450; ?>
+                        <?php $_imgSizeHeight = 275; ?>
+                        <img id="product-collection-image-<?php echo $cur_board->getId(); ?>"
+                             src="<?php echo $this->helper('validoc_board/image')->init($cur_board, 'small_image')->keepFrame(false)->resize($_imgSizeWidth,$_imgSizeHeight); ?>"
+                             alt="<?php echo $this->htmlEscape($cur_board->getName()) ?>" />
+                    </a>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->stripTags($cur_board->getName(), null, true) ?>">
+                                <?php echo $cur_board->getName(); ?>
+                            </a>
+                            <span><?php echo ' by '; ?></span>
+                            <?php if($_board->getType() == 2): ?>
+                                 <span class="firmname"><?php echo $cur_board->getDesigner()->getFirmName(); ?></span>
+                             <?php else: ?>
+                            <a href="<?php echo Mage::getUrl("designers/designer/view",array("id"=>$cur_board->getDesigner()->getId())); ?>" title="<?php echo $this->stripTags($cur_board->getDesigner()->getName(), null, true) ?>" class="owner">
+                                <?php echo $cur_board->getDesigner()->getName(); ?>
+                            </a><?php //var_dump($_board); ?>
+                            <span><?php echo ' of '; ?></span>
+                            <span class="firmname"><?php echo $cur_board->getDesigner()->getFirmName(); ?></span>
+                            <?php endif; ?>
+                        </h2>
+                    </div>
+                </li>
+                <?php $i++; ?>
+            <?php endif ?>
+        <?php endforeach ?>
+    </ul>
+<?php } ?>
+<div class="clearer"></div>

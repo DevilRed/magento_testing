@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Validoc_Pagetemplates>
+           <active>true</active>
+              <codePool>local</codePool>
+          <depends>
+           <Mage_Page />
+          </depends>
+       </Validoc_Pagetemplates>
+    </modules>
+</config>

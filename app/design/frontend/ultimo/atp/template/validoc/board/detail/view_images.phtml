@@ -1,0 +1,30 @@
+<?php $_image = $this->getBoard()->getMediaGalleryImages()->getItemByColumnValue('label','texture'); ?>
+<div style="background: url('<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'base', $_image->getFile()); ?>') no-repeat; padding: 20px 0px;">
+    <div class="main container">
+        <div class="inner-container">
+            <div class="grid12-10">
+                <?php $_image = $this->getBoard()->getMediaGalleryImages()->getItemByColumnValue('label','room'); ?>
+                <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'base', $_image->getFile()); ?>" />
+                <div class="product-info">
+                    <h1>
+                        <?php echo strtoupper($this->getBoard()->getName()); ?>
+                    </h1>
+                </div>
+            </div>
+            <div class="grid12-2">
+                <div class="grid12-12">
+                    <?php $_image = $this->getBoard()->getMediaGalleryImages()->getItemByColumnValue('label','room'); ?>
+                    <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'base', $_image->getFile()); ?>" />
+                </div>
+                <div class="grid12-12">
+                    <?php $_image = $this->getBoard()->getMediaGalleryImages()->getItemByColumnValue('label','inspiration'); ?>
+                    <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'base', $_image->getFile()); ?>" />
+                </div>
+                <div class="grid12-12">
+                    <?php $_image = $this->getBoard()->getMediaGalleryImages()->getItemByColumnValue('label','fabric'); ?>
+                    <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'base', $_image->getFile()); ?>" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

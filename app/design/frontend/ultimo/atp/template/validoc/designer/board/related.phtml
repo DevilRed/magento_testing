@@ -1,0 +1,66 @@
+<?php
+/**
+ * Designer board view template
+ *
+ * @see Validoc_Designer_Block_Board_Related
+ */
+?>
+<?php
+$_boardsCollection = $this->getBoards();
+?>
+<div class="product-collateral toggle-content">
+    <?php if ($_boardsCollection->getSize() > 0) { ?>
+        <div class="page-title">
+            <!--<h1><?php //echo $this->__('Room Boards') ?></h1>-->
+            <h2><?php echo $this->__('Sitting'); ?> <span><?php echo $this->__('Rooms'); ?></span></h2>
+        </div>
+        <div class="grid-container board-grid">
+            <?php $i=1; foreach($_boardsCollection as $_board) { ?>
+                <?php $_board->load($_board->getId()); ?>
+                <div class="grid12-6 board-item <?php if($i%2==0) echo 'no-right-gutter'; else echo 'no-left-gutter'; ?>">
+
+                    <div class="image-detail">
+                        <?php
+                        $_imgSizeWidth = 450;
+                        $_imgSizeHeight = 275;
+                        $_imageUrl = Mage::helper('validoc_board/image')->init($_board, 'small_image')->keepFrame(false)->resize($_imgSizeWidth,$_imgSizeHeight);
+                        ?>
+                        <a href="<?php echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>">
+                            <img id="image-main" class="" title="<?php echo $_board->getName() ?>" alt="<?php echo $_board->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+                        </a>
+                    </div>
+
+                    <div class="board-name">
+                        <h3><a href="<?php echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>" title="<?php echo $_board->getName(); ?>"><?php echo $_board->getName(); ?></a></h3>
+                    </div>
+
+                </div>
+            <?php $i++; } ?>
+        </div>
+
+        <?php /*foreach($_boardsCollection as $_board) { ?>
+            <?php $_board->load($_board->getId()); ?>
+            <div class="news-item grid-container">
+
+                <div class="image-detail grid12-4 omega">
+                    <?php
+                    $_imgSizeWidth = 270;
+                    $_imgSizeHeight = 215;
+                    $_imageUrl = Mage::helper('validoc_board/image')->init($_board, 'small_image')->resize($_imgSizeWidth,$_imgSizeHeight);
+                    ?>
+                    <a href="<?php echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>">
+                        <img id="image-main" class="" title="<?php echo $_board->getName() ?>" alt="<?php echo $_board->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+                    </a>
+                </div>
+
+                <div class="board-detail grid12-8 alpha">
+                    <!--<h5><a href="<?php /*echo $this->getUrl('designer-board/board/view', array('id'=>$_board->getId())); ?>"><?php echo $_board->getName();*/ ?><?php /*</a></h5>-->
+                    <div class="short-description">
+                        <?php echo $_board->getDescription(); ?>
+                    </div>
+                </div>
+
+            </div>
+        <?php }*/ ?>
+    <?php } ?>
+</div>

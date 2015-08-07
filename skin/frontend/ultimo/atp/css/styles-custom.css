@@ -1,0 +1,601 @@
+.product-view.atp .product-shop {
+    float: left;
+}
+.product-view.atp .product-img-box {
+    float: right;
+}
+.product-view.atp .product-shop .product-name .h1 {
+    float: none;
+}
+.product-view.atp .product-shop .product-name {
+    float: none;
+}
+.product-view.atp .image-detail {
+    /*width: 120px;*/
+}
+/**product**/
+.product-view .product-shop{
+    float: left;
+}
+.product-view .add-to-cart-wrapper{
+    float: left;
+    margin-top: 0px;
+}
+.product-view .product-img-box{
+    float: right;
+}
+.product-view.atp .designer-biography {
+    float: right;
+    width: 50%;
+}
+.blog-thumbnail {
+    margin: 0 0 10px 0;
+    padding: 0;
+    width: 100%;
+}
+.blog-thumbnail > li {
+    margin: 0 0 10px 0;
+    list-style: none;
+    text-align: center;
+    position: relative;
+    border: 1px solid #cccccc;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    float: left;
+    margin-left: 25px !important;
+    width: 30.5%;
+}
+
+.blog-thumbnail img {
+    max-width: 100%;
+    width: 100%;
+    }
+.sort-by > span {
+    display: inline-block;
+    width: 9%;
+}
+/***  header ***/
+/*.header-top-container {
+    background-color: #231f20;
+    color: white;
+    text-transform: uppercase;
+    height: 50px;
+}*/
+.header-primary-container {
+    background-color: #231f20;
+    color: white;
+    text-transform: uppercase;
+    height: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .header-primary-container {
+        background-color: #FFFFFF !important;
+        height: 100% !important;
+    }
+    .logo.logo--regular {
+        bottom: 0px !important;
+    }
+    .box-featured-title {
+        height: auto !important;
+    }
+    .featured-title-mobile{
+        display: block !important;
+        margin-bottom: 5px;
+    }
+}
+@media only screen and (min-width: 759px) and (max-width: 960px)
+{
+    .logo.logo--regular {
+        bottom: 0px !important;
+        top: 0px !important;
+    }
+    .mobnav-trigger-wrapper {
+        height: 82px;
+    }
+    #nav {
+        margin-top: 67px;
+    }
+    #header-nav{
+        height: 75px !important;
+    }
+    .box-content-fil2 .text {
+        left: 12% !important;
+        top: 33% !important;
+    }
+    .box-content-fil2b .box-data .description {
+        padding-top: 0 !important;
+    }
+
+}
+@media only screen and (max-width: 360px){
+
+    .box-content-fil2 .text {
+        left: 0 !important;
+        top: 22% !important;
+    }
+    .box-content-fil2b .box-data {
+        display: block !important;
+        width: 100% !important;
+    }
+    .design-fil2b {
+        height: 100% !important;
+        display: block;
+    }
+    .box-content-fil2b .box-data .description{
+        padding: 20px 15% 0 !important;
+    }
+    .box-header-design > span {
+        top: -30px !important;
+    }
+    .box-header-title > img {
+        width: 70% !important;
+    }
+}
+.logo.logo--regular {
+    display: inline-block;
+    left: 38%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 99999999999;
+    bottom: -40px;
+}
+.nav.container.clearer.show-bg {
+    position: relative;
+}
+.nav-container {
+    text-transform: uppercase;
+}
+#nav, .mobnav-trigger {
+    border-bottom: none;
+}
+#nav{
+    margin-top: 67px;
+}
+#header-nav{
+    height: 150px;
+}
+.nav-item.level0.nav-1.level-top.first {
+    padding-right: 60px;
+}
+.f-right, .right {
+    padding-left: 50px;
+}
+.caption {
+    bottom: 0;
+    display: block;
+    left: 42%;
+    margin: 17% 0px;
+    padding: 0;
+    position: absolute;
+    width: 80%;
+}
+.caption.light {
+    border: 1px solid #fff;
+    font-family: serif;
+    font-size: 12px;
+    height: auto;
+    width: 49%;
+    display: inline-block;
+    overflow: hidden;
+}
+.caption.light h2 {
+    color: #FFFFFF;
+    padding-left: 30px;
+    padding-top: 20px;
+    font-family: OpenSans;
+    font-size: 3em;
+}
+.caption.light > p {
+    color: #fff;
+    padding-left: 62px;
+    font-size: 3em;
+    line-height: 1.25em;
+    font-family: OpenSans;
+    padding-top: 0px;
+}
+/***   end header ***/
+
+/***    content     ***/
+
+.box-content {
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.box-content > p {
+    font-size: 18px;
+    padding-top: 18px;
+    font-family: OpenSans;
+}
+.featured-col1,.featured-col3{
+    /*background-color: #000055;*/
+    height: 340px;
+    margin-top: 7px;
+}
+.featured-title{
+    height: 75px;
+    text-align: center;
+}
+.featured-title-mobile{
+    text-align: center;
+    display: none;
+}
+.featured-col2-1,.featured-col2-2{
+    height: 260px;
+}
+
+.box-featured-title {
+    border: 2px solid #cccccc;
+    min-height: 62px;
+    margin-top: 7px;
+}
+.box-featured-title > h2 {
+    font-size: 2em !important;
+    color: #7b7979;
+    font-family: OpenSans;
+}
+.box-featured-title  span {
+    background-color: white;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    top: -15px;
+}
+.box-header-design {
+    border-top: 2px solid #cccccc;
+    display: block;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}
+.box-header-design > span {
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    top: -43px;
+}
+.design-fil1 {
+    height: 404px;
+    margin: 0 auto;
+    text-align: center;
+}
+.box-content-fil1 {
+    height: 404px;
+}
+.box-content-fil1 .text {
+    font-size: 14px;
+    padding: 25px 50px 0;
+}
+.design-fil2 {
+    height: 404px;
+    margin: 0 auto;
+    text-align: center;
+}
+.box-content-fil2 {
+    height: 404px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+.box-content-fil2 .text {
+    top: 40%;
+    left: 20%;
+    color: white;
+    line-height: 2.6em;
+    position: absolute;
+}
+.box-content-fil2 .text span{
+    font-size: 25px;
+    font-weight:bold;
+    display: block;
+    color: #FFFFFF;
+    font-family: OpenSans;
+}
+.design-fil2b {
+    height: 228px;
+    margin: 0 auto;
+    text-align: center;
+}
+.box-content-fil2b {
+    display: inline-block;
+    width: 100%;
+}
+.box-content-fil2b .box-data {
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+    width: 49%;
+}
+.box-content-fil2b .box-data .description{
+    font-size: 14px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-top: 25%;
+    text-align: left;
+    line-height: 1.1em;
+}
+.main-last-child{
+    background-image:url(../images/media/backgroud-design.png);
+}
+.container_brose {
+    padding-top: 45px;
+}
+.main {
+    background: none repeat scroll 0 0 transparent;
+    min-height: 370px;
+    padding: 0 !important;
+}
+.design-text {
+    font-family: OpenSans;
+    font-size: 15px;
+    color: #3f3f3f;
+}
+.design-title{
+    font-family: "OpenSans";
+    font-size: 18px;
+    color: #3f3f3f;
+}
+/***    end content     ***/
+
+/***    footer      ***/
+.ib, .social-links a > span.icon {
+    background-color: #231f20 !important;
+    border-radius: 5px;
+}
+/***    enf footer  ***/
+
+.box-header-detalle-title:before {
+    border-top: 1px solid #bdbdae;
+    bottom: 6px;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    margin-right: 16px;
+    position: relative;
+    width: 45%;
+}
+.box-header-detalle-title:after {
+    border-top: 1px solid #bdbdae;
+    bottom: 6px;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    margin-left: 16px;
+    position: relative;
+    width: 42%;
+}
+div.box-header-detalle > span {
+    display: inline-block;
+}
+.box-header-detalle-title {
+    font-family: crimson_textbold_italic;
+    font-size: 20px;
+    line-height: 36px;
+    width: 100%;
+}
+.links-wrapper-separators-left .links > li > a {
+    height: 50px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.links > li, .links > li > a {
+    line-height: 3em;
+}
+.header-top, .header .dropdown .dropdown-heading {
+    line-height: 42px;
+}
+.header .dropdown .dropdown-heading {
+    max-height: 50px;
+}
+.box-header-left{
+    display: inline-block;
+    height: 50px;
+    line-height: 3em;
+    margin: 0 auto;
+    width: 40%;
+}
+.links > li > a{
+    color: #ffffff;
+    font-size: 14px;
+    height: 50px;
+}
+.links > li > a:hover{
+    height: 50px;
+}
+.footer .heading, #subscribe-form label {
+    margin-bottom: 0;
+    color: #FFFFFF;
+}
+.collapsible .block-title {
+    padding-bottom: 0px;
+}
+.nav-regular .nav-item.level0 > a {
+    font-family: OpenSans;
+    color: #5d5a5b;
+}
+.mini-cart-heading.dropdown-heading.cover.skip-link.skip-cart span {
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.mini-compare-heading.dropdown-heading.cover.skip-link.skip-compare span {
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.collapsible .block-content, .collapsible .block-content > * {
+    font-size: 19px;
+    margin-top: 0;
+    font-size: 24px;
+}
+.block-content-text > * {
+    font-family: OpenSans;
+    font-size: 19px;
+}
+/**designers**/
+.fabrics-list .page-title.category-title, 
+.designers-list .page-title.category-title {
+    border: 0 none;
+}
+.fabrics-list .category-title h1,
+.designers-list .category-title h1 {
+    color: #070707;
+    font-family: OpenSans;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.designers-list .products-grid .product-name {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 29.68px;
+}
+.designers-list .products-grid {
+    margin: 0 0 25px;
+}
+.designers-list .products-grid .product-name a {
+    color: #070707;
+}
+.designers-list .products-grid .product-name a:hover {
+    color: #070707;
+}
+.designers-view .product-name h1 {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 25px;
+}
+.product-view.atp.designers-view .designer-biography {
+    color: #070707;
+    float: none;
+    font-family: OpenSans_light;
+    font-size: 20px;
+    width: 100%;
+} 
+.designers-view .product-view .short-description {
+    line-height: 1.35em;
+}
+.designers-view .product-collateral {
+    margin: 25px 0 0;
+}
+.fabrics-view .product-collateral .page-title,
+.designers-view .product-collateral .page-title {
+    margin: 0 0 10px;
+}
+.fabrics-view .product-collateral .page-title h2,
+.designers-view .product-collateral .page-title h2 {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 24.18px;
+}
+.designers-view .product-collateral .board-detail {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 20.15px;
+}
+/* Fabrics */
+.fabrics-list .manufacturer-name {
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.fabrics-list .manufacturer-name h2 {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 24.16px;
+    margin: 0;
+    padding: 0;
+}
+.fabrics-list .product-info {
+    margin: 15px 0;
+}
+.fabrics-list .product-info p,
+.fabrics-list .product-info h2 {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 24.16px;
+    margin: 0;
+    padding: 0;
+}
+.fabrics-list .product-info p a,
+.fabrics-list .product-info h2 a, 
+.fabrics-list .product-info p a:hover,
+.fabrics-list .product-info h2 a:hover {
+    color: #070707;
+}
+.fabrics-list .toolbar {
+    border: 0 none;
+    margin: 0 0 25px;
+}
+.fabrics-list .toolbar .sort-by {
+    margin: 0 0 15px;
+}
+.fabrics-list .toolbar .sort-by label {
+    color: #070707;
+    display: inline-block;
+    font-family: OpenSans_light;
+    font-size: 24.2px;
+    min-width: 300px;
+}
+.fabrics-list .toolbar .sort-by select {
+    background: #f7f7f7;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 3px 3px 5px 0px rgba(206, 206, 206, 0.75);
+    -moz-box-shadow:    inset 3px 3px 5px 0px rgba(206, 206, 206, 0.75);
+    box-shadow:         inset 3px 3px 5px 0px rgba(206, 206, 206, 0.75);
+    color: #040404;
+    font-family: OpenSans_light;
+    font-size: 17.14px;
+    height: auto;
+    width: 300px;
+}
+.fabrics-view.atp .product-shop {
+    float: none;
+}
+.fabrics-view .product-shop .product-name h1 {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 24.18px;
+}
+.fabrics-view .product-shop .short-description {
+    padding-right: 100px;
+}
+.fabrics-view .short-description {
+    color: #070707;
+    font-family: OpenSans_light;
+    font-size: 20.15px;
+    line-height: 1.35em;
+    text-align: justify;
+}
+.fabrics-view .short-description p {
+    margin: 0 0 15px;
+}
+.fabrics-view .more-views .product-image-thumbs {
+    display: table;
+    width: 100%;
+}
+.fabrics-view .more-views .product-image-thumbs li {
+    display: table-cell;
+    padding: 0 15px;
+}
+.fabrics-view .more-views .product-image-thumbs li:first-child {
+    padding-left: 0;
+}
+.fabrics-view .more-views .product-image-thumbs li:last-child {
+    padding-right: 0;
+}
+.fabrics-view .more-views .product-image-thumbs li a {
+    display: block;
+}
+.fabrics-view .more-views .product-image-thumbs li img {
+    width: 100%;
+}
+.fabrics-view .product-collateral.toggle-content {
+    margin: 25px 0 0;
+}

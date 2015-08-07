@@ -1,0 +1,82 @@
+<?php
+$_designerFloorplan = $this->getDesignerFloorplan();
+//print_r($_detailsCollection);
+if(!$_designerFloorplan): ?>
+    <p class="note-msg"><?php echo $this->__('There are no designer detail matching the selection.') ?></p>
+<?php else: ?>
+<div class="product-review">
+    <div class="page-title">
+        <h1><?php echo $this->__('Floorplans Detail') ?></h1>
+    </div>
+    <div class="product-img-box">
+
+        <div class="product-image">
+           <div class="product-image-gallery">
+               <img id="image-main" class="gallery-image visible" title="Desiner Picture" alt="Desiner Picture" src=" " width="30%">
+               <span>Name: <?php //echo $_detailsCollection->getName(); ?></span><br>
+               <span>Description: <?php //echo $_detailsCollection->getDescription(); ?></span>
+           </div>
+        </div>
+    </div>
+      <div class="product-shop">
+          <div class="floorplan-detail">
+              <img id="image-main" class="gallery-image visible" title="Desiner Floorplan" alt="Desiner Floorplan" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg">
+              <span>Name:<?php //echo $_detailsCollection->getName(); ?></span><br>
+              <span> Description:<?php //echo $_detailsCollection->getDescription(); ?></span>
+          </div>
+      </div>
+    <div class="news-item">
+        <div class="image-detail">
+            <img id="image-main" class="" title="Desiner Picture" alt="Sample Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="120px" >
+        </div>
+
+        <span>
+            <h5><a href="#">Sample Kit Description</a></h5>
+            Lorem ipsum dolor text example for this product lorem ispum dolor. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam...
+        </span>
+    </div>
+    <div class="news-item">
+        <div class="image-detail">
+            <img id="image-main" class="" title="Product Image" alt="Product Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="165px">
+        </div>
+        <div class="image-detail">
+            <img id="image-main" class="" title="Frabic Image" alt="Sample Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="165px">
+        </div>
+        <div class="description">
+            <h5><a href="#">Product Description</a></h5>
+            Lorem ipsum dolor text example for this product lorem ispum dolor. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam...
+        </div>
+    </div>
+    <div class="news-item">
+        <div class="image-detail">
+            <img id="image-main" class="" title="Product Image" alt="Product Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="165px">
+        </div>
+        <div class="image-detail">
+            <img id="image-main" class="" title="Frabic Image" alt="Sample Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="165px">
+        </div>
+
+        <div class="description">
+            <h5><a href="#">Product Description</a></h5>
+            Lorem ipsum dolor text example for this product lorem ispum dolor. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam...
+        </div>
+    </div>
+    <div class="news-item">
+        <div class="image-detail">
+            <img id="image-main" class="" title="Product Image" alt="Product Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="120px" >
+        </div>
+        <span>
+            <h5><a href="#">Product Description</a></h5>
+            Lorem ipsum dolor text example for this product lorem ispum dolor. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam...
+        </span>
+    </div>
+    <div class="news-item">
+        <div class="image-detail">
+            <img id="image-main" class="" title="Product Image" alt="Product Image" src="http://testatailored-piece.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/d/hdd006_1.jpg" height="120px">
+        </div>
+        <span>
+            <h5><a href="#">Product Description</a></h5>
+            Lorem ipsum dolor text example for this product lorem ispum dolor. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam...
+        </span>
+    </div>
+</div>
+<?php endif; ?>

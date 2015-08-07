@@ -1,0 +1,45 @@
+<div class="grid">
+        <table cellspacing="0" class="data border" id="floorplan_image_gallery_grid" width="100%">
+	    <thead>
+                <tr class="headings">
+                    <th>Quantity</th>
+                    <th>Product ID</th>
+                    <th class="last">Action</th>
+                </tr>
+            </thead>
+            <tbody id="floorplan_product_list">
+	    <?php foreach($this->products as $id=>$qty): ?>
+                <tr id="floorplan_product_template" class="">
+                    <td>
+                        <input type="text" name="p_cantidad[]" value="<?php echo $qty; ?>" />
+                    </td>
+                    <td>
+                    	<input type="text" name="product_ids[]" value="<?php echo $id; ?>" />
+                    </td>
+                    <td>
+                    	<a href="#" onclick="removeProductRow(this)">Remove</a>
+                    </td>
+                </tr>
+	    <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="last" style="padding:8px">
+                        <a href="#" onclick="addNewProductRow()">Add new product</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+</div>
+<script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery.noConflict();
+	function addNewProductRow(){
+		jQuery("#floorplan_product_list").append('<tr><td><input type="text" name="p_cantidad[]" /></td><td><input type="text" name="product_ids[]" /</td><td><a href="#" onclick="removeProductRow(this)">Remove</a></td></tr>');
+	}
+
+	function removeProductRow(td){
+		var row = jQuery(td).closest("tr");
+		row.remove();
+	}
+</script>

@@ -1,0 +1,156 @@
+<?php
+/**
+ * Designer board view template
+ *
+ * @see Validoc_Board_Block_Product_Related
+ */
+?>
+<?php
+$_collectionSampleKits = $this->getSampleKits();
+$_collectionSeatings = $this->getSeatings();
+$_collectionAdditionalItems = $this->getAdditionalItems();
+?>
+
+<div class="product-collateral toggle-content">
+    <?php if ($_collectionSampleKits->getSize() > 0) { ?>
+        <div class="page-title">
+            <h1><?php echo $this->__('Sample Kits') ?></h1>
+        </div>
+        <?php foreach($_collectionSampleKits as $_product) { ?>
+            <div class="news-item">
+                <a href="<?php echo $_product->getProductUrl(); ?>">
+                    <div class="image-detail">
+                        <?php
+                        $_imageUrl = $this->helper('catalog/image')
+                            ->init($_product, 'image');
+                        ?>
+
+                        <img id="image-main" class="" width="80" title="Desiner Picture" alt="Sample Image" src="<?php echo $_imageUrl; ?>" />
+                    </div>
+                </a>
+                <span>
+                    <h5><a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $_product->getName(); ?></a></h5>
+                    <?php echo $_product->getShortDescription(); ?>
+                </span>
+                <div class="product-secondary">
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                </div>
+                <div class="product-secondary">
+                    <?php if($_product->isSaleable()) { ?>
+                        <p class="action"><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                    <?php } else { ?>
+                        <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php } ?>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+
+            </div>
+        <?php } ?>
+    <?php } ?>
+
+    <?php if ($_collectionSeatings->getSize() > 0) { ?>
+        <div class="page-title">
+            <h1><?php echo $this->__('Designer Board Items') ?></h1>
+        </div>
+        <?php foreach($_collectionSeatings as $seating) { ?>
+            <div class="news-item">
+                <a href="<?php echo $seating->getProductUrl(); ?>">
+                    <div class="image-detail">
+                        <?php
+                        $_imageUrl = $this->helper('catalog/image')
+                            ->init($seating, 'thumbnail');
+                        ?>
+
+                        <img id="image-main" class="" title="Desiner Picture" alt="Sample Image" src="<?php echo $_imageUrl; ?>" />
+                    </div>
+                </a>
+                <?php if ($fabric = $seating->getFabric()) { ?>
+                    <a href="<?php echo $this->getUrl('fabric/fabric/view',array('id'=>$fabric->getId())); ?>">
+                        <div class="image-detail">
+                            <?php
+                            $_imageUrl = $this->helper('validoc_fabric/image')
+                                ->init($fabric, 'thumbnail');
+                            ?>
+
+                            <img id="image-main" class="" title="<?php echo $fabric->getName() ?>" alt="<?php echo $fabric->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+                        </div>
+                    </a>
+                <?php } ?>
+
+                <span>
+                    <h5><a href="<?php echo $seating->getProductUrl(); ?>"><?php echo $seating->getName(); ?></a></h5>
+                    <?php echo $seating->getShortDescription(); ?>
+                </span>
+
+                <div class="product-secondary">
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                </div>
+                <div class="product-secondary">
+                    <?php if($seating->isSaleable()) { ?>
+                        <p class="action"><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($seating) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                    <?php } else { ?>
+                        <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php } ?>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+
+    <?php if ($_collectionAdditionalItems->getSize() > 0) { ?>
+        <div class="page-title">
+            <h1><?php echo $this->__('Additional Items') ?></h1>
+        </div>
+        <?php foreach($_collectionAdditionalItems as $additionalItem) { ?>
+            <div class="news-item">
+                <a href="<?php echo $additionalItem->getProductUrl(); ?>">
+                    <div class="image-detail">
+                        <?php
+                        $_imageUrl = $this->helper('catalog/image')
+                            ->init($additionalItem, 'thumbnail');
+                        ?>
+
+                        <img id="image-main" class="" title="Desiner Picture" alt="Sample Image" src="<?php echo $_imageUrl; ?>" />
+                    </div>
+                </a>
+                <span>
+                    <h5><a href="<?php echo $additionalItem->getProductUrl(); ?>"><?php echo $additionalItem->getName(); ?></a></h5>
+                    <?php echo $additionalItem->getShortDescription(); ?>
+                </span>
+
+                <div class="product-secondary">
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                </div>
+                <div class="product-secondary">
+                    <?php if($additionalItem->isSaleable()) { ?>
+                        <p class="action"><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($additionalItem) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                    <?php } else { ?>
+                        <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php } ?>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>

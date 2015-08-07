@@ -1,0 +1,39 @@
+<?php
+/**
+ * Featured Products Slider
+ */
+?>
+<div class="container_brose">
+
+<div class="featured-title-mobile"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('featured-title')->toHtml(); ?></div>
+<div class="grid-container">
+    <div class="grid12-3">
+        <div class="featured-col1">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-featured1')->toHtml(); ?>
+        </div>
+    </div>
+    <div class="grid12-6">
+        <div class="featured-title hide-below-768">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('featured-title')->toHtml(); ?>
+        </div>
+        <div class="grid-container">
+            <div class="grid12-6">
+                <div class="featured-col2-1">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-featured2')->toHtml(); ?>
+                </div>
+            </div>
+            <div class="grid12-6">
+                <div class="featured-col2-2">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-featured3')->toHtml(); ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid12-3">
+        <div class="featured-col3">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-featured4')->toHtml(); ?>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,114 @@
+<div class="main container">
+    <div class="inner-container">
+
+        <div class="box-header-design">
+            <span class="box-header-title"><img src="<?php echo $this->getUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/atp/design-logo.png'; ?>" alt="" /></span>
+        </div>
+
+        <div class="grid-container">
+
+
+        <div id="features_section_top">            
+            
+            <?php
+            define('WP_USE_THEMES', false);
+            global $wp, $wp_query, $wp_the_query, $wp_rewrite, $wp_did_header;
+            
+            require_once(Mage::getBaseDir()."/blog/wp-load.php");
+
+            $args = array( 'posts_per_page' => 2, 'category' => 5 );
+
+            $myposts = get_posts( $args );
+            global $post;
+            foreach ( $myposts as $post )
+            {
+                setup_postdata( $post );
+                ?>
+                <div class="top_feature">                    
+                        <div class="design-fil1">
+                            <div class="box-content-fil1">
+                               <a href="<?php the_permalink() ?>" title="">                        
+                                    <?php                                        
+                                    
+                                    $post_thumbnail_id = get_post_thumbnail_id( $post->ID );
+                                    $img_featured = wp_get_attachment_image_src( $post_thumbnail_id );
+                                    $img_src=  Mage::getBaseUrl()."/timthumb.php?src=".$img_featured[0]."&w=430&h=280";
+                                    ?>
+                                    <img src="<?php echo $img_src?>"/>                                        
+                                </a>
+                                <div class="text">
+                                 <p class="design-title">
+                                    <a href="<?php the_permalink() ?>" title="">
+                                        <span class="top_title_text"><?php the_title(); ?>
+                                        </span>
+                                    </a>
+                                </p>
+                                 <p class="design-text">
+                                    <span>
+                                        <?php echo substr(strip_tags(get_the_excerpt()), 0, 70) ?>
+                                    </span>
+                                </p>
+                                </div>
+                            </div>                                                    
+                     </div>                     
+                </div>
+            <?php 
+            }
+            wp_reset_postdata();?>
+        </div>
+        
+        <div class="grid-container">
+            <div id="home_big_round_button_container" class="float_left">
+                <div id="home_big_round_button" class="design-fil2">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-design2')->toHtml(); ?>
+                </div>
+            </div>
+            <div class="home_features_right float left">                        
+                    <?php
+                    $args = array( 'posts_per_page' => 2, 'category' => 6 );
+
+                    $myposts = get_posts( $args );
+                    global $post;
+                    foreach ( $myposts as $post )
+                    {
+                        setup_postdata( $post );
+
+
+                        $post_thumbnail_id = get_post_thumbnail_id( $post->ID );
+                        $img_featured = wp_get_attachment_image_src( $post_thumbnail_id );
+                        $img_src=  Mage::getBaseUrl()."/timthumb.php?src=".$img_featured[0]."&w=210&h=160";
+                        ?>
+                        <div class="featured_home_right">
+                            <div class="home_featured_right_img float_left">
+                                   <a href="<?php the_permalink() ?>">
+                                        <img src="<?php echo $img_src?>"/>
+                                        <?php                                        
+                                        //echo get_the_post_thumbnail( $post->ID, "medium");
+                                        ?>
+                                   </a>
+                            </div>
+                            <div class="home_featured_right_text float_left">
+                                <p class="design-title">
+                                    <a href="<?php the_permalink() ?>" title="">
+                                        <span><?php the_title(); ?></span>
+                                    </a>
+                                </p>                                           
+                                <p class="design-text home_text_featured_right">
+                                    <?php 
+                                    echo substr(strip_tags(get_the_excerpt()), 0, 117);
+                                    //echo get_the_excerpt();
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                        <?php 
+
+                    }
+                    wp_reset_postdata();
+                    ?>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>

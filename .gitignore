@@ -1,0 +1,7 @@
+app/etc/local.xml
+.idea
+var/
+.htaccess
+blog/wp-config.php
+blog/wp-content/mu-plugins/
+.gitconfig

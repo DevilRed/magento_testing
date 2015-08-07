@@ -1,0 +1,23 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $_boards = $this->getBoards(); ?>
+<?php if ($_boards->getSize() > 0) { ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('Room Boards') ?></h1>
+    </div>
+    <?php foreach($_boards as $board) { ?>
+        <div class="news-item">
+            <div class="image-detail">
+                <?php
+                $_imgSize = 150;
+                $_imageUrl = Mage::helper('validoc_board/image')->init($board, 'small_image')->resize($_imgSize);
+                ?>
+                <img id="image-main" class="" width="80" title="<?php echo $board->getName() ?>" alt="<?php echo $board->getName() ?>" src="<?php echo $_imageUrl; ?>" />
+            </div>
+
+            <span>
+                <h5><a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$board->getId())); ?>"><?php echo $board->getName(); ?></a></h5>
+                <?php echo $board->getDescription(); ?>
+            </span>
+        </div>
+    <?php } ?>
+<?php } ?>

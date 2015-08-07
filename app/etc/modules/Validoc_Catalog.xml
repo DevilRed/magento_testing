@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Validoc_Catalog>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Catalog/>
+                <Validoc_Board/>
+                <Validoc_Fabric/>
+
+            </depends>
+        </Validoc_Catalog>
+    </modules>
+</config>

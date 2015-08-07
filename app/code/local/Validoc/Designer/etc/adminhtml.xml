@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <ats>
+            <title>ATS</title>
+            <sort_order>20</sort_order>
+            <children>
+                <manage_designers translate="title" module="validoc_designer">
+                    <title>Manage Designers</title>
+                    <sort_order>60</sort_order>
+                    <action>adminhtml/designer/index</action>
+                </manage_designers>
+            </children>
+        </ats>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <ats>
+                        <title>A Tailored Space</title>
+                        <children>
+                            <designer translate="title" module="validoc_designer">
+                                <title>Manage Designers</title>
+                                <children>
+                                    <manage_designers translate="title" module="validoc_designer">
+                                        <title>Manage Designers</title>
+                                        <sort_order>6</sort_order>
+                                        <action>adminhtml/designer/index</action>
+                                    </manage_designers>
+                                </children>
+                            </designer>
+                        </children>
+                    </ats>
+                </children>
+            </admin>
+        </resources>    
+    </acl>
+</config>
