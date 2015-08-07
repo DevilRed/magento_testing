@@ -18,6 +18,21 @@
             <action method="addJs">
                 <script>validoc/floorplan/adminhtml/floorplan.js</script>
             </action>
+            <action method="addJs">
+                <script>validoc/customization/jquery-2.1.4.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>validoc/customization/noconflict.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/jquery.gridster.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/grid_custom.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>validoc/customization/jquery.gridster.js</script>
+            </action>
         </reference>
         <reference name="content">
             <block type="validoc_floorplan/adminhtml_floorplan_edit" name="validoc_floorplan.floorplan.form"/>
@@ -58,5 +73,9 @@
 	        <block type="validoc_floorplan/adminhtml_floorplan_edit_tab_product" name="floorplan.edit.tab.product"/>
 	    </block>
 	</adminhtml_floorplan_productsgrid>
-
+    <adminhtml_floorplan_savegrid>
+        <reference name="content">
+            <block type="validoc_floorplan/adminhtml_floorplan_edit_tab_customization" template="validoc/floorplan/edit/tab/gridcustomization.phtml" name="root" />
+        </reference>
+    </adminhtml_floorplan_savegrid>
 </layout>

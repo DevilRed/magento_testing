@@ -22,6 +22,21 @@
             <action method="addJs">
                 <script>validoc/board/adminhtml/board.js</script>
             </action>
+            <action method="addJs">
+                <script>validoc/customization/jquery-2.1.4.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>validoc/customization/noconflict.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/jquery.gridster.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/grid_custom.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>validoc/customization/jquery.gridster.js</script>
+            </action>
         </reference>
         <reference name="content">
             <block type="validoc_board/adminhtml_board_edit" name="validoc_board.board.form"/>

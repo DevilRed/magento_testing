@@ -305,4 +305,52 @@ class Validoc_Board_Adminhtml_BoardController extends Mage_Adminhtml_Controller_
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    /*
+     * saving the grid customization
+     */
+    public function savegridAction(){
+        $this->_initBoard();
+        $bdId = $this->getRequest()->getParam('boardid');
+        $grid = $this->getRequest()->getParam('grid');
+        //testing
+        /*$this->getResponse()->setHeader('Content-type', 'application/json');
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($grid));*/
+        //
+        $grid = Mage::helper('core')->jsonEncode($grid);
+        $data = array('serialized_grid' => $grid);
+        $model = Mage::getModel('validoc_board/board')->load($bdId)->addData($data);
+        try{
+            $model->setId($bdId)->save();
+            $jsonResponse = json_encode(array('msg' => 'Data updated successfully'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+        catch(Exception $e){
+            $jsonResponse = json_encode(array('msg' => 'Sorry, we have experiencing some troubles, please, try again!'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+    }
+    /*
+    public function savegridAction(){
+        $this->_initFloorplan();
+        $fpId = $this->getRequest()->getParam('floorplanid');
+        $grid = $this->getRequest()->getParam('grid');
+        $grid = Mage::helper('core')->jsonEncode($grid);
+        $data = array('serialized_grid' => $grid);
+        $model = Mage::getModel('validoc_floorplan/floorplan')->load($fpId)->addData($data);
+        try{
+            $model->setId($fpId)->save();
+            $jsonResponse = json_encode(array('msg' => 'Data updated successfully'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+        catch(Exception $e){
+            $jsonResponse = json_encode(array('msg' => 'Sorry, we have experiencing some troubles, please, try again!'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+    }
+     */
 }

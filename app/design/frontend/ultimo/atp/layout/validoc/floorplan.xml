@@ -38,7 +38,13 @@
         </reference>
         <reference name="head">
             <action method="addJs"><script>validoc/floorplan/floorplan.js</script></action>
-            <action method="addItem"><type>skin_js</type><script>js/lib/elevatezoom/jquery.elevateZoom-3.0.8.min.js</script></action>
+            <!-- <action method="addItem"><type>skin_js</type><script>js/lib/elevatezoom/jquery.elevateZoom-3.0.8.min.js</script></action> -->
+            <action method="addJs">
+                <script>validoc/customization/jquery.gridster.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/jquery.gridster.css</stylesheet>
+            </action>
         </reference>
         <reference name="content">
             <block type="validoc_floorplan/detail_view" name="floorplan.info" template="validoc/floorplan/detail/view.phtml">

@@ -219,7 +219,8 @@
                 <?php if($_board->getType() == 2): ?>
                     <h3 class="vignette-type">featured in <span class="board-name "><?php echo $_board->getName(); ?></span> by <span><?php echo $_designer->getFirmName(); ?></span></h3>
                 <?php endif; ?>
-
+                <?php $serializedGrid = $_board->getSerializedGrid(); ?>
+                <?php if(empty($serializedGrid)): ?>
                 <div class="products-list grid-container">
                     <!-- 8-4 per line -->
                     <?php if(isset($firstRow)): ?>
@@ -499,6 +500,27 @@
                         endwhile;
                     ?>
                 </div>
+                <?php else://there is grid customization ?>
+                    <?php
+                        $savedGrid = $_board->getSerializedGrid();
+                        $savedGrid = json_decode($savedGrid, true);
+                        $savedGrid = json_decode($savedGrid, true);
+                    ?>
+                        <div class="products-list grid-container gridster">
+                            <div class="inner">
+                                <?php foreach($savedGrid as $cell): ?>
+                                    <div id="<?php echo $cell['id']; ?>" data-row="<?php echo $cell['row']; ?>" data-col="<?php echo $cell['col']; ?>" data-sizex="<?php echo $cell['size_x']; ?>" data-sizey="<?php echo $cell['size_y']; ?>">
+                                        <?php foreach($productsBoard as $item): ?>
+                                            <?php if($cell['id'] == $item->getEntityId()): ?>
+                                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()) ?>" alt="">
+                                                <p class="image-name"><?php echo $item->getname(); ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                <?php endif; ?>
 
 
                 <?php echo $this->getChildHtml('related_products') ?>
@@ -567,6 +589,19 @@
             max: 603,
             columns: '> img',
         });
+        <?php $serializedGrid = $_board->getSerializedGrid(); ?>
+        <?php if(!empty($serializedGrid)): ?>
+            var gridster = jQuery('.products-list .inner').gridster({
+                max_cols: 3,
+                widget_margins: [20, 60],
+                widget_base_dimensions: [300, 300],
+                widget_selector: "div",
+                resize: {
+                    enabled: false
+                }
+            }).data('gridster');
+            gridster.disable();
+        <?php endif; ?>
     });
 </script>
 

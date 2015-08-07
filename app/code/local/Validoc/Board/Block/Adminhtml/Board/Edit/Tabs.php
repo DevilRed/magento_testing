@@ -33,6 +33,12 @@ class Validoc_Board_Block_Adminhtml_Board_Edit_Tabs extends Mage_Adminhtml_Block
             'class'     => 'ajax',
         ));
 
+        //frontend grid tab
+        $this->addTab('frontend_grid', array(
+                'label' => Mage::helper('validoc_board')->__('Frontend Grid'),
+                'content' => $this->getLayout()->createBlock('validoc_board/adminhtml_board_edit_tab_customization')->toHtml()
+            ));
+
 //        $this->addTab('video_section', array(
 //            'label' => Mage::helper('cruiseline')->__('Videos'),
 //            'title' => Mage::helper('cruiseline')->__('Videos'),

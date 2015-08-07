@@ -21,6 +21,11 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tabs extends Mage_Adminht
             'class'    => 'ajax'
         ));
 
+        $this->addTab('frontend_grid', array(
+                'label' => Mage::helper('validoc_floorplan')->__('Frontend Grid'),
+                'content' => $this->getLayout()->createBlock('validoc_floorplan/adminhtml_floorplan_edit_tab_customization')->toHtml()
+            ));
+
         return parent::_beforeToHtml();
     }
 }

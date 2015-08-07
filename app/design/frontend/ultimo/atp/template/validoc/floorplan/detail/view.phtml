@@ -194,7 +194,8 @@
                 </div>
             </div>
             <?php $counter = 0; ?>
-
+            <?php $serializedGrid = $_floorplan->getSerializedGrid(); ?>
+            <?php if(empty($serializedGrid)): ?>
             <div class="products-list grid-container">
                 <!-- 8-4 per line -->
                 <?php if(isset($firstRow)): ?>
@@ -761,7 +762,45 @@
                         <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
                     </div>
                 </div>
-            </div>
+            </div><!-- product list -->
+            <?php else://there is grid customization ?>
+                <?php
+                    $savedGrid = $_floorplan->getSerializedGrid();
+                    $savedGrid = json_decode($savedGrid, true);
+                    $savedGrid = json_decode($savedGrid, true);
+                ?>
+                    <div class="products-list grid-container gridster">
+                        <div class="inner">
+                            <?php foreach($savedGrid as $cell): ?>
+                                <div id="<?php echo $cell['id']; ?>" data-row="<?php echo $cell['row']; ?>" data-col="<?php echo $cell['col']; ?>" data-sizex="<?php echo $cell['size_x']; ?>" data-sizey="<?php echo $cell['size_y']; ?>">
+                                    <?php foreach($productsFloorplan as $item): ?>
+                                        <?php if($cell['id'] == $item->getEntityId()): ?>
+                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
+                                            <?php $counter++; ?>
+                                            <p class="image-name">
+                                                <?php echo $item->getName(); ?>
+                                                <?php
+                                                    //manufacturer name
+                                                    $_productId = $item->getEntityId();
+                                                    $_product = Mage::getModel('catalog/product')->load($_productId);
+                                                    $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                                    if(isset($_manufacturerName))
+                                                        echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                                                ?>
+                                            </p>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="floorplan-featured-title grid-container bottom">
+                            <div class="grid12-4 add-quote-list">
+                                <a href="#">ADD ALL to MY QUOTE LIST</a>
+                                <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                            </div>
+                        </div>
+                    </div>
+            <?php endif; ?>
 
 
 
@@ -829,5 +868,18 @@
             max: 603,
             columns: '> img',
         });
+        <?php $serializedGrid = $_floorplan->getSerializedGrid(); ?>
+        <?php if(!empty($serializedGrid)): ?>
+            var gridster = jQuery('.products-list .inner').gridster({
+                max_cols: 3,
+                widget_margins: [20, 60],
+                widget_base_dimensions: [300, 300],
+                widget_selector: "div",
+                resize: {
+                    enabled: false
+                }
+            }).data('gridster');
+            gridster.disable();
+        <?php endif; ?>
     });
 </script>

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Validoc_Board>
-            <version>0.1.4</version>
+            <version>0.1.5</version>
         </Validoc_Board>
     </modules>
     <global>

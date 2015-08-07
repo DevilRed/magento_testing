@@ -1,0 +1,119 @@
+<?php $boardId = Mage::app()->getRequest()->getParam('id'); ?>
+<?php if(!empty($boardId)): ?>
+	<?php
+		$productsBoard = $this->getProducts($boardId);
+		if(!empty($productsBoard)):
+	?>
+	<div id="messages" style="display: none;">
+		<ul class="messages">
+			<li class="success-msg">
+				<ul>
+					<li><span>The grid has been updated succesfully</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+		<div class="gridster grid-preview">
+			<button id="save_grid">Save grid</button>
+			<div class="inner">
+				<?php
+					$gridCustomization = $this->getGrid($boardId);
+					if(empty($gridCustomization)):
+					$i = 1;
+					$j = 1;
+				?>
+					<?php foreach($productsBoard as $product): ?>
+						<div id="<?php echo $product->getEntityId(); ?>" data-row="<?php echo $i; ?>" data-col="<?php echo $j; ?>" data-sizex="1" data-sizey="1">
+							<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($product->getSmallImage()); ?>">
+							<p class="image-name"><?php echo $product->getName(); ?></p>
+						</div>
+						<?php
+							$j++;
+							if($j == 4){
+								$i++;
+								$j = 1;
+							}
+						?>
+					<?php endforeach; ?>
+			<?php else: ?>
+				<?php
+					$savedGrid = $this->getGrid($boardId);
+					$savedGrid = json_decode($savedGrid, true);
+					$savedGrid = json_decode($savedGrid, true);
+					foreach($savedGrid as $cell):
+				?>
+					<div id="<?php echo $cell['id']; ?>" data-row="<?php echo $cell['row']; ?>" data-col="<?php echo $cell['col']; ?>" data-sizex="<?php echo $cell['size_x']; ?>" data-sizey="<?php echo $cell['size_y']; ?>">
+						<?php foreach($productsBoard as $item): ?>
+							<?php if($cell['id'] == $item->getEntityId()): ?>
+								<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
+								<p class="image-name"><?php echo $item->getName(); ?></p>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+				<?php endforeach; ?>
+			<?php endif;//empty getGrid ?>
+			</div>
+		</div>
+	<?php else: ?>
+		<div class="not-available">
+			<h3>Grid not available</h3>
+			<p>To see the grid customization, first there has to be products selected, please select the products in Categories tab, click on Save and Continue and the grid customization will be enable.</p>
+		</div>
+	<?php endif; ?>
+<?php else: ?>
+	<div class="not-available">
+		<h3>Grid not available</h3>
+		<p>To see the grid customization, first there has to be products selected, please select the products in Categories tab, click on Save and Continue and the grid customization will be enable.</p>
+	</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var gridster = jQuery('.gridster .inner').gridster({
+			max_cols: 3,
+			widget_margins: [20, 40],
+			widget_base_dimensions: [300, 300],
+			widget_selector: "div",
+			resize: {
+				enabled: true,
+				max_size: [2, 2]
+			},
+			serialize_params: function($w, wgd){
+				return {
+					id: wgd.el[0].id,
+					col: wgd.col,
+					row: wgd.row,
+					size_y: wgd.size_y,
+					size_x: wgd.size_x,
+					//htmlContent: jQuery($w).html()
+				}
+			}
+		}).data('gridster');
+
+		var id = '<?php echo $boardId; ?>';
+
+		var admin_url = '<?php echo Mage::helper("adminhtml")->getUrl("/board/savegrid"); ?>';
+
+		jQuery('#save_grid').click(function(){
+			var serialized_grid = gridster.serialize();
+			var json_data = {boardid: id, grid: JSON.stringify(serialized_grid)};
+
+				new Ajax.Request(admin_url, {
+					method:'post',
+					parameters: json_data,
+					requestHeaders: {Accept: 'application/json'},
+					onSuccess: function(transport) {
+						json = transport.responseText.evalJSON();
+						console.log(json);
+						jQuery('#board_tabs_frontend_grid_content #messages').show('slow').delay(3000).hide('slow');
+
+						if(json.Status.code == 200){
+			           		//jQuery('#messages').fadeIn(500).delay(3000).fadeOut(500);
+				       }
+				   }
+				});
+			return false;
+		});
+	});
+</script>
