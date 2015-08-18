@@ -209,8 +209,9 @@ $_helper = $this->helper('catalog/output');
                                 <div class="grid12-6 popup-info">
                                     <h2><?php echo $title_2; ?></h2>
                                     <?php
-                                        if(!empty($_fabric->getRoom())){
-                                            $roomIds = explode(",",$_fabric->getRoom());
+                                        $rooms = $_fabric->getRoom();
+                                        if(!empty($rooms)){
+                                            $roomIds = explode(",",$rooms);
                                             $boardsCollection = array();
                                             foreach ($roomIds as $key => $roomId) {
                                                 $board = Mage::getModel('validoc_board/board')->load($roomId);
@@ -219,6 +220,7 @@ $_helper = $this->helper('catalog/output');
                                         }
                                     ?>
                                     <p>featured in <span><?php
+                                    if(!empty($boardsCollection)):
                                     foreach ($boardsCollection as $key => $board) {
                                         echo '<a href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
                                         if($key != count($boardsCollection)-1){
@@ -227,6 +229,7 @@ $_helper = $this->helper('catalog/output');
                                             echo "</a>";
                                         }
                                     }
+                                    endif;
                                     ?></span></p>
                                     <p class="description"><?php echo $_fabric->getDescription(); ?></p>
                                     <a href="#" class="shop" style="display: none;">shop this room</a>
