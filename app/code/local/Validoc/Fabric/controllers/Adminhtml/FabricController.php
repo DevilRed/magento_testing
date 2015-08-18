@@ -85,7 +85,10 @@ class Validoc_Fabric_Adminhtml_FabricController extends Mage_Adminhtml_Controlle
                 if($data['color'] != ''){
                     $data['color']=implode(",", $data['color']);
                 }
-                //Mage::log($data);
+                if($data['room'] != ''){
+                    $data['room'] = implode(",", $data['room']);
+                }
+                Mage::log($data);
                 $model->addData($data);
                 $model->save();
                 $this->_getSession()->addSuccess($this->__('fabric was successfully saved'));

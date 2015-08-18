@@ -9,6 +9,15 @@
                 <template>page/1column.phtml</template>
             </action>
         </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>fancybox/jquery.fancybox.css</name>
+            </action>
+            <action method="addJs">
+                <script>fancybox/jquery.fancybox.js</script>
+            </action>
+        </reference>
 
         <reference name="content">
             <block type="validoc_fabric/view" name="fabric.fabric" template="validoc/fabric/view.phtml">

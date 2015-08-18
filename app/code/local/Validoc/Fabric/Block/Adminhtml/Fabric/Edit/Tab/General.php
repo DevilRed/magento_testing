@@ -56,6 +56,25 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Edit_Tab_General extends Mage_Adminh
             'style' => 'width:99%;',
         ));
         
+        $fieldset->addField('room', 'multiselect', array(
+                'name' => 'room',
+                'label' => Mage::helper('validoc_fabric')->__('Room'),
+                'title' => Mage::helper('validoc_fabric')->__('Room'),
+                'type' => 'varchar',
+                'visible' => true,
+                'required' => false,
+                'values' => $this->getRooms(),
+                'style' => 'width:99%;'
+            ));
+        $fieldset->addField('description', 'textarea', array(
+                'name' => 'description',
+                'label' => Mage::helper('validoc_fabric')->__('Description'),
+                'title' => Mage::helper('validoc_fabric')->__('Description'),
+                'type' => 'text',
+                'visible' => true,
+                'required' => false,
+                'style' => 'width:99%'
+            ));
         $form->addValues(Mage::registry('current_fabric')->toArray());
         $this->setForm($form);
         
@@ -80,6 +99,29 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Edit_Tab_General extends Mage_Adminh
         $attributeOptions = $attribute ->getSource()->getAllOptions(false);
         return $attributeOptions;
 
+    }
+    private function getRooms(){
+        $boardModel = Mage::getModel('validoc_board/board');
+        $collection = $boardModel->getCollection();
+        $collection->addFieldToSelect('board_id');
+        $collection->addFieldToSelect('name');
+        $roomValues = array();
+        $collection->addFieldToSelect('type');
+        foreach ($collection as $key => $value) {
+            $typeCode = $value->getType();
+            if($typeCode == 1){
+                $typeLabel = 'Sitting Room';
+            }else if($typeCode == 2){
+                $typeLabel = 'Decor Vignettes';
+            }
+            $label = $value->getName()." - ".$typeLabel;
+            $data = array(
+                'value' => $value->getBoardId(),
+                'label' => $label
+                );
+            array_push($roomValues, $data);
+        }
+        return $roomValues;
     }
 
 }

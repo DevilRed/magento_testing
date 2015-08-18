@@ -182,15 +182,56 @@ $_helper = $this->helper('catalog/output');
                             <?php $_fabric->load($_fabric->getId()); ?>
                             <?php //var_dump($_fabric); ?>
                             <li class="grid12-3">
-                                <a href="#" class="product-image">
+                                <a href="<?php echo $_fabric->getId(); ?>" class="product-image">
                                     <?php $_imgSize = 324; ?>
                                     <img id="product-collection-image-<?php echo $_fabric->getId(); ?>"
                                          src="<?php echo $this->helper('validoc_fabric/image')->init($_fabric, 'small_image')->resize($_imgSize); ?>" />
                                 </a>
                                 <div class="product-info">
-                                    <p><a href="#"><?php echo $_fabric->getName(); ?></a></p>
+                                    <p><a href="<?php echo $_fabric->getId(); ?>"><?php echo $_fabric->getName(); ?></a></p>
                                 </div>
                             </li>
+                            <div class="container popup" id="<?php echo $_fabric->getId(); ?>" style="display: none;">
+                                <div class="grid12-6 popup-images">
+                                    <div class="main-img">
+                                        <img src="<?php echo $this->helper('validoc_fabric/image')->init($_fabric, 'small_image')->resize($_imgSize); ?>">
+                                    </div>
+                                    <div class="extra-imgs">
+                                        <ul>
+                                            <?php foreach($_fabric->getMediaGallery()['images'] as $img): ?>
+                                                <li>
+                                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>validoc/fabric<?php echo $img['file']; ?>">
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="grid12-6 popup-info">
+                                    <h2><?php echo $title_2; ?></h2>
+                                    <?php
+                                        if(!empty($_fabric->getRoom())){
+                                            $roomIds = explode(",",$_fabric->getRoom());
+                                            $boardsCollection = array();
+                                            foreach ($roomIds as $key => $roomId) {
+                                                $board = Mage::getModel('validoc_board/board')->load($roomId);
+                                                array_push($boardsCollection, $board);
+                                            }
+                                        }
+                                    ?>
+                                    <p>featured in <span><?php
+                                    foreach ($boardsCollection as $key => $board) {
+                                        echo '<a href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
+                                        if($key != count($boardsCollection)-1){
+                                            echo "</a>, ";
+                                        }else{
+                                            echo "</a>";
+                                        }
+                                    }
+                                    ?></span></p>
+                                    <p class="description"><?php echo $_fabric->getDescription(); ?></p>
+                                    <a href="#" class="shop" style="display: none;">shop this room</a>
+                                </div>
+                            </div>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
@@ -221,3 +262,39 @@ foreach($_afterChildren as $_afterChildName):
     ?>
     <?php echo $_afterChild->toHtml(); ?>
 <?php endforeach; ?>
+
+<script type="text/javascript">
+    var Handler = {
+        onReady: function(){
+            Handler.popup();
+            Handler.changeImgs();
+            Handler.equalizeHeights();
+        },
+        popup: function(){
+            jQuery('.product-image, .product-info p a').fancybox({
+                href: '#<?php echo $_fabric->getId(); ?>',
+                titleShow: false,
+                transitionIn: 'elastic',
+                transitionOut: 'elastic',
+                autoscale : true,
+                scrolling : 'no',
+                maxWidth : 800,
+                maxHeight: 550,
+                width: '100%',
+                height: 550,
+                autoSize: false
+            });
+        },
+        changeImgs: function(){
+            var mainImg = jQuery('.main-img img');
+            jQuery('.extra-imgs ul li img').click(function(){
+                mainImg.attr('src', jQuery(this).attr('src'));
+            });
+        },
+        equalizeHeights: function(){
+            var firstBlock = jQuery('.popup-images').height();
+            jQuery('.popup-info').css('height', firstBlock);
+        }
+    };
+    jQuery(document).on('ready', Handler.onReady());
+</script>
