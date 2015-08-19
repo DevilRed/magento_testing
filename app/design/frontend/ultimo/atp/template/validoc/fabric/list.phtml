@@ -275,18 +275,29 @@ foreach($_afterChildren as $_afterChildName):
             Handler.equalizeHeights();
         },
         popup: function(){
-            jQuery('.product-image, .product-info p a').fancybox({
-                href: '#<?php echo $_fabric->getId(); ?>',
-                titleShow: false,
-                transitionIn: 'elastic',
-                transitionOut: 'elastic',
-                autoscale : true,
-                scrolling : 'no',
-                maxWidth : 800,
-                maxHeight: 550,
-                width: '100%',
-                height: 550,
-                autoSize: false
+            jQuery('.product-image, .product-info p a').on('click', function(){
+                var target = jQuery(this).attr('href');
+                jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
+                jQuery('.product-image, .product-info p a').fancybox({
+                    href: '#' + target,
+                    titleShow: false,
+                    transitionIn: 'elastic',
+                    transitionOut: 'elastic',
+                    autoscale : true,
+                    scrolling : 'no',
+                    maxWidth : 800,
+                    maxHeight: 550,
+                    width: '100%',
+                    height: 550,
+                    autoSize: false,
+                    afterClose: function(){
+                        jQuery('.logo.logo--regular, #nav, .footer-container').removeAttr('style');
+                    },
+                    beforeShow: function(){
+                        jQuery('#nav, .logo.logo--regular').css('z-index', '5');
+                        console.log('entering');
+                    }
+                });
             });
         },
         changeImgs: function(){

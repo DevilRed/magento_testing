@@ -2399,6 +2399,15 @@ input:-webkit-autofill {
     font-size: 13px;
     line-height: 1.8;
 }
+.fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened{
+    z-index: 100;
+}
+.fancybox-overlay{
+    z-index: 10;
+}
+.validoc-fabric-fabric-list .main-container{
+    min-height: 600px;
+}
 /* */
 @media screen and (min-width: 975px){
     .home_features_right.float.left{
