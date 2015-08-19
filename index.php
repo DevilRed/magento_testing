@@ -69,12 +69,12 @@ if (file_exists($maintenanceFile)) {
 require_once $mageFilename;
 
 #Varien_Profiler::enable();
-
-if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
+//enable display errors, to disable it remove the "//" from below and set "#"" in line 77
+//if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
     Mage::setIsDeveloperMode(true);
-}
+//}
 
-#ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 
 umask(0);
 
