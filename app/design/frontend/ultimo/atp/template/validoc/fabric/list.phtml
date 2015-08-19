@@ -198,7 +198,8 @@ $_helper = $this->helper('catalog/output');
                                     </div>
                                     <div class="extra-imgs">
                                         <ul>
-                                            <?php foreach($_fabric->getMediaGallery()['images'] as $img): ?>
+                                            <?php $fabricExtraImg = $_fabric->getMediaGallery(); ?>
+                                            <?php foreach($fabricExtraImg['images'] as $img): ?>
                                                 <li>
                                                     <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>validoc/fabric<?php echo $img['file']; ?>">
                                                 </li>
