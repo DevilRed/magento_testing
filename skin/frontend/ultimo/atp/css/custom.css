@@ -2408,6 +2408,14 @@ input:-webkit-autofill {
 .validoc-fabric-fabric-list .main-container{
     min-height: 600px;
 }
+.popup-info p{
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-size: 18px;
+}
+.popup-info p.description{
+    font-style: normal;
+}
 /* */
 @media screen and (min-width: 975px){
     .home_features_right.float.left{

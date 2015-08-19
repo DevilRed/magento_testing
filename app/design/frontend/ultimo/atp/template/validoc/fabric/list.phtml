@@ -291,11 +291,11 @@ foreach($_afterChildren as $_afterChildName):
                     height: 550,
                     autoSize: false,
                     afterClose: function(){
-                        jQuery('.logo.logo--regular, #nav, .footer-container').removeAttr('style');
+                        jQuery('.logo.logo--regular, #nav, .footer-container, .sticky-container, .footer-container').removeAttr('style');
                     },
                     beforeShow: function(){
-                        jQuery('#nav, .logo.logo--regular').css('z-index', '5');
-                        console.log('entering');
+                        jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
+                        jQuery('.logo.logo--regular').css('z-index', '6');
                     }
                 });
             });
