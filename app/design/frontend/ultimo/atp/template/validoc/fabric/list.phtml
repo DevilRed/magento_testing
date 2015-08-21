@@ -230,10 +230,11 @@ $_helper = $this->helper('catalog/output');
                                             echo "</a>";
                                         }
                                     }
+                                    $firstBoard = $boardsCollection[0];
                                     endif;
                                     ?></span></p>
                                     <p class="description"><?php echo $_fabric->getDescription(); ?></p>
-                                    <a href="#" class="shop" style="display: none;">shop this room</a>
+                                    <a href="<?php echo (!empty($firstBoard)) ? Mage::getBaseUrl().'designer-board/board/view/id/'.$firstBoard->getBoardId(): ''; ?>" class="shop">shop this room</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>

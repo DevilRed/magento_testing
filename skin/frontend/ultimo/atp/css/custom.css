@@ -2328,7 +2328,9 @@ input:-webkit-autofill {
     margin-left: 5px;
 }
 .popup .main-img img{
-    width: 100%;
+    max-width: 100%;
+    max-height: 350px;
+    width: auto;
 }
 .popup .extra-imgs{
     margin-top: 25px;
