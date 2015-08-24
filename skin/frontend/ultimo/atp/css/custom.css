@@ -2347,8 +2347,10 @@ input:-webkit-autofill {
     margin-left: 5px;
 }
 .popup .extra-imgs ul li img{
-    max-width: 80px;
+    max-width: 96px;
+    min-width: 80px;
     cursor: pointer;
+    margin-top: 10px;
 }
 .fancybox-skin .fancybox-close{
     background-image: none;
@@ -2417,6 +2419,16 @@ input:-webkit-autofill {
 }
 .popup-info p.description{
     font-style: normal;
+}
+/* popup pieces styles */
+.container.popup .description.arrival{
+    margin-top: 0;
+}
+.container.popup .description.upon{
+    margin-top: 0;
+}
+.container.popup .description.dimensions{
+    margin-top: 10px;
 }
 /* */
 @media screen and (min-width: 975px){

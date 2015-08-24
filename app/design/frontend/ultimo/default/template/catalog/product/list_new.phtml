@@ -216,7 +216,7 @@
             
                 <div class="product-image-wrapper">
                 
-                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                    <a href="<?php echo $_product->getEntityId() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
                         <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
 
                         <?php if ($theme->getCfg('category/alt_image')): ?>
@@ -303,6 +303,72 @@
 <?php if ($_collectionSize && $tmpHtml = $this->getChildHtml('block_category_below_collection')): ?>
     <div class="block_category_below_collection std"><?php echo $tmpHtml; ?></div>
 <?php endif; ?>
+
+<?php foreach($_productCollection as $_product): ?>
+    <div class="container popup" id="<?php echo $_product->getEntityId(); ?>" style="display: none;">
+        <?php
+            $mainImg = null;
+            $pieceImgs = $_product->getMediaGallery();
+            foreach ($pieceImgs['images'] as $img) {
+                if($img['label']== 'popup'){
+                    $mainImg = $img;
+                }
+            }
+        ?>
+        <div class="grid12-6 popup-images">
+            <div class="main-img">
+                <?php if($mainImg): ?>
+                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $mainImg['file']); ?>">
+                <?php else: ?>
+                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $_product->getImage()); ?>" alt="">
+                <?php endif; ?>
+            </div>
+            <div class="extra-imgs">
+                <ul>
+                    <?php foreach($pieceImgs['images'] as $img): ?>
+                        <li>
+                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $img['file']); ?>" alt="">
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <div class="grid12-6 popup-info">
+            <?php
+                $source = $_product->getAttributeText('manufacturer');//fabric source
+            ?>
+            <h2><?php echo $_product->getName(); ?></h2>
+            <p>featured in <span>
+                <?php
+                    $rooms = $_product->getBoardId();
+                    if(!empty($rooms)){
+                        $roomIds = explode(",", $rooms);
+                        $boardsCollection = array();
+                        foreach ($roomIds as $key => $roomId) {
+                            $board = Mage::getModel('validoc_board/board')->load($roomId);
+                            array_push($boardsCollection, $board);
+                        }
+                    }
+                    foreach ($boardsCollection as $key => $board) {
+                        echo '<a class="popup-link" href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
+                        if($key != count($boardsCollection)-1){
+                            echo "</a>, ";
+                        }else{
+                            echo "</a>";
+                        }
+                    }
+                    $firstBoard = $boardsCollection[0];
+                ?>
+            </span></p>
+            <p class="description"><?php echo $_product->getShortDescription(); ?></p>
+            <p class="description dimensions"><?php echo $_product->getDimensions(); ?></p>
+            <p class="description arrival">ESTIMATED ARRIVAL: <?php echo $_product->getEstimatedArrival(); ?></p>
+            <p class="description upon">PRICE UPON REQUEST</p>
+            <a href="#" class="shop">add to my quote list</a>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('.products-grid').equalizer({
@@ -311,6 +377,37 @@
             columns: '> li img',
             breakpoint: '767',
             disabled   : 'noresize'
+        });
+
+        //popup behavior
+        jQuery('.product-image, .product-name a').on('click', function(){
+            var target = jQuery(this).attr('href');
+            jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
+            jQuery('.product-image, .product-name a').fancybox({
+                href: '#' + target,
+                titleShow: false,
+                transitionIn: 'elastic',
+                transitionOut: 'elastic',
+                autoscale: true,
+                scrolling: 'no',
+                maxWidth: 800,
+                maxHeight: 550,
+                width: '100%',
+                height: 550,
+                autoSize: false,
+                afterClose: function(){
+                    jQuery('.logo.logo--regular, #nav, .footer-container, .sticky-container, .footer-container').removeAttr('style');
+                },
+                beforeShow: function(){
+                    jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
+                    jQuery('.logo.logo--regular').css('z-index', '6');
+                }
+            });
+            //change imgs
+            var mainImg = jQuery('.main-img img');
+            jQuery('.extra-imgs ul li img').click(function(){
+                mainImg.attr('src', jQuery(this).attr('src'));
+            });
         });
     });
 </script>
