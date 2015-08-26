@@ -25,12 +25,13 @@
 		<div class="inner">
 			<?php
 				$gridCustomization = $this->getGrid($floorplanId);
+				var_dump($gridCustomization);
 				if(empty($gridCustomization)):
 				$i = 1;
 				$j = 1;
 			?>
 			<?php foreach($selectedItems as $item): ?>
-				<?php var_dump($item->getEntityId()); ?>
+				<?php //var_dump($item->getEntityId()); ?>
 				<div id="<?php echo $item->getEntityId(); ?>" data-row="<?php echo $i; ?>" data-col="<?php echo $j; ?>" data-sizex="1" data-sizey="1">
 					<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
 					<p class="image-name"><?php echo $item->getName(); ?></p>
@@ -46,8 +47,8 @@
 			<?php else: ?>
 				<?php
 					$savedGrid = $this->getGrid($floorplanId);
-					var_dump("the savedGrid");
-					var_dump($savedGrid);
+					//var_dump("the savedGrid");
+					//var_dump($savedGrid);
 					$savedGrid = json_decode($savedGrid, true);
 					$savedGrid = json_decode($savedGrid, true);
 					foreach($savedGrid as $cell):
