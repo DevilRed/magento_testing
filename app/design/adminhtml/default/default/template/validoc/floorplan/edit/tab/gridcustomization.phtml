@@ -46,6 +46,8 @@
 			<?php else: ?>
 				<?php
 					$savedGrid = $this->getGrid($floorplanId);
+					var_dump("the savedGrid");
+					var_dump($savedGrid);
 					$savedGrid = json_decode($savedGrid, true);
 					$savedGrid = json_decode($savedGrid, true);
 					foreach($savedGrid as $cell):
