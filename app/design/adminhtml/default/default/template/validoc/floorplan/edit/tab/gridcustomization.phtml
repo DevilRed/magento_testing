@@ -4,6 +4,7 @@
 		$products = $this->getProducts($floorplanId);
 
 		$selectedItems = $products->getItems();
+		var_dump(count($selectedItems));
 		if(!empty($selectedItems)):
 ?>
 	<div id="messages" style="display: none;">
