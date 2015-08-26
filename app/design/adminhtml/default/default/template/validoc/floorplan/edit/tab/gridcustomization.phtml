@@ -4,20 +4,25 @@
 		$products = $this->getProducts($floorplanId);
 
 		$selectedItems = $products->getItems();
-		var_dump(count($selectedItems));
 		if(!empty($selectedItems)):
 ?>
-	<div id="messages" style="display: none;">
+	<div id="messages">
 		<ul class="messages">
-			<li class="success-msg">
+			<li class="success-msg" style="display: none;" id="success-msg">
 				<ul>
 					<li><span>The grid has been updated succesfully</span></li>
+				</ul>
+			</li>
+			<li class="success-msg" style="display: none;" id="reset-msg">
+				<ul>
+					<li><span>The grid has been cleared</span></li>
 				</ul>
 			</li>
 		</ul>
 	</div>
 	<div class="gridster grid-preview">
 		<button id="save_grid">Save grid</button>
+		<button id="empty_grid">Reset grid</button>
 		<div class="loading" style="display: none;">
 		  <div class="ball"></div>
 		  Please Wait...
@@ -25,13 +30,11 @@
 		<div class="inner">
 			<?php
 				$gridCustomization = $this->getGrid($floorplanId);
-				var_dump($gridCustomization);
 				if(empty($gridCustomization)):
 				$i = 1;
 				$j = 1;
 			?>
 			<?php foreach($selectedItems as $item): ?>
-				<?php //var_dump($item->getEntityId()); ?>
 				<div id="<?php echo $item->getEntityId(); ?>" data-row="<?php echo $i; ?>" data-col="<?php echo $j; ?>" data-sizex="1" data-sizey="1">
 					<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
 					<p class="image-name"><?php echo $item->getName(); ?></p>
@@ -47,8 +50,6 @@
 			<?php else: ?>
 				<?php
 					$savedGrid = $this->getGrid($floorplanId);
-					//var_dump("the savedGrid");
-					//var_dump($savedGrid);
 					$savedGrid = json_decode($savedGrid, true);
 					$savedGrid = json_decode($savedGrid, true);
 					foreach($savedGrid as $cell):
@@ -129,13 +130,31 @@
 					onSuccess: function(transport) {
 						json = transport.responseText.evalJSON();
 						console.log(json);
-						jQuery('#floorplan_tabs_frontend_grid_content #messages').show('slow').delay(3000).hide('slow');
+						jQuery('#floorplan_tabs_frontend_grid_content #messages #success-msg').show('slow').delay(3000).hide('slow');
 
 						if(json.Status.code == 200){
 			           		//jQuery('#messages').fadeIn(500).delay(3000).fadeOut(500);
 				       }
 				   }
 				});
+			return false;
+		});
+		//resetting grid
+		var admin_url_reset = '<?php echo Mage::helper("adminhtml")->getUrl("/floorplan/resetgrid"); ?>';
+		jQuery('#empty_grid').click(function(){
+			var json_data = {floorplanid: id, grid: ''};
+			new Ajax.Request(admin_url_reset, {
+				method: 'post',
+				parameters: json_data,
+				requestHeaders: {Accept: 'application/json'},
+				onSuccess: function(transport){
+					json = transport.responseText.evalJSON();
+					console.log(json);
+					jQuery('#floorplan_tabs_frontend_grid_content #messages #reset-msg').show('slow').delay(3000).hide('slow');
+					location.reload();
+				}
+			});
+
 			return false;
 		});
 	});

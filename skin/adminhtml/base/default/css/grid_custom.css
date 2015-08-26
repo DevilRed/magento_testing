@@ -69,3 +69,10 @@
 	font-family: 'Georgia';
 	line-height: 1.5;
 }
+/* buttons */
+.gridster #empty_grid{
+	margin-left: 20px;
+}
+.grid-preview button{
+	padding: 2px 10px;
+}

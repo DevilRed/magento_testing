@@ -302,4 +302,25 @@ class Validoc_Floorplan_Adminhtml_FloorplanController extends Mage_Adminhtml_Con
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
         }
     }
+    /*
+     * reset grid customization
+     */
+    public function resetgridAction(){
+        $this->_initFloorplan();
+        $fpId = $this->getRequest()->getParam('floorplanid');
+        $grid = $this->getRequest()->getParam('grid');
+        $data = array('serialized_grid' => $grid);
+        $model = Mage::getModel('validoc_floorplan/floorplan')->load($fpId)->addData($data);
+        try{
+            $model->setId($fpId)->save();
+            $jsonResponse = json_encode(array('msg' => 'Reset grid succesfully'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+        catch(Exception $e){
+            $jsonResponse = json_encode(array('msg' => 'Sorry, we have experiencing some troubles, please, try again!'));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+    }
 }
