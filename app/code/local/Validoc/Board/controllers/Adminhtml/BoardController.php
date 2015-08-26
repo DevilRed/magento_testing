@@ -313,9 +313,6 @@ class Validoc_Board_Adminhtml_BoardController extends Mage_Adminhtml_Controller_
         $this->_initBoard();
         $bdId = $this->getRequest()->getParam('boardid');
         $grid = $this->getRequest()->getParam('grid');
-        //testing
-        /*$this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($grid));*/
         //
         $grid = Mage::helper('core')->jsonEncode($grid);
         $data = array('serialized_grid' => $grid);
@@ -333,16 +330,17 @@ class Validoc_Board_Adminhtml_BoardController extends Mage_Adminhtml_Controller_
         }
     }
     /*
-    public function savegridAction(){
-        $this->_initFloorplan();
-        $fpId = $this->getRequest()->getParam('floorplanid');
+     * reset grid customization
+     */
+    public function resetgridAction(){
+        $this->_initBoard();
+        $bdId = $this->getRequest()->getParam('boardid');
         $grid = $this->getRequest()->getParam('grid');
-        $grid = Mage::helper('core')->jsonEncode($grid);
         $data = array('serialized_grid' => $grid);
-        $model = Mage::getModel('validoc_floorplan/floorplan')->load($fpId)->addData($data);
+        $model = Mage::getModel('validoc_board/board')->load($bdId)->addData($data);
         try{
-            $model->setId($fpId)->save();
-            $jsonResponse = json_encode(array('msg' => 'Data updated successfully'));
+            $model->setId($bdId)->save();
+            $jsonResponse = json_encode(array('msg' => 'Reset grid successfully'));
             $this->getResponse()->setHeader('Content-type', 'application/json');
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
         }
@@ -352,5 +350,4 @@ class Validoc_Board_Adminhtml_BoardController extends Mage_Adminhtml_Controller_
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
         }
     }
-     */
 }
