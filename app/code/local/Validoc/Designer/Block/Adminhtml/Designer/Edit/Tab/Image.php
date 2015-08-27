@@ -96,7 +96,8 @@ class Validoc_Designer_Block_Adminhtml_Designer_Edit_Tab_Image extends Mage_Admi
                     'file'      => $_item['file'],
                     'label'     => $_item['label'],
                     'position'  => $_item['position'],
-                    'disabled'  => $_item['disabled']);
+                    'disabled'  => $_item['disabled'],
+                    'removed'   => $_item['removed']);
             }
             return Zend_Json::encode($_result);
         }

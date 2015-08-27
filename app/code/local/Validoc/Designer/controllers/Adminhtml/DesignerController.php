@@ -82,6 +82,14 @@ class Validoc_Designer_Adminhtml_DesignerController extends Mage_Adminhtml_Contr
                 if ($id) {
                     $model->load($id);
                 }
+                //var_dump($data);
+                $decodedImages = $data['designer']['media_gallery']['images'];
+                //var_dump($decodedImages);
+                $imgsUpdated = $model->deleteImages($decodedImages);
+                $imgsUpdated = json_encode($imgsUpdated);
+                $data['designer']['media_gallery']['images'] = $imgsUpdated;
+                //var_dump($data);
+                //die('die in controller');
                 $model->addData($data);
                 $model->save();
                 $this->_getSession()->addSuccess($this->__('designer was successfully saved'));

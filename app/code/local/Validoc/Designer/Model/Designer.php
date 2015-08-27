@@ -101,4 +101,26 @@ class Validoc_Designer_Model_Designer extends Mage_Core_Model_Abstract
 
         return $this->getData('media_gallery_image_designer')->getUrl();
     }
+
+    /**
+     * deleted images behavior
+     */
+    public function deleteImages($imgs){
+        if(!empty($imgs)){
+            $imgs = json_decode($imgs);
+            foreach ($imgs as $k => $img) {
+                if($img->removed){
+                    //var_dump($img);
+                    $fileName = $img->file;
+                    unset($imgs[$k]);
+                    $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+                    $whereSelect = "file = '" . $fileName . "'";
+                    $write->query("delete from validoc_designer_image where " . $whereSelect);
+                }
+            }
+            $this->setData('designer[media_gallery][images]', $imgs);
+            return $imgs;
+            //die('die in the model');
+        }
+    }
 }
