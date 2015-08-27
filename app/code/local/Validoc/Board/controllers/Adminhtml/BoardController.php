@@ -79,6 +79,11 @@ class Validoc_Board_Adminhtml_BoardController extends Mage_Adminhtml_Controller_
     {
         $board = $this->_initBoard();
         $boardData = $this->getRequest()->getPost();
+        //deleting images behavior
+        $decodedImages = $boardData['board']['media_gallery']['images'];
+        $imgsUpdated = $board->deleteImages($decodedImages);
+        $imgsUpdated = json_encode($imgsUpdated);
+        $boardData['board']['media_gallery']['images'] = $imgsUpdated;
         $board->addData($boardData);
 
         /**

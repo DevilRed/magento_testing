@@ -4,15 +4,19 @@
 ?>
 <?php
 $_board = $this->getBoard();
-$mainImage = $this->getMainImage();
+$mainImage = $this->getMainImage();//var_dump($mainImage);die('die here');
 ?>
 <div class="product-image product-image-zoom grid12-10">
     <div class="product-image-gallery">
-        <img id="image-main"
-             class="gallery-image visible"
-             src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $mainImage->getFile()); ?>"
-             alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>"
-             title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>" />
+        <?php if(!empty($mainImage)): ?>
+          <img id="image-main"
+               class="gallery-image visible"
+               src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $mainImage->getFile()); ?>"
+               alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>"
+               title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>" />
+        <?php else: ?>
+          <div class="empty" style="border: 2px solid #000;box-shadow: 0 0 20px #555;min-height: 400px;position: relative;"><p style="position: absolute;top: 46%; left: 31.5%;font-size: 2em;text-shadow: 1px 1px 5px #777;">There is no images assigned</p></div>
+        <?php endif; ?>
 
         <?php
         if(false):

@@ -139,6 +139,26 @@ class Validoc_Board_Model_Board extends Mage_Core_Model_Abstract
         $this->setData('category_ids', $ids);
         return $this;
     }
+    /**
+     * deleted images behavior
+     */
+    public function deleteImages($imgs){
+        if(!empty($imgs)){
+            $imgs = json_decode($imgs);
+            foreach ($imgs as $k => $img) {
+                if($img->removed){
+                    $fileName = $img->file;
+                    $position = $img->position;
+                    $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+                    $whereSelect = "file = '" . $fileName . "'";
+                    unset($imgs[$k]);
+                    $write->query("delete from validoc_board_image where " . $whereSelect);
+                }
+            }
+            $this->setData('board[media_gallery][images]', $imgs);
+            return $imgs;
+        }
+    }
 
     public function getFloorplans($boardId){
         $m = Mage::getModel("validoc_floorplan/floorplan");
