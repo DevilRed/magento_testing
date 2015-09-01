@@ -189,7 +189,7 @@
             <div class="floorplan-featured-title grid-container">
                 <h5><?php echo "Pieces Featured in this Floorplan"; ?></h5>
                 <div class="grid12-4 add-quote-list">
-                    <a href="#">ADD ALL to MY QUOTE LIST</a>
+                    <a href="<?php echo $this->getUrl('validoc_floorplan/addmultiple'); ?>">ADD ALL to MY QUOTE LIST</a>
                     <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
                 </div>
             </div>
@@ -881,5 +881,25 @@
             }).data('gridster');
             gridster.disable();
         <?php endif; ?>
+        //add all to my quote button
+        var addMultipleUrl = '<?php echo $this->getUrl("validoc_floorplan/floorplan/addmultiple") ?>';
+        var floorplanProducts = '<?php echo json_encode($_floorplan_products); ?>';
+        json_data = {products_requested: floorplanProducts};
+        var cartUrl = '<?php echo Mage::helper("checkout/cart")->getCartUrl(); ?>';
+
+        jQuery('.add-quote-list').click(function(){
+            //console.log(json_data);
+            new Ajax.Request(addMultipleUrl, {
+                method: 'post',
+                parameters: json_data,
+                requestHeaders: {Accept: 'application/json'},
+                onSuccess: function(transport){
+                    json = transport.responseText.evalJSON();
+                    console.log(json);
+                    window.location.href = cartUrl;
+                }
+            });
+            return false;
+        });
     });
 </script>

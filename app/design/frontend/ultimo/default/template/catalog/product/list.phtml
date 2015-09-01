@@ -364,7 +364,24 @@
             <p class="description dimensions"><?php echo $_product->getDimensions(); ?></p>
             <p class="description arrival">ESTIMATED ARRIVAL: <?php echo $_product->getEstimatedArrival(); ?></p>
             <p class="description upon">PRICE UPON REQUEST</p>
-            <a href="#" class="shop">add to my quote list</a>
+            <!-- <a href="#" class="shop">add to my quote list</a> -->
+            <div class="actions clearer<?php echo $actionsClasses; ?> shop">
+                    <?php //Cart button ?>
+                    <?php if ($gc['display_addtocart'] != 0): ?>
+                        <?php if ($_product->isSaleable()): ?>
+                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                        <?php else: ?>
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    
+                    <?php //Add-to links
+                        if ($gc['display_addtolinks'] != 0 && !$gc['addtolinks_simple'])
+                        {
+                            echo $helpTemplate->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                        }
+                    ?>
+                </div>
         </div>
     </div>
 <?php endforeach; ?>

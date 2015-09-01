@@ -18,4 +18,26 @@ class Validoc_Floorplan_FloorplanController extends Mage_Core_Controller_Front_A
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    public function addmultipleAction(){
+        $requestedProducts = $this->getRequest()->getParam('products_requested');
+
+        $requestedProducts = json_decode($requestedProducts);
+        try{
+            $cart = Mage::helper('checkout/cart')->getCart();
+            foreach ($requestedProducts as $id => $qty) {
+                $params = array('qty' => $qty);
+                $product = Mage::getModel('catalog/product')->load($id);
+                $cart->addProduct($product, $params);
+            }
+            $cart->save();
+            $jsonResponse = array('msg' => 'products were added');
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        } catch(Exception $e){
+            $jsonResponse = array('msg' => $e->getMessage());
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($jsonResponse));
+        }
+    }
 }
