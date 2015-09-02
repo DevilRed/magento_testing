@@ -45,7 +45,7 @@ $imgHeight = 168;
     }
 ?>
 <tr>
-    <td><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->getProductThumbnail()->resize(168); ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
+    <td class="product-image-field"><?php if ($this->hasProductUrl()):?><a href="#<?php //echo $this->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->getProductThumbnail()->resize(168); ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
     <td>
     <?php /* TODO
     <td class="col-img"><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->helper('infortis/image')->getImg($_item->getProduct(), $imgWidth, $imgHeight, 'thumbnail'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
@@ -53,11 +53,33 @@ $imgHeight = 168;
     */ ?>
         <h2 class="product-name">
         <?php if ($this->hasProductUrl()):?>
-            <a href="<?php echo $this->getProductUrl() ?>"><?php echo $this->escapeHtml($this->getProductName()) ?></a>
+            <a href="#<?php //echo $this->getProductUrl() ?>"><?php echo $this->escapeHtml($this->getProductName()) ?></a>
         <?php else: ?>
             <?php echo $this->escapeHtml($this->getProductName()) ?>
         <?php endif; ?>
         </h2>
+        <div class="product-description">
+            <?php
+                $productId = $_item->getProduct()->getEntityId();
+                $_product = Mage::getModel('catalog/product')->load($productId);
+                $_manufacturerName = $_product->getAttributeText('manufacturer');
+                if(isset($_manufacturerName))
+                    echo "<p class='fabric'>FABRIC: ".$_manufacturerName."</p>";
+                //welt attribute
+                //finish attribute
+                $dimensions = $_product->getDimensions();
+                if(isset($dimensions))
+                    echo "<p class='dimensions'>".$dimensions."</p>";
+                $arrival = $_product->getEstimatedArrival();
+                if(isset($arrival))
+                    echo "<p class='arrival'>ESTIMATED ARRIVAL: ".$arrival."</p>";
+            ?>
+        </div>
+        <!-- <div class="product-qty">
+            <span class="cell-label"><?php echo $this->__('Qty') ?></span>
+    
+        <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
+        </div> -->
         <?php if ($_options = $this->getOptionList()):?>
         <dl class="item-options">
             <?php foreach ($_options as $_option) : ?>
@@ -86,13 +108,13 @@ $imgHeight = 168;
             <?php echo $addInfoBlock->setItem($_item)->toHtml() ?>
         <?php endif;?>
     </td>
-    <td class="col-edit a-center">
+    <td class="col-edit a-center" style="display: none;">
         <?php if ($isVisibleProduct): ?>
         <a href="<?php echo $this->getConfigureUrl() ?>" title="<?php echo $this->__('Edit item parameters') ?>"><?php echo $this->__('Edit') ?></a>
         <?php endif ?>
     </td>
     <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
-    <td class="col-wish a-center">
+    <td class="col-wish a-center" style="display: none;">
     
         <span class="cell-label"><?php echo $this->__('Move to Wishlist') ?></span>
     
@@ -117,7 +139,7 @@ $imgHeight = 168;
     <?php else: ?>
 
         <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-        <td class="col-unit-price a-right">
+        <td class="col-unit-price a-right" style="display: none;">
         
             <span class="cell-label">
                 <?php echo $this->__('Unit Price') ?>
@@ -217,14 +239,14 @@ $imgHeight = 168;
         </td>
         <?php endif; ?>
     <?php endif; ?>
-    <td class="a-center">
+    <td class="a-center qty-field">
         
         <span class="cell-label"><?php echo $this->__('Qty') ?></span>
     
         <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
     </td>
     <?php if (($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()) && !$_item->getNoSubtotal()): ?>
-    <td class="<?php if($this->helper('tax')->displayCartBothPrices()) echo 'col-total-excl'; else echo 'col-total'; ?> a-right">
+    <td class="<?php if($this->helper('tax')->displayCartBothPrices()) echo 'col-total-excl'; else echo 'col-total'; ?> a-right" style="display: none;">
     
         <span class="cell-label">
             <?php echo $this->__('Subtotal') ?>

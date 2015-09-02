@@ -29,7 +29,7 @@
     <quotation_quote_view>
         <reference name="root">
             <action method="setTemplate">
-                <template>page/2columns-left.phtml</template>
+                <template>page/1column.phtml</template>
             </action>
         </reference>
         <update handle="customer_account"/>
@@ -50,7 +50,7 @@
     <quotation_quote_requestfromcart>
         <reference name="root">
             <action method="setTemplate">
-                <template>page/2columns-left.phtml</template>
+                <template>page/1column.phtml</template>
             </action>
         </reference>
         <reference name="content">
@@ -62,7 +62,7 @@
     <quotation_quote_individualrequest>
         <reference name="root">
             <action method="setTemplate">
-                <template>page/2columns-left.phtml</template>
+                <template>page/1column.phtml</template>
             </action>
         </reference>
         <reference name="content">
@@ -73,7 +73,7 @@
     <quotation_quote_anonymousquoterequest>
         <reference name="root">
             <action method="setTemplate">
-                <template>page/2columns-left.phtml</template>
+                <template>page/1column.phtml</template>
             </action>
         </reference>
         <reference name="content">
@@ -84,7 +84,7 @@
     <quotation_quote_submitanonymousrequest>
         <reference name="root">
             <action method="setTemplate">
-                <template>page/2columns-left.phtml</template>
+                <template>page/1column.phtml</template>
             </action>
         </reference>
         <reference name="content">

@@ -11,9 +11,9 @@
         <tr>
             <th><?php echo $this->__('Quotation #') ?></th>
             <th><?php echo $this->__('Date') ?></th>
-            <th><?php echo $this->__('Caption') ?></th>
+            <!-- <th><?php echo $this->__('Caption') ?></th> -->
             <th><?php echo $this->__('Products') ?></th>
-            <th><?php echo $this->__('Total') ?></th>
+            <!-- <th><?php echo $this->__('Total') ?></th> -->
             <th><?php echo $this->__('Status') ?></th>
             <th>&nbsp;</th>
         </tr>
@@ -25,13 +25,13 @@
             <tr>
                 <td><?php echo $_quotation->getincrement_id() ?></td>
                 <td><?php echo $this->formatDate($_quotation->getcreated_time()) ?></td>
-                <td><?php echo $this->htmlEscape($_quotation->getcaption()); ?></td>
+                <!-- <td><?php echo $this->htmlEscape($_quotation->getcaption()); ?></td> -->
                 <td>
                     <?php foreach($_quotation->getItems() as $item): ?>
                         <?php echo $item->getQty().'x '.$item->getCaption(); ?><br>
                     <?php endforeach; ?>
                 </td>
-                <td><?php echo $_quotation->FormatPrice($_quotation->GetFinalPriceWithTaxes()); ?></td>
+                <!-- <td><?php echo $_quotation->FormatPrice($_quotation->GetFinalPriceWithTaxes()); ?></td> -->
                 <td><?php echo $this->__($_quotation->getstatus()); ?></td>
                 <td class="a-center">
                     <?php if ($_quotation->isViewableByCustomer()): ?>

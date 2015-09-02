@@ -2453,3 +2453,84 @@ input:-webkit-autofill {
     color: #000;
     font-weight: bold;
 }
+/* quote customer backend */
+.cart .page-title h1{
+    font-family: 'PetraScriptEF-Alternate';
+    font-size: 47px;
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: capitalize;
+}
+.cart .page-title h1 span{
+    font-family: 'Open Sans';
+    font-weight: lighter;
+    font-size: 20px;
+}
+.data-table.cart-table .product-image{
+    width: 270px !important;
+    max-width: 100%;
+}
+.data-table.cart-table .product-image img{
+    width: 100%;
+    border: 1px solid #77787b !important;
+}
+.data-table.cart-table tr{
+    position: relative;
+}
+.data-table.cart-table tr th, .data-table tr td{
+    border-right: 0 !important;
+}
+.data-table.cart-table tr .product-name{
+    text-transform: uppercase;
+    color: #77787b;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+.data-table.cart-table tr .product-description{
+    text-transform: uppercase;
+    color: #77787b;
+    font-weight: 100;
+    font-family: 'Open Sans';
+    margin-left: 20px;
+    font-size: 13px;
+}
+.data-table.cart-table .product-description p{
+    margin-bottom: 5px;
+}
+.data-table.cart-table thead{
+    display: none;
+}
+.data-table.cart-table tfoot tr td{
+    border: 0;
+    border-top: 1px solid #000;
+}
+.data-table.cart-table tbody tr.odd.last{
+    border: 0;
+}
+.data-table.cart-table tbody tr{
+    border-bottom: 1px solid #000;
+}
+.data-table.cart-table tbody tr .product-image-field{
+    padding: 4px;
+}
+.data-table.cart-table tbody tr .product-image-field{
+    padding: 30px 0;
+}
+.data-table.cart-table tbody tr:first-child td{
+    padding-top: 4px;
+}
+.data-table.cart-table tr.even{
+    background-color: #fff;
+}
+/* hidding default blocks in user account page */
+.block.block-account{
+    margin-bottom: 150px;
+}
+.block.block-account ~ div{
+    display: none;  
+}
+@media screen and (min-width: 768px){
+    .data-table.cart-table tr .product-name{
+        margin-left: 20px;
+    }
+}
