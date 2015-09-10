@@ -40,6 +40,7 @@ $m = Mage::getModel("validoc_floorplan/floorplan");
 $floorplansSiblings = $m->getFloorplansSiblings($this->getFloorplan()->getBoardId());
 $a = $this->getBoardGalleryImages();
 $bgimage = $a['images'];
+$relatedBoard = Mage::getModel('validoc_board/board')->load($_floorplan->getBoardId());
 
 if (count($bgimage) > 0 || !empty($floorplansSiblings)): ?>
     <div class="more-views grid12-2">
@@ -47,7 +48,7 @@ if (count($bgimage) > 0 || !empty($floorplansSiblings)): ?>
         <ul class="product-image-thumbs">
             <?php $i=0; foreach ($bgimage as $_image): ?>
                 <li>
-                    <a class="thumb-link" href="#" title="<?php echo $this->escapeHtml($_image[$i]['label']); ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image['label']; ?></h4>
+                    <a class="thumb-link" href="<?php echo Mage::getBaseUrl()."designer-board/board/view/id/".$relatedBoard->getBoardId(); ?>" title="<?php echo $this->escapeHtml($_image[$i]['label']); ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image['label']; ?></h4>
                         <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."validoc/board".$_image['file']; ?>"
                               alt="<?php echo $this->escapeHtml($_image[$i]['label']); ?>" class="<?php echo $i; ?>" />
                     </a>
