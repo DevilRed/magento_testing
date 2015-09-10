@@ -778,7 +778,8 @@
                                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
                                             <?php $counter++; ?>
                                             <p class="image-name">
-                                                <?php echo $item->getName(); ?>
+                                                <?php //echo $item->getName();//only name ?>
+                                                <?php echo "# ".$counter." <span class='separator-name'>|</span> ".$item->getName();//with counter ?>
                                                 <?php
                                                     //manufacturer name
                                                     $_productId = $item->getEntityId();
