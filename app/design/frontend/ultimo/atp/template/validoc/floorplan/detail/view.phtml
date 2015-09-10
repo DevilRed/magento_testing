@@ -784,7 +784,7 @@
                                                     $_productId = $item->getEntityId();
                                                     $_product = Mage::getModel('catalog/product')->load($_productId);
                                                     $_manufacturerName = $_product->getAttributeText('manufacturer');
-                                                    if(isset($_manufacturerName))
+                                                    if(isset($_manufacturerName) && $_manufacturerName != false)
                                                         echo " <span class='separator-name'>|</span> ".$_manufacturerName;
                                                 ?>
                                             </p>
