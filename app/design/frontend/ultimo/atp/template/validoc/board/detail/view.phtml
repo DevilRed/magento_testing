@@ -587,7 +587,9 @@
         if(window.sessionStorage){
             //retrieving selected image from floorplan page
             var savedImg = sessionStorage.getItem('selected-floorplan-img');
-            jQuery('.product-image-gallery img').attr('src', savedImg);
+            if(savedImg !== null){
+                jQuery('.product-image-gallery img').attr('src', savedImg);
+            }
         }
         //wrap
         jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
