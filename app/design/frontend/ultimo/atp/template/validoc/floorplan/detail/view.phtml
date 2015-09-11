@@ -779,7 +779,16 @@
                                             <?php $counter++; ?>
                                             <p class="image-name">
                                                 <?php //echo $item->getName();//only name ?>
-                                                <?php echo "# ".$counter." <span class='separator-name'>|</span> ".$item->getName();//with counter ?>
+                                                <?php
+                                                    //getting number product
+                                                    $floorplanId  = (int) $this->getRequest()->getParam('id');
+                                                    $number = $this->getProductNumber($floorplanId, $cell['id']);
+                                                    echo '#'.$number[0]['position']." <span class='separator-name'>|</span> ";
+                                                    $_product = Mage::getModel('catalog/product')->load($item->getEntityId());
+                                                        $manufacturerPiece = $_product->getAttributeText('manufacturer_pieces');
+                                                        if(isset($manufacturerPiece))
+                                                            echo $manufacturerPiece;
+                                                ?>
                                                 <?php
                                                     //manufacturer name
                                                     $_productId = $item->getEntityId();

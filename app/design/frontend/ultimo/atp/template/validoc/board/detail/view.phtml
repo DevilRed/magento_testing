@@ -513,7 +513,13 @@
                                         <?php foreach($productsBoard as $item): ?>
                                             <?php if($cell['id'] == $item->getEntityId()): ?>
                                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()) ?>" alt="">
-                                                <p class="image-name"><?php echo $item->getname(); ?>
+                                                <p class="image-name"><?php
+                                                        //echo $item->getname();
+                                                        $_product = Mage::getModel('catalog/product')->load($item->getEntityId());
+                                                        $manufacturerPiece = $_product->getAttributeText('manufacturer_pieces');
+                                                        if(isset($manufacturerPiece))
+                                                            echo $manufacturerPiece;
+                                                    ?>
                                                     <?php
                                                         //manufacturer name
                                                         $_productId = $item->getEntityId();
