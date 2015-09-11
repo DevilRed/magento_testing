@@ -1482,11 +1482,11 @@ img.big{
     /*border-left: 5px solid transparent;*/
 }
 .designer-board .more-views li:hover a img, .designer-floorplan .more-views li:hover a img{
-    border-left: 5px solid #77787b;
+    /*border-left: 5px solid #77787b;*/
 }
 
 .designer-board .more-views li.active a img, .designer-floorplan .more-views li.active a img{
-    border-left: 5px solid #77787b;
+    /*border-left: 5px solid #77787b;*/
 }
 
 /* how to shop page */

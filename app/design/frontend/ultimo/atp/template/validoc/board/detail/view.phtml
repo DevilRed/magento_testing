@@ -584,11 +584,11 @@
 
                 return false;
             });
-        /*if(window.sessionStorage){
-            var value = sessionStorage.getItem('board-img');
-            var savedImg = jQuery('.product-image-thumbs li a .'+ value).attr('src');
+        if(window.sessionStorage){
+            //retrieving selected image from floorplan page
+            var savedImg = sessionStorage.getItem('selected-floorplan-img');
             jQuery('.product-image-gallery img').attr('src', savedImg);
-        }*/
+        }
         //wrap
         jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
         jQuery('.eighteen, .nineteen, .twenty').wrapAll("<div class='grid12-8'></div>");

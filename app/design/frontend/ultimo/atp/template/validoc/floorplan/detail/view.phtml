@@ -858,11 +858,13 @@
 
             return false;
         });*/
-        /*if(window.sessionStorage){
-            var value = sessionStorage.getItem('floorplan-img');
-            var savedImg = jQuery('.product-image-thumbs li a .'+ value).attr('src');
-            jQuery('.product-image-gallery img').attr('src', savedImg);
-        }*/
+        //for selecting image in boards page
+        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
+            var src = jQuery(this).find('img').attr('src');
+            if(window.sessionStorage){
+                sessionStorage.setItem('selected-floorplan-img', src);
+            }
+        });
         //wrap
         jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
         jQuery('.eighteen, .nineteen, .twenty').wrapAll("<div class='grid12-8'></div>");
