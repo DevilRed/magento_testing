@@ -84,7 +84,7 @@
     </h1>
     <?php
         $currentCategory = $this->getCurrentCategory();
-        $parentPiecesCategory = $currentCategory->getParentCategory()->getParentCategory();
+        $parentPiecesCategory = $currentCategory->getParentCategory()->getParentCategory();//only 2 levels are allowed
 
         if((Mage::registry('current_category')->getParentCategory()->getId() == 3) || ($parentPiecesCategory->getId() == 3)):
 
@@ -94,6 +94,7 @@
             }
             $currentUrl = $this->helper('core/url')->getCurrentUrl();
             $index = 0;
+            if(count($cats) != 0):
     ?>
             <div class="subcategory-pagination">
                 <p class="title_2">
@@ -104,6 +105,7 @@
                         <a href="<?php echo $cat->getParentCategory()->getUrl(); ?>" class="<?php echo ($currentUrl == $cat->getParentCategory()->getUrl()) ? 'active' : '' ?>"><span class="separator"><?php echo ($index > 1)? ' | ': ''; ?></span><span><?php echo 'all'; ?></span></a>
                 </p>
             </div>
+            <?php endif;//!empty cats ?>
     <?php endif; ?>
 </div>
 
