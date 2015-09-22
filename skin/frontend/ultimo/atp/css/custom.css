@@ -2534,3 +2534,69 @@ input:-webkit-autofill {
         margin-left: 20px;
     }
 }
+/* bug fixes */
+/*navigation menu*/
+#nav li ul li a:hover{
+    color: #000 !important;
+    font-weight: 600;
+}
+/*align photos regard to main sections*/
+@media screen and (min-width: 769px){
+    /* first post row */
+    .cms-home .grid-container > .grid12-3:first-child{
+        margin-left: 0;
+    }
+    .cms-home .grid-container > .grid12-3:first-child .box-content{
+        text-align: left;
+    }
+    .cms-home .grid-container > .grid12-3:first-child .box-content p{
+        text-align: center;
+    }
+    .cms-home .grid-container > .grid12-3:last-child{
+        margin-right: 0;
+    }
+    .cms-home .container_brose > .grid-container > .grid12-6{
+        margin: 0 18px;
+    }
+    .cms-home .grid-container > .grid12-3:last-child .box-content{
+        text-align: right;
+    }
+    .cms-home .grid-container > .grid12-3:last-child .box-content p{
+        text-align: center;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:first-child .box-content{
+        text-align: left;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:first-child .box-content p{
+        text-align: center;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:last-child .box-content{
+        text-align: right;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:last-child .box-content p{
+        text-align: center;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:first-child{
+        margin-left: 0;
+    }
+    .cms-home .grid-container > .grid12-6 .grid-container .grid12-6:last-child{
+        margin-right: 0;
+        float: right;
+    }
+}
+/* second post row */
+.main.container.show-bg .inner-container .top_feature:last-child{
+    float: right;
+    margin-right: 3px;
+}
+/* third post row */
+.grid-container #home_big_round_button_container{
+    max-width: 500px;
+}
+.grid-container #home_big_round_button_container a img{
+    position: relative;
+    left: -35px;
+}
+.grid-container .home_features_right.float.left{
+    margin-left: 0;
+}
