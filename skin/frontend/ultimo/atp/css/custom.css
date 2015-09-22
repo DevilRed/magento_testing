@@ -2583,20 +2583,32 @@ input:-webkit-autofill {
         margin-right: 0;
         float: right;
     }
+    /* second post row */
+    .main.container.show-bg .inner-container .top_feature:last-child{
+        float: right;
+        margin-right: 3px;
+    }
+    /* third post row */
+    .grid-container #home_big_round_button_container{
+        max-width: 500px;
+    }
+    .grid-container #home_big_round_button_container a img{
+        position: relative;
+        left: -35px;
+    }
+    .grid-container .home_features_right.float.left{
+        margin-left: 0;
+    }
 }
-/* second post row */
-.main.container.show-bg .inner-container .top_feature:last-child{
-    float: right;
-    margin-right: 3px;
-}
-/* third post row */
-.grid-container #home_big_round_button_container{
-    max-width: 500px;
-}
-.grid-container #home_big_round_button_container a img{
-    position: relative;
-    left: -35px;
-}
-.grid-container .home_features_right.float.left{
-    margin-left: 0;
+/* bug firefox fabric */
+@-moz-document url-prefix() {
+    .fabrics-list .products-grid li{
+        margin: 0;
+    }
+    .fabrics-list .products-grid li > a{
+        display: block;
+    }
+    .fabrics-list .products-grid li > .product-info{
+        clear: both;
+    }
 }
