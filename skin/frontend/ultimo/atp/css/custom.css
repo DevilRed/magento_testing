@@ -834,12 +834,13 @@ div.box-header-detalle > span {
     font-family: "Open Sans",sans-serif;
     font-size: 16px;
     font-weight: 400;
-    line-height: normal;
+    line-height: 1.6;
 }
 .designers-view .designer-biography .short-description .designer-banner {
     float: right;
     margin: 0 0 25px;
     max-width: 275px;
+    padding-top: 5px;
 }
 .designers-view .product-view .short-description {
     line-height: 1.35em;
@@ -2630,4 +2631,7 @@ input:-webkit-autofill {
 }
 .validoc-designer-designer-list .designers-list ul li{
     padding: 0;
+}
+.validoc-designer-designer-view .page-title h2{
+    margin-bottom: 8px;
 }
