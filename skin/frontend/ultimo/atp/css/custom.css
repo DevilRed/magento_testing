@@ -1078,7 +1078,7 @@ div.box-header-detalle > span {
     /*border-right: 1px solid #000;*/
     margin-right: 0;
 }
-.description-board p{
+.description-board p, .description-board a{
     font-size: 26px;
     line-height: 1.4;
     font-style: italic;
@@ -1088,7 +1088,7 @@ div.box-header-detalle > span {
     margin: 40px auto;
     margin-bottom: 20px;
 }
-.description-board p .more{
+.description-board p .more, .description-board .more{
     font-size: 13px;
     color: gray;
 }
@@ -2611,4 +2611,13 @@ input:-webkit-autofill {
     .fabrics-list .products-grid li > .product-info{
         clear: both;
     }
+}
+/* board quote */
+.description-board .more{
+    display: block;
+    text-align: center;
+    position: relative;
+}
+.designer-board .container-board .description-board p .more-text{
+    display: none;
 }

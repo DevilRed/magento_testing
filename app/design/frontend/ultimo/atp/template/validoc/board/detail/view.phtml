@@ -187,7 +187,8 @@
             <div class="inner-container-board">
                 <?php if($_board->getType() != 2): ?>
                     <div class="grid12-6 description-board">
-                        <p><?php echo $_board->getDescription(); ?><br><a href="#"><span class="more">More ></span></a></p>
+                        <p><?php echo $_board->getDescription(); ?></p>
+                        <a href="#" class="more-wrap"><span class="more">More ></span></a>
                     </div>
                     <!-- designer list -->
                     <div class="grid12-6 designers-list">
@@ -619,6 +620,36 @@
             }).data('gridster');
             gridster.disable();
         <?php endif; ?>
+        //height of quote section
+        quoteContent = jQuery('.designer-board .description-board p').text();
+        maxLength = 119;
+        if(jQuery.trim(quoteContent).length > maxLength){
+            jQuery('.designer-board .description-board .more-wrap').css('display', 'inline');
+            var newStr = quoteContent.substring(0, maxLength);
+            var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
+            jQuery('.designer-board .description-board p').empty().html(newStr);
+            jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 87%');
+            jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
+        }else{
+            jQuery('.designer-board .description-board .more-wrap').css('display', 'none');
+            jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 95%');
+        }
+
+        jQuery('.designer-board .description-board .more').on('click', function(){
+            if(jQuery(this).hasClass('open')){
+                jQuery(this).text('More >').removeClass('open');
+                newStr = quoteContent.substring(0, maxLength);
+                var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
+                jQuery('.designer-board .description-board p').empty().html(newStr);
+                jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 87%');
+                jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
+            }else{
+                jQuery(this).text('Less >').addClass('open');
+                jQuery('.designer-board .description-board').css('background-position', '0 7%, 100% 100%');
+                jQuery('.designer-board .description-board p .more-text').contents().unwrap();
+            }
+            return false;
+        });
     });
 </script>
 
