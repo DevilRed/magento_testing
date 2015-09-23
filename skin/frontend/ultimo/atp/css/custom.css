@@ -2621,3 +2621,13 @@ input:-webkit-autofill {
 .designer-board .container-board .description-board p .more-text{
     display: none;
 }
+/* designers */
+.validoc-designer-designer-list .designers-list .product-name{
+    text-align: center;
+}
+.validoc-designer-designer-list .designers-list .product-name a{
+    font-size: 0.875em;
+}
+.validoc-designer-designer-list .designers-list ul li{
+    padding: 0;
+}
