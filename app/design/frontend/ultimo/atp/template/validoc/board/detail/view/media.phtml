@@ -57,7 +57,7 @@ if (count($this->getGalleryImages()) > 0 || !empty($floorplans)): ?>
                 <?php $i++; endforeach; ?>
                 <?php
                     if(!empty($floorplans)): ?>
-                    <ul>
+                    <ul class="rooms-floorplans">
                   <?php foreach($floorplans as $floorplan): ?>
                       <li>
                         <a class="floorplan" href="<?php echo Mage::getBaseUrl()."designer-floorplan/floorplan/view/id/".$floorplan["floorplan_id"]; ?>" title="<?php echo $floorplan["name"]; ?>">

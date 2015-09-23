@@ -650,6 +650,37 @@
             }
             return false;
         });
+        //custom slider
+        var $slider = jQuery('.product-image-gallery');
+        var $slide = 'li';
+        var $transition_time = 1000;
+        var $time_between_slides = 3000;
+
+        function slides(){
+            return jQuery('.product-image-thumbs > li');
+        }
+        slides().first().addClass('active');
+
+        $interval = setInterval(function(){
+            var $i = jQuery('.product-image-thumbs li.active').index();
+
+            slides().eq($i).removeClass('active');
+
+            if(slides().length == $i +1)
+                $i = -1;
+            var imgSrc = slides().eq($i + 1).find('img').attr('src');
+
+            $slider.find('img').fadeOut('fast', function(){
+                $slider.find('img').attr('src', imgSrc).fadeIn('slow');
+            });
+            slides().eq($i + 1).addClass('active');
+        }
+        , $transition_time + $time_between_slides);
+
+        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
+            window.clearInterval($interval);
+        });
+
     });
 </script>
 
