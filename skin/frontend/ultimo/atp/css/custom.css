@@ -2646,3 +2646,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .sorter .view-mode a:hover, .sorter .sort-by .category-asc:hover, .sorter .sort-by .category-desc:hover, .pager .pages li a:hover, .add-to-links .ic:hover, .add-to-links .feature-icon-hover:hover .ic, .slider-arrows1 .owl-controls.clickable .owl-buttons div:hover, .slider-arrows2 .owl-controls.clickable .owl-buttons div:hover, .slider-arrows3 .owl-controls.clickable .owl-buttons div:hover, .slider-pagination1 .owl-controls.clickable .owl-page:hover span, .slider-pagination2 .owl-controls.clickable .owl-page:hover span, #cboxPrevious:hover, #cboxNext:hover, #cboxClose:hover, .accordion-style1 .opener:hover, .collapsible .opener:hover, #scroll-to-top:hover{
     background-color: #000;
 }
+/*decrease space between title and categories*/
+.page-title h1, .page-title h2{
+    margin-bottom: 0;
+}
+ .category-table-vignettes .category-products.boards-list ul li{
+    padding-left: 0;
+}
