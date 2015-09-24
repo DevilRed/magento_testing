@@ -2671,3 +2671,11 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .popup .main-img img.changed{
     max-width: 324px;
 }
+/*how to shop*/
+.cms-how-to-shop .text-content p{
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+.cms-how-to-shop .page-title-inside h1{
+    margin-bottom: 5px;
+}
