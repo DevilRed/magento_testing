@@ -2686,3 +2686,11 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .how-to-shop-page .page-title-inside, .page-title.how-to-shop{
     padding-left: 7px;
 }
+.floorplans-title{
+    margin-top: 15px !important;
+    text-align: left;
+    font-weight: 600;
+}
+.rooms-floorplans li{
+    margin-bottom: 15px;
+}
