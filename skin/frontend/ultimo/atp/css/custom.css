@@ -2393,10 +2393,12 @@ input:-webkit-autofill {
     right: 20px;
     padding: 8px 25px;
     font-size: 13px;
+    font-weight: 300;
 }
 .popup-info .shop:hover{
     color: #000;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    font-weight: 500;
 }
 .popup-info p.description{
     margin-top: 20px;
