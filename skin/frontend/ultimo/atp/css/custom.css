@@ -1397,6 +1397,7 @@ img.big{
 .designer-board .designers-list h4{
     font-family: 'PetraScriptEF-Alternate';
     font-size: 3.5em !important;
+    text-transform: capitalize;
 }
 .designers-list h5{
     width: 60%;
@@ -1473,11 +1474,11 @@ img.big{
 /* active, hover more-view in designer board */
 .designer-board a:hover h4, .designer-floorplan a:hover h4, .designer-floorplan a:hover, .designer-board a:hover{
     color: #000;
-    font-weight: 600;
+    font-weight: 500;
 }
 .designer-board .more-views li.active h4, .designer-floorplan .more-views li.active h4, .designer-floorplan .more-views li.active, .designer-board .more-views li.active{
     color: #000;
-    font-weight: 600;
+    font-weight: 500;
 }
 .designer-board .more-views li a img, .designer-floorplan .more-views li a img{
     /*border-left: 5px solid transparent;*/
