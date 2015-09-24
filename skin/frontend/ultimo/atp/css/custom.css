@@ -2652,7 +2652,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .page-title h1, .page-title h2{
     margin-bottom: 0;
 }
- .category-table-vignettes .category-products.boards-list ul li{
+ .category-table-vignettes .category-products.boards-list ul li, .category-decor-vignettes .category-products.boards-list ul li{
     padding-left: 0;
 }
 /*fabric popups*/
@@ -2678,4 +2678,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .cms-how-to-shop .page-title-inside h1, .cms-how-to-shop .page-title h1{
     margin-bottom: 5px;
+}
+.how-to-shop-page .page-title-inside{
+    padding-left: 7px;
+}
+.how-to-shop-page .page-title-inside, .page-title.how-to-shop{
+    padding-left: 7px;
 }
