@@ -2676,6 +2676,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-size: 1.15em;
     line-height: 1.8;
 }
-.cms-how-to-shop .page-title-inside h1{
+.cms-how-to-shop .page-title-inside h1, .cms-how-to-shop .page-title h1{
     margin-bottom: 5px;
 }
