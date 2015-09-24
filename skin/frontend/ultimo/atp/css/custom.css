@@ -2635,3 +2635,14 @@ input:-webkit-autofill {
 .validoc-designer-designer-view .page-title h2{
     margin-bottom: 8px;
 }
+/*changes in the main page*/
+.box-header-design{
+    margin-top: 70px;
+}
+a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.product-name a:hover, p.product-name a:hover{
+    color: #000;
+    font-weight: 600;
+}
+.sorter .view-mode a:hover, .sorter .sort-by .category-asc:hover, .sorter .sort-by .category-desc:hover, .pager .pages li a:hover, .add-to-links .ic:hover, .add-to-links .feature-icon-hover:hover .ic, .slider-arrows1 .owl-controls.clickable .owl-buttons div:hover, .slider-arrows2 .owl-controls.clickable .owl-buttons div:hover, .slider-arrows3 .owl-controls.clickable .owl-buttons div:hover, .slider-pagination1 .owl-controls.clickable .owl-page:hover span, .slider-pagination2 .owl-controls.clickable .owl-page:hover span, #cboxPrevious:hover, #cboxNext:hover, #cboxClose:hover, .accordion-style1 .opener:hover, .collapsible .opener:hover, #scroll-to-top:hover{
+    background-color: #000;
+}
