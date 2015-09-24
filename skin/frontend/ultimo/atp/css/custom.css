@@ -2653,3 +2653,19 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
  .category-table-vignettes .category-products.boards-list ul li{
     padding-left: 0;
 }
+/*fabric popups*/
+.popup .extra-imgs{
+    margin-bottom: 25px;
+}
+.popup .main-img{
+    margin-left: 0;
+}
+.popup .main-img img{
+    margin-left: -15px;
+}
+.popup-images{
+    margin-left: 0;
+}
+.popup .main-img img.changed{
+    max-width: 324px;
+}

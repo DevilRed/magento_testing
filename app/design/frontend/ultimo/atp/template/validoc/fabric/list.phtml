@@ -302,9 +302,9 @@ foreach($_afterChildren as $_afterChildName):
             });
         },
         changeImgs: function(){
-            var mainImg = jQuery('.main-img img');
             jQuery('.extra-imgs ul li img').click(function(){
-                mainImg.attr('src', jQuery(this).attr('src'));
+                var mainParent = jQuery(this).parent().parent().parent().parent().parent().attr('id');
+                jQuery('#' + mainParent + ' .main-img img').attr('src', jQuery(this).attr('src')).addClass('changed');
             });
         },
         equalizeHeights: function(){
