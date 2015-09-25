@@ -2726,3 +2726,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-weight: 400;
     color: #000 !important;
 }
+.main.container .category-products .product-name{
+    overflow: visible;
+    font-size: 15px !important;
+}
+.main.container .category-products .product-name a{
+    word-wrap: break-word;
+}
