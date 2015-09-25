@@ -2698,3 +2698,23 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .designer-board .info{
     padding-top: 10px;
 }
+.category-products.custom-grid ul li h2{
+    font-weight: 300;
+}
+.category-products.custom-grid ul li h2 a:hover{
+    color: #000;
+    font-weight: 400;
+}
+/*pieces page*/
+.main.container .category-products .product-name{
+    text-align: center;
+    font-weight: normal;
+    color: #77787b;
+}
+.main.container .category-products .product-name a:hover{
+    color: #000;
+    font-weight: normal;
+}
+.category-products .toolbar-bottom .toolbar{
+    border: 0;
+}
