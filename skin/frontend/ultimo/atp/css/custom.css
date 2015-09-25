@@ -2718,3 +2718,11 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .category-products .toolbar-bottom .toolbar{
     border: 0;
 }
+#nav li ul li a{
+    font-weight: 400;
+    color: #b9b9bb;
+}
+#nav li ul li a:hover{
+    font-weight: 400;
+    color: #000 !important;
+}
