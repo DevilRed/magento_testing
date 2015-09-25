@@ -2733,3 +2733,16 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .main.container .category-products .product-name a{
     word-wrap: break-word;
 }
+/*main home page*/
+.home_features_right.float.left .home_featured_right_img.float_left{
+    padding-left: 3px;
+}
+.home_features_right.float.left .home_featured_right_text.float_left{
+    padding-top: 20px;
+}
+.home_features_right.float.left .home_featured_right_text.float_left .design-title{
+    margin-bottom: 10px;
+}
+.home_features_right.float.left .home_featured_right_text.float_left .design-title a{
+    color: #000;
+}
