@@ -2694,3 +2694,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .rooms-floorplans li{
     margin-bottom: 15px;
 }
+/* main page */
+.designer-board .info{
+    padding-top: 10px;
+}
