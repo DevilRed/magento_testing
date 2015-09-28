@@ -2769,3 +2769,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     -ms-hyphens: auto;
     hyphens: auto;
 }
+.availability.out-of-stock span{
+    font-weight: bold;
+    font-size: 13px;
+    padding: 0 10px;
+    position: relative;
+    bottom: 3px;
+}
