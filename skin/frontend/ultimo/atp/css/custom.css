@@ -2782,8 +2782,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     margin-bottom: 18px;
 }
 .designers-view .product-collateral .page-title{
-    margin: 0;
-    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-top: 70px;
 }
 .designers-view .product-collateral .page-title h2{
     margin-bottom: 0;
