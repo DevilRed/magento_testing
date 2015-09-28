@@ -112,6 +112,19 @@ wp_head();
 .mobile-menu-main .magic-menu ul.inner-mobile li:hover ul.submenu a{color: #333 !important; font-size: 13px !important; line-height: 2.5em}
 .mobile-menu-main .magic-menu ul li ul.submenu li{line-height: 2.5em; border-bottom: 0; border-top: 1px solid #eee;}
 
+/* fix styles */
+.header-white.container .container ul li a{
+	color: #8D8787;
+	font-size: 18px;
+	font-weight: 100;
+}
+.header-white.container .container ul li .submenu li a{
+	font-weight: normal;
+}
+.header-white.container .container ul li .submenu li a:hover{
+	color: #000;
+}
+
 @media screen and (max-width: 1024px){
 	.top-header .header-black a{font-size: 11px}
 	.desktop-menu{display: none !important}
@@ -193,7 +206,7 @@ jQuery(document).ready(function(){
                                                         <li><a href="/table-vignettes.html">Table Vignettes</a></li>
                                                 </ul>
 					</li>
-					<li><a href="#" class="img-logo"><img src="/blog/wp-content/themes/BUZZBLOG-theme/images/logo-header.png"></a></li>
+					<li><a href="/" class="img-logo"><img src="/blog/wp-content/themes/BUZZBLOG-theme/images/logo-header.png"></a></li>
 					<li><a href="/pieces.html">PIECES</a></li>
 					<li><a href="#">FABRICS</a>
 						<ul class="submenu">
