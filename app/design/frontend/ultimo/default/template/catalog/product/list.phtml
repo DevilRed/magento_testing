@@ -237,9 +237,18 @@
                     ?>
                 
                 </div> <!-- end: product-image-wrapper -->
+                <?php
+                    $manufacturerName = $_product->getAttributeText('manufacturer');
+                    $fabricProduct = $_product->getAttributeText('fabric_id');
+                ?>
 
                 <?php if ($gc['display_name'] != 0): ?>
-                    <h2 class="product-name<?php echo $productNameClasses; ?>"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                    <h2 class="product-name<?php echo $productNameClasses; ?>"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                        <?php
+                            //echo $_helper->productAttribute($_product, $_product->getName(), 'name')
+                            echo $manufacturerName . " | " . $fabricProduct;
+                        ?>
+                    </a></h2>
                 <?php endif; ?>
                 
                 <?php if ($_product->getRatingSummary()): ?>
@@ -397,6 +406,7 @@
 
         //popup behavior
         jQuery('.product-image, .product-name a').on('click', function(){
+            jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
             var target = jQuery(this).attr('href');
             jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
             jQuery('.product-image, .product-name a').fancybox({
@@ -413,6 +423,7 @@
                 autoSize: false,
                 afterClose: function(){
                     jQuery('.logo.logo--regular, #nav, .footer-container, .sticky-container, .footer-container').removeAttr('style');
+                    jQuery('.page-title.category-title h1 span.title_1').removeAttr('style');
                 },
                 beforeShow: function(){
                     jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
