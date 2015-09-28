@@ -115,8 +115,8 @@ wp_head();
 /* fix styles */
 .header-white.container .container ul li a{
 	color: #8D8787;
-	font-size: 18px;
-	font-weight: 100;
+	font-size: 16px;
+	font-weight: normal;
 }
 .header-white.container .container ul li .submenu li a{
 	font-weight: normal;

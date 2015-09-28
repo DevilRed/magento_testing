@@ -2776,3 +2776,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     position: relative;
     bottom: 3px;
 }
+.page-title{
+    position: relative;
+    z-index: 20px;
+    margin-bottom: 18px;
+}
