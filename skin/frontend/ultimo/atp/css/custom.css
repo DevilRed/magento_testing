@@ -2788,3 +2788,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .designers-view .product-collateral .page-title h2{
     margin-bottom: 0;
 }
+.floorplans-title{
+    font-weight: 400;
+}

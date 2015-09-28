@@ -277,6 +277,7 @@ foreach($_afterChildren as $_afterChildName):
         },
         popup: function(){
             jQuery('.product-image, .product-info p a').on('click', function(){
+                jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
                 var target = jQuery(this).attr('href');
                 jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
                 jQuery('.product-image, .product-info p a').fancybox({
@@ -293,6 +294,7 @@ foreach($_afterChildren as $_afterChildName):
                     autoSize: false,
                     afterClose: function(){
                         jQuery('.logo.logo--regular, #nav, .footer-container, .sticky-container, .footer-container').removeAttr('style');
+                        jQuery('.page-title.category-title h1 span.title_1').removeAttr('style');
                     },
                     beforeShow: function(){
                         jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
