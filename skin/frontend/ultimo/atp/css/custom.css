@@ -2756,3 +2756,16 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     z-index: 20;
     position: relative;
 }
+/* word-break */
+.product-name{
+    white-space: normal !important;
+}
+.product-name a{
+    -ms-word-break: keep-all;
+    word-break: keep-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
