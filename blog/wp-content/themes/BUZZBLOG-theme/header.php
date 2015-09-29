@@ -34,6 +34,7 @@
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'atom_url' ); ?>" />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans: 400,300' rel='stylesheet' type='text/css'>
 
 	<script type='text/javascript'>
 	(function() {
@@ -114,9 +115,9 @@ wp_head();
 
 /* fix styles */
 .header-white.container .container ul li a{
-	color: #8D8787;
-	font-size: 16px;
-	font-weight: normal;
+	color: #000;
+	font-size: 18px;
+	font-weight: 300;
 }
 .header-white.container .container ul li .submenu li a{
 	font-weight: normal;
@@ -134,6 +135,46 @@ wp_head();
 
 @media screen and (max-width: 420px){
 	.header-black{display: none}
+}
+/*equalize styles between store and blog site*/
+@media screen and (min-width: 960px){
+	#content.right{
+		margin-right: 19px;
+	}
+	.container{
+		max-width: 960px;
+	}
+	.top-header{
+		background-color: #fff;
+	}
+
+	.top-header .container{
+		max-width: 960px;
+	}
+	.top-header .header-white.container ul{
+		width: 960px;
+	}
+	.top-header .header-white ul li{
+		margin: 50px 2.7%;
+	}
+	.container .row{
+		max-width: 960px;
+	}
+	.container .row .span2{
+		width: 16.66%;
+	}
+	.container .row .span3{
+		width: 25%;
+	}
+	.container .row .span4{
+		width: 32.33%;
+	}
+	.container .row .span8{
+		width: 65.66%;
+	}
+	.container .row .span12{
+		width: 100%;
+	}
 }
 
 </style>
@@ -162,7 +203,7 @@ jQuery(document).ready(function(){
 					<ul>
 						<li class="border-right"><a href="/how-to-shop/">HOW TO SHOP</a> </li>
 						<li class="border-right"><a href="/customer/account/login/">MY ACCOUNT</a> </li>
-						<li><a href="/Quotation/Quote/List">MY QUOTE LISTS</a> </li>
+						<li><a href="/Quotation/Quote/List">MY QUOTE LIST</a> </li>
 						<li><a hfref="/checkout/cart/"><img src="/skin/frontend/ultimo/atp/images/bg-cart-mini.png"></a></li>
 					</ul>
 				</div>
