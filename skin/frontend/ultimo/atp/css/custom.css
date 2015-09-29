@@ -2800,7 +2800,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .page-title h1{
     margin-bottom: -5px !important;
 }
-.designer-board .page-title{
+.designer-board .page-title, .designer-floorplan .page-title{
     margin-bottom: 13px !important;
 }
 .subcategory-pagination{
