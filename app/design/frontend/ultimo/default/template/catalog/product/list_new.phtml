@@ -217,7 +217,20 @@
                 <div class="product-image-wrapper">
                 
                     <a href="<?php echo $_product->getEntityId() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
-                        <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                        <?php
+                            $gridImg = null;
+                            $gallery = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages();
+                            foreach ($gallery as $img) {
+                                if($img['label'] == 'grid'){
+                                    $gridImg = $img;
+                                }
+                            }
+                        ?>
+                        <?php if(isset($gridImg)): ?>
+                            <img src="<?php echo $gridImg->getUrl(); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>">
+                        <?php else: ?>
+                            <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                        <?php endif; ?>
 
                         <?php if ($theme->getCfg('category/alt_image')): ?>
                             <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>   
@@ -335,9 +348,11 @@
             <div class="extra-imgs">
                 <ul>
                     <?php foreach($pieceImgs['images'] as $img): ?>
+                        <?php if($img['label'] == 'popup'): ?>
                         <li>
                             <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $img['file']); ?>" alt="">
                         </li>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
             </div>
