@@ -24,7 +24,7 @@ $_categories = Mage::getModel('catalog/category')
 $_collectionSize = $_categories->count();
 ?>
     <?php if ($_collectionSize > 0) { ?>
-        <div class="category-products boards-list">
+        <div class="category-products boards-list decor-list">
             <?php // Grid Mode ?>
             <ul class="products-grid products-grid--max-2-col">
                 <?php $i=1; foreach ($_categories as $_category): ?>

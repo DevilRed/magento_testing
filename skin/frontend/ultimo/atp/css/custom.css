@@ -1021,7 +1021,7 @@ div.box-header-detalle > span {
 }
 .fabrics-list .page-title h1{
     margin: 0;
-    margin-bottom: -19px !important;
+    margin-bottom: -23px !important;
 }
 .fabrics-list .products-grid li .product-info{
     margin-top: 12px;
@@ -2778,8 +2778,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .page-title{
     position: relative;
-    z-index: 20px;
-    margin-bottom: 13px;
+    /*z-index: 20;*/
+    margin-bottom: 4px;
 }
 .designers-view .product-collateral .page-title{
     margin-bottom: 10px;
@@ -2790,4 +2790,25 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .floorplans-title{
     font-weight: 400;
+}
+.designers-list .page-title{
+    margin-bottom: 0 !important;
+}
+.designers-view .product-name{
+    margin-bottom: -13px;
+}
+.page-title h1{
+    margin-bottom: -5px !important;
+}
+.designer-board .page-title{
+    margin-bottom: 13px !important;
+}
+.subcategory-pagination{
+    margin-bottom: 20px;
+}
+.category-products.boards-list.decor-list, .board-list{
+    margin-top: 18px;
+}
+.products-grid .itemX{
+    padding: 0;
 }

@@ -11,7 +11,7 @@ $boardsCollection = $_current_category->getBoardsCollection();
 
 ?>
 <?php if ($boardsCollection->count() > 0) { ?>
-    <ul class="products-grid products-grid--max-2-col">
+    <ul class="products-grid products-grid--max-2-col board-list">
         <?php $i=1; foreach ($boardsCollection as $_board): ?>
             <?php if($_board->getIsActive()): ?>
                 <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
