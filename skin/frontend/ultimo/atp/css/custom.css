@@ -2819,3 +2819,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .designers-view .product-collateral .page-title{
     margin-top: 100px;
 }
+/*hide fancybox title*/
+.fancybox-title.fancybox-title-float-wrap{
+    display: none;
+}
