@@ -162,7 +162,7 @@ jQuery(document).ready(function(){
 					<ul>
 						<li class="border-right"><a href="/how-to-shop/">HOW TO SHOP</a> </li>
 						<li class="border-right"><a href="/customer/account/login/">MY ACCOUNT</a> </li>
-						<li><a href="/my-quote-list/">MY QUOTE LISTS</a> </li>
+						<li><a href="/Quotation/Quote/List">MY QUOTE LISTS</a> </li>
 						<li><a hfref="/checkout/cart/"><img src="/skin/frontend/ultimo/atp/images/bg-cart-mini.png"></a></li>
 					</ul>
 				</div>

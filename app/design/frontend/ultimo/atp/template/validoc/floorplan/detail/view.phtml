@@ -913,5 +913,13 @@
             });
             return false;
         });
+        jQuery('.floorplans-title, .rooms-floorplans').hover(function(){
+            jQuery('.floorplans-title').css({
+                'color': '#000',
+                'font-weight': '500'
+            });
+        }, function(){
+            jQuery('.floorplans-title').removeAttr('style');
+        });
     });
 </script>
