@@ -2812,3 +2812,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .products-grid .itemX{
     padding: 0;
 }
+/*designers views fixes*/
+.designers-view{
+    margin-bottom: 80px;
+}
+.designers-view .product-collateral .page-title{
+    margin-top: 100px;
+}
