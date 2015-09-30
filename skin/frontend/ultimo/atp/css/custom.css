@@ -2826,3 +2826,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .floorplans-title{
     color: rgb(85, 85, 85);
 }
+.category-pieces .category-products ul li{
+    margin: 20px 0;
+}
