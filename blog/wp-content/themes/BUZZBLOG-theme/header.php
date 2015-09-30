@@ -120,7 +120,7 @@ wp_head();
 	font-weight: 300;
 }
 .header-white.container .container ul li .submenu li a{
-	font-weight: normal;
+	font-weight: 500;
 }
 .header-white.container .container ul li .submenu li a:hover{
 	color: #000;
@@ -175,6 +175,48 @@ wp_head();
 	.container .row .span12{
 		width: 100%;
 	}
+	.span-custom-left ul{
+		padding-left: 9px;/
+	}
+	.top-header .header-white ul.desktop-menu > li:first-child{
+		left: -15px;
+	}
+}
+.top-header .header-white ul li{
+	position: relative;
+}
+.top-header .header-white ul li ul.submenu{
+	top: 0;
+	margin-top: 28px;
+}
+.top-header .header-white ul li ul.submenu li a{
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: 400;
+	color: #b9b9bb;
+}
+
+.header-white.container .container ul li a{
+	line-height: 36px;
+}
+.header-black .span-custom-left ul li{
+	position: relative;
+	margin: 0 5%;
+}
+.header-black .span-custom-left ul li:after{
+	content: "|";
+	color: #fff;
+	font-weight: 600;
+	position: absolute;
+	top: 2px;
+	right: -16px;
+	line-height: 10px;
+}
+.top-header .header-black ul li.border-right:after{
+	font-weight: 600;
+}
+.header-black .span-custom-left ul li:last-child:after{
+	content: "";
 }
 
 </style>
@@ -194,8 +236,8 @@ jQuery(document).ready(function(){
 			<div class="container">
 				<div class="span-custom-left">
 					<ul>
-						<li><a href="/contacts/">Contact</a><li>
-						<li><a href="/blog/">Magazine</a><li>
+						<li><a href="/contacts/">Contact</a></li>
+						<li><a href="/blog/">Magazine</a></li>
 					</ul>
 				</div>
 				
@@ -220,7 +262,7 @@ jQuery(document).ready(function(){
 							<li><a href="/designers">DESIGNERS</a></li>
 							<li><a href="javascript: void(0)">ROOMS</a>
 								<ul class="submenu">
-									<li><a href="/sitting-rooms.html">Sitting Room</a></li>
+									<li><a href="/sitting-rooms.html">Sitting Rooms</a></li>
 									<li><a href="/table-vignettes.html">Table Vignettes</a></li>
 								</ul>
 							</li>
@@ -243,8 +285,8 @@ jQuery(document).ready(function(){
 					</li>
 					<li><a href="#">ROOMS</a>
 						<ul class="submenu">
-                                                        <li><a href="/sitting-rooms.html">Sitting Room</a></li>
-                                                        <li><a href="/table-vignettes.html">Table Vignettes</a></li>
+                                                        <li><a href="/sitting-rooms.html">Sitting Rooms</a></li>
+                                                        <li><a href="/table-vignettes.html">Decor Vignettes</a></li>
                                                 </ul>
 					</li>
 					<li><a href="/" class="img-logo"><img src="/blog/wp-content/themes/BUZZBLOG-theme/images/logo-header.png"></a></li>
