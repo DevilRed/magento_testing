@@ -2848,3 +2848,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .main-container{
     min-height: 570px;
 }
+/*append black top nav in sticky header*/
+#header-nav .header-primary-container{
+    background-color: #000;
+}
