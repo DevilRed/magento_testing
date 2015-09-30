@@ -2845,3 +2845,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .cms-home .footer-container #scroll-to-top{
     display: none !important;
 }
+.main-container{
+    min-height: 570px;
+}
