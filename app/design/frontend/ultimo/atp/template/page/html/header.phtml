@@ -623,3 +623,16 @@
 
     //]]>
 </script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		windowHeight = jQuery(window).height();
+		footerHeight = jQuery('.footer-container').outerHeight();
+		headerHeight = jQuery('.header-container.header-regular#top').outerHeight();
+		targetHeight = windowHeight - (headerHeight + footerHeight);
+		if(windowHeight === 0){
+			jQuery('.page .main-container').css('min-height', '595px');
+		}else{
+			jQuery('.page .main-container').css('min-height', targetHeight + 'px');
+		}
+	});
+</script>

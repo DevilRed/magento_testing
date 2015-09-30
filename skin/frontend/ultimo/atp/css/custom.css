@@ -2877,3 +2877,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     width: 10px !important;
     height: 10px !important;
 }
+/*add spaces to page-title pieces section*/
+.category-pieces .category-products.custom-grid{
+    margin-top: 30px;
+}
+[class*="categorypath-pieces-"] .category-products{
+    margin-top: 30px;
+}
