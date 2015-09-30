@@ -2829,3 +2829,19 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .category-pieces .category-products ul li{
     margin: 20px 0;
 }
+/*arrows of slider in homepage*/
+.slider-arrows2 .owl-controls   .owl-buttons div{
+    background-color: transparent;
+    font-size: 60px;
+    opacity: 1;
+}
+.slider-arrows2 .owl-controls   .owl-buttons div:hover{
+    background-color: transparent !important ;
+}
+.slider-arrows2 .owl-controls   .owl-buttons .owl-next{
+    right: 10px;
+}
+
+.cms-home .footer-container #scroll-to-top{
+    display: none !important;
+}
