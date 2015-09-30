@@ -2852,3 +2852,27 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 #header-nav .header-primary-container{
     background-color: #000;
 }
+/*equalize slider pagination in homepage*/
+.owl-pagination .owl-page{
+    width: 20px;
+    height: 20px;
+}
+.owl-pagination .owl-page.active{
+    width: 20px;
+    height: 20px;
+}
+.owl-pagination .owl-page span{
+    margin: 5px !important;
+}
+.owl-pagination .owl-page.active span{
+    margin: 5px !important;
+}
+.owl-pagination .owl-page:hover span{
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #fff !important;
+}
+.slider-pagination2 .owl-controls .owl-page.active span{
+    width: 10px !important;
+    height: 10px !important;
+}
