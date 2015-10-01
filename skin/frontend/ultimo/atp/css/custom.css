@@ -2892,3 +2892,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 [class*="categorypath-pieces-"] .category-products{
     margin-top: 30px;
 }
+.home_features_right.float.left .featured_home_right .home_featured_right_text.float_left p{
+    padding-left: 15px;
+}
