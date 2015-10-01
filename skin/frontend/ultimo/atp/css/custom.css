@@ -2835,6 +2835,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     background-color: transparent;
     font-size: 60px;
     opacity: 1;
+    color: #fff;
 }
 .slider-arrows2 .owl-controls   .owl-buttons div:hover{
     background-color: transparent !important ;
@@ -2854,14 +2855,15 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     background-color: #000;
 }
 /*equalize slider pagination in homepage*/
-.owl-pagination .owl-page{
+/* this uniformizes width of pagination buttons on all states */
+/*.owl-pagination .owl-page{
     width: 20px;
     height: 20px;
 }
 .owl-pagination .owl-page.active{
     width: 20px;
     height: 20px;
-}
+}*/
 .owl-pagination .owl-page span{
     margin: 5px !important;
 }
@@ -2873,10 +2875,16 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     height: 10px !important;
     background-color: #fff !important;
 }
-.slider-pagination2 .owl-controls .owl-page.active span{
+/* this for keeps width untouched on .active */
+.owl-pagination .owl-page.active:hover span{
+    width: 16px !important;
+    height: 16px !important;
+}
+/* this uniformizes width of pagination buttons on all states */
+/*.slider-pagination2 .owl-controls .owl-page.active span{
     width: 10px !important;
     height: 10px !important;
-}
+}*/
 /*add spaces to page-title pieces section*/
 .category-pieces .category-products.custom-grid{
     margin-top: 30px;
