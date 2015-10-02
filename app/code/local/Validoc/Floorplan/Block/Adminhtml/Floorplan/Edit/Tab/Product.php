@@ -28,6 +28,16 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
             'product_id=entity_id',
             $constraint,
             'left');
+        /*$collection->joinAttribute(
+            'room_code',
+            'catalog_product/entity_varchar',
+            'entity_id',
+            null,
+            'inner',
+            $adminStore
+        );*/
+        //$collection->addAttributeToFilter('room_code', 'value');
+        $collection->addAttributeToSelect('room_code');
         $this->setCollection($collection);
         parent::_prepareCollection();
         return $this;
@@ -63,6 +73,13 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
             'header'=> Mage::helper('catalog')->__('SKU'),
             'align' => 'left',
             'index' => 'sku',
+        ));
+        $this->addColumn('room_code',array(
+            'header' => Mage::helper('catalog')->__('Room code'),
+            'align' => 'left',
+            'index' => 'room_code',
+            //'filter_condition_callback' => array($this, '_filterRoomCode')
+            'renderer' => 'Validoc_Floorplan_Block_Adminhtml_Floorplan_Renderer_Type'
         ));
         $this->addColumn('price', array(
             'header'=> Mage::helper('catalog')->__('Price'),
@@ -131,4 +148,10 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
         }
         return $this;
     }
+    /*protected function _filterRoomCode($collection, $column){
+        if(!$value = trim($column->getFilter()->getValue())){
+            return;
+        }
+        $this->getCollection()->addFilterToFilter('customer.email', array('like' => '%'.$value.'%'));
+    }*/
 }
