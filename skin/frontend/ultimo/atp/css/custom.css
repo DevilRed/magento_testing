@@ -2905,3 +2905,35 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     clear: both;
     margin-bottom: 5px !important;
 }
+/* spaces in room boards */
+.board-list li.no-left-gutter{
+    text-align: left;
+}
+.board-list li.no-left-gutter a img{
+    max-width: 97.5%;
+}
+.board-list li.no-right-gutter{
+    text-align: right;
+}
+.board-list li.no-right-gutter a img{
+    max-width: 97.5%;
+}
+
+.board-list li .product-name{
+    margin-bottom: 40px;
+}
+.boards-list.decor-list li.no-left-gutter{
+    text-align: left;
+    margin-bottom: 45px;
+}
+.boards-list.decor-list li.no-left-gutter a img{
+    max-width: 97.5%;
+}
+
+.boards-list.decor-list li.no-right-gutter{
+    text-align: right;
+    margin-bottom: 45px;
+}
+.boards-list.decor-list li.no-right-gutter a img{
+    max-width: 97.5%;
+}
