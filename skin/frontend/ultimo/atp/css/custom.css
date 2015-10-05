@@ -1080,14 +1080,15 @@ div.box-header-detalle > span {
     margin-right: 0;
 }
 .description-board p, .description-board a{
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.4;
     font-style: italic;
     font-family: 'Georgia';
     text-align: center;
     width: 80%;
     margin: 40px auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .description-board p .more, .description-board .more{
     font-size: 13px;
@@ -2894,4 +2895,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .home_features_right.float.left .featured_home_right .home_featured_right_text.float_left p{
     padding-left: 15px;
+}
+.designer-board .description-board p .dots{
+    letter-spacing: 2px;
+    padding-left: 4px;
 }

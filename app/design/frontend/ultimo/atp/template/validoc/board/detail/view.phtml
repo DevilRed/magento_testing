@@ -622,17 +622,18 @@
         <?php endif; ?>
         //height of quote section
         quoteContent = jQuery('.designer-board .description-board p').text();
-        maxLength = 119;
+        maxLength = 129;
         if(jQuery.trim(quoteContent).length > maxLength){
             jQuery('.designer-board .description-board .more-wrap').css('display', 'inline');
             var newStr = quoteContent.substring(0, maxLength);
             var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
-            jQuery('.designer-board .description-board p').empty().html(newStr);
-            jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 87%');
+            var dots = jQuery('<span class="dots">...</span>');
+            jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
+            jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 94%');
             jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
         }else{
             jQuery('.designer-board .description-board .more-wrap').css('display', 'none');
-            jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 95%');
+            jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 95%');
         }
 
         jQuery('.designer-board .description-board .more').on('click', function(){
@@ -640,12 +641,14 @@
                 jQuery(this).text('More >').removeClass('open');
                 newStr = quoteContent.substring(0, maxLength);
                 var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
-                jQuery('.designer-board .description-board p').empty().html(newStr);
-                jQuery('.designer-board .description-board').css('background-position', '0 7%, 94% 87%');
+                var dots = jQuery('<span class="dots">...</span>');
+                jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
+                jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 94%');
                 jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
             }else{
                 jQuery(this).text('Less >').addClass('open');
-                jQuery('.designer-board .description-board').css('background-position', '0 7%, 100% 100%');
+                jQuery('.designer-board .description-board p .dots').remove();
+                jQuery('.designer-board .description-board').css('background-position', '0 0, 100% 100%');
                 jQuery('.designer-board .description-board p .more-text').contents().unwrap();
             }
             return false;
