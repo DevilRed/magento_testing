@@ -1588,7 +1588,7 @@ img.big{
     background-image: url('../images/coma-left.png'), url('../images/coma-right.png');
     background-size: auto 50px, auto 50px;
     background-repeat: no-repeat, no-repeat;
-    background-position: -1px 22%, 83% 95%;
+    background-position: -1px 22%, 81% 95%;
 }
 .image-about p{
     text-align: center;
