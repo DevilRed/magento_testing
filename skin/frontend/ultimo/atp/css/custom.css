@@ -2916,7 +2916,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     text-align: right;
 }
 .board-list li .product-name a:not(.owner){
-    color: #77789C;
+    color: #76797a;
 }
 .board-list li.no-right-gutter .product-name{
     padding-left: 3.5%;
