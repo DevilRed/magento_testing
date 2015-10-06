@@ -1512,7 +1512,7 @@ img.big{
     font-size: 2.5em;
     margin-top: 20px;
 }
-.how-to-shop-page .page-title{
+.how-to-shop-page .page-title:not(.how-to-shop){
     display: none;
 }
 .how-to-shop-page .images-column img{
@@ -2757,6 +2757,13 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .cms-how-to-shop .text-content p {
     font-family: 'Open Sans';
+    letter-spacing: 0.023em;
+}
+.cms-how-to-shop .how-to-shop-page .page-title.how-to-shop{
+    margin-bottom: 5px;
+}
+.cms-how-to-shop .how-to-shop-page .images-column{
+    padding-top: 7px;
 }
 .page-title.category-title h1 span.title_1{
     z-index: 20;
@@ -2967,4 +2974,11 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .designers-list .product-name .cia{
     margin-top: 0;
+}
+.cms-about .images-column{
+    padding-top: 6px;
+}
+.cms-about .about-us-wrapper .image-about{
+    margin-left: 0;
+    margin-top: 15px;
 }
