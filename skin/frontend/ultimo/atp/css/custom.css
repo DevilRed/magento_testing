@@ -2919,7 +2919,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     color: #76797a;
 }
 .board-list li.no-right-gutter .product-name{
-    padding-left: 3.5%;
+    padding-left: 14px;
 }
 .board-list li.no-right-gutter a img{
     max-width: 96.5%;
