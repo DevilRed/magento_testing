@@ -2991,3 +2991,9 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .cms-page-view .std strong{
     font-weight: 600;
 }
+.cms-how-to-shop .images-column{
+    padding-top: 6px;
+}
+.cms-how-to-shop .text-content p{
+    letter-spacing: 0.035em;
+}
