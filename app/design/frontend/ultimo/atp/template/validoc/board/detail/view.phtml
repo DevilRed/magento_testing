@@ -629,11 +629,11 @@
             var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
             var dots = jQuery('<span class="dots">...</span>');
             jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
-            jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 94%');
+            jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 87%');
             jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
         }else{
             jQuery('.designer-board .description-board .more-wrap').css('display', 'none');
-            jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 95%');
+            jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 95%');
         }
 
         jQuery('.designer-board .description-board .more').on('click', function(){
@@ -643,12 +643,12 @@
                 var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
                 var dots = jQuery('<span class="dots">...</span>');
                 jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
-                jQuery('.designer-board .description-board').css('background-position', '0 0, 94% 94%');
+                jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 87%');
                 jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
             }else{
                 jQuery(this).text('Less >').addClass('open');
                 jQuery('.designer-board .description-board p .dots').remove();
-                jQuery('.designer-board .description-board').css('background-position', '0 0, 100% 100%');
+                jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 92%');
                 jQuery('.designer-board .description-board p .more-text').contents().unwrap();
             }
             return false;

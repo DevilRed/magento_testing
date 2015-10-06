@@ -1088,7 +1088,11 @@ div.box-header-detalle > span {
     width: 80%;
     margin: 40px auto;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 27px;
+}
+.description-board a{
+    position: relative;
+    top: -14px;
 }
 .description-board p .more, .description-board .more{
     font-size: 13px;
