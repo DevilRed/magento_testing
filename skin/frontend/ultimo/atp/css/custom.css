@@ -2952,3 +2952,18 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .boards-list.decor-list li.no-right-gutter a img{
     max-width: 96.5%;
 }
+/* designers list */
+.main-container .inner-container .designers-list li .product-name{
+    font-weight: 600;
+    color: #77787b;
+}
+.main-container .inner-container .designers-list li .product-name a:hover{
+    font-weight: 600;
+    color: #000;
+}
+.designers-list .product-name{
+    margin-top: 12px;
+}
+.designers-list .product-name .cia{
+    margin-top: 0;
+}

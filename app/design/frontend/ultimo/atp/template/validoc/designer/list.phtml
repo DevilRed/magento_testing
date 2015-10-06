@@ -41,10 +41,10 @@ $_helper = $this->helper('catalog/output');
                              alt="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" />
                     </a>
                     <div class="product-info">
-                        <h2 class="product-name">
+                        <h2 class="product-name designers">
                             <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php echo $this->stripTags($_designer->getName(), null, true) ?>">
-                                <?php echo $_designer->getName(); ?><br />
-                                <?php echo $_designer->getFirmName(); ?>
+                                <p class="name"><?php echo $_designer->getName(); ?></p>
+                                <p class="cia"><?php echo $_designer->getFirmName(); ?></p>
                             </a>
                         </h2>
 
@@ -103,10 +103,10 @@ $_helper = $this->helper('catalog/output');
                              alt="<?php //echo $this->stripTags($this->getImageLabel($_designer, 'small_image'), null, true) ?>" />
                     </a>
                     <div class="product-info">
-                        <h2 class="product-name">
+                        <h2 class="product-name collaborators">
                             <a href="<?php echo Mage::getUrl("*/*/view",array("id"=>$_designer->getId())); ?>" title="<?php echo $this->stripTags($_designer->getName(), null, true) ?>">
-                                <?php echo $_designer->getName(); ?><br />
-                                <?php echo $_designer->getFirmName(); ?>
+                                <p class="name"><?php echo $_designer->getName(); ?></p>
+                                <p class="cia"><?php echo $_designer->getFirmName(); ?></p>
                             </a>
                         </h2>
 
