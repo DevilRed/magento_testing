@@ -2162,7 +2162,7 @@ body{
 }
 .subcategory-pagination p a.active span:not(.separator){
     color: #000;
-    border-bottom: 1px solid #000;
+    /*border-bottom: 1px solid #000;*/
 }
 .page-title.category-title h1{
     float: left;
