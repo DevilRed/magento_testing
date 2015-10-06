@@ -2982,3 +2982,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     margin-left: 0;
     margin-top: 15px;
 }
+.cms-about .image-about img{
+    width: 100%;
+}
