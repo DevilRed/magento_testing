@@ -187,8 +187,12 @@ $_helper = $this->helper('catalog/output');
                                     <img id="product-collection-image-<?php echo $_fabric->getId(); ?>"
                                          src="<?php echo $this->helper('validoc_fabric/image')->init($_fabric, 'small_image')->resize($_imgSize); ?>" />
                                 </a>
-                                <div class="product-info">
-                                    <p><a href="<?php echo $_fabric->getId(); ?>"><?php echo $_fabric->getName(); ?></a></p>
+                                <div class="product-info <?php echo Mage::registry('fabricType'); ?>">
+                                    <p>
+                                        <?php if($fabricType != 'source'): ?>
+                                        <a href="<?php echo $_fabric->getId(); ?>"><?php echo $_fabric->getName(); ?></a>
+                                        <?php endif; ?>
+                                    </p>
                                 </div>
                             </li>
                             <div class="container popup" id="<?php echo $_fabric->getId(); ?>" style="display: none;">
