@@ -2928,8 +2928,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     border: 1px solid #000;
 }
 .board-list li .product-name{
-    margin-bottom: 50px;
+    margin-bottom: 55px;
+    margin-top: 10px;
     font-size: 15px !important;
+    color: #76797a;
 }
 .boards-list.decor-list li.no-left-gutter{
     text-align: left;
