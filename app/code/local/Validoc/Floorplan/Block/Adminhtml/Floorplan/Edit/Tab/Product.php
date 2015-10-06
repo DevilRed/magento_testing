@@ -69,11 +69,11 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
             'align' => 'left',
             'index' => 'product_name',
         ));
-        $this->addColumn('sku', array(
+        /*$this->addColumn('sku', array(
             'header'=> Mage::helper('catalog')->__('SKU'),
             'align' => 'left',
             'index' => 'sku',
-        ));
+        ));*/
         $this->addColumn('room_code',array(
             'header' => Mage::helper('catalog')->__('Room code'),
             'align' => 'left',
