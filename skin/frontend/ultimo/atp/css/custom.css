@@ -2985,3 +2985,9 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .cms-about .image-about img{
     width: 100%;
 }
+.cms-about .about-text strong{
+    font-weight: 600;
+}
+.cms-page-view .std strong{
+    font-weight: 600;
+}
