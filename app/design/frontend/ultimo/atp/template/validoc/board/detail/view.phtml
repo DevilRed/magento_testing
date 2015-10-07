@@ -169,7 +169,8 @@
         </div>
 
         <?php if($_board->getType() != 2): ?>
-            <div class="bg-box">
+            <?php $bgImg = $this->getBackgroundImage(); ?>
+            <div class="bg-box" <?php echo (($bgImg) ? 'style="background-image: url('.$bgImg->getUrl().');"' : ''); ?>>
                 <div class="container-board">
                     <div class="product-img-box">
                         <?php echo $this->getChildHtml('media') ?>

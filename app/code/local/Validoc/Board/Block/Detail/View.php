@@ -37,4 +37,20 @@ class Validoc_Board_Block_Detail_View extends Mage_Core_Block_Template
 
         return $designer;
     }
+    /*
+     * @return gallery image for background usage
+     */
+    public function getBackgroundImage()
+    {
+        $collection = $this->getBoard()->getMediaGalleryImages();
+        $bgImg = null;
+        foreach ($collection as $image) {
+            $label = $image->getLabel();
+            $label = strtolower(trim($label));
+            if($label == 'background'){
+                $bgImg = $image;
+            }
+        }
+        return $bgImg;
+    }
 }
