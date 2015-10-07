@@ -1388,6 +1388,9 @@ img.big{
     height: 50px !important;
     width: 85px;
 }
+.product-image-thumbs li a{
+    display: block;
+}
 .designer-board .product-image-gallery img{
     border: 1px solid #77787b;
     width: 100%;

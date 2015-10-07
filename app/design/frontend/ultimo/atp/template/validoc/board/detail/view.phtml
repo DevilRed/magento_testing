@@ -572,7 +572,7 @@
         });
         //
         var bannerImg = jQuery('.product-image-gallery img');
-        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
+        jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
                 var src = jQuery(this).find('img').attr('src');
                 bannerImg.attr('src', src);
                 var currentImg = jQuery(this).find('img').attr('class');
@@ -661,28 +661,37 @@
         var $time_between_slides = 3000;
 
         function slides(){
-            return jQuery('.product-image-thumbs > li');
+            return jQuery('.inspiration-carousel > li');
         }
         slides().first().addClass('active');
 
-        $interval = setInterval(function(){
-            var $i = jQuery('.product-image-thumbs li.active').index();
+        //carousel on inspiration image click
+        var count = 0;
+        var myInterval = null;
+        jQuery('.product-image-thumbs li a[title="inspiration"]').on('click', function(e){
+            e.preventDefault();
+            if(myInterval !== null) return;
 
-            slides().eq($i).removeClass('active');
+            var firstImg = jQuery(this).find('img').attr('src');
+            jQuery('.product-image-gallery img').attr('src', firstImg);
+            myInterval = setInterval(function(){
+                var $i = jQuery('.inspiration-carousel li.active').index();
+                slides().eq($i).removeClass('active');
+                if(slides().length == $i +1)
+                    $i = -1;
+                var imgSrc = slides().eq($i + 1).find('img').attr('src');
+                $slider.find('img').fadeOut('fast', function(){
+                    $slider.find('img').attr('src', imgSrc).fadeIn('slow');
+                });
+                slides().eq($i + 1).addClass('active');
+            }, $time_between_slides);
+        });
 
-            if(slides().length == $i +1)
-                $i = -1;
-            var imgSrc = slides().eq($i + 1).find('img').attr('src');
-
-            $slider.find('img').fadeOut('fast', function(){
-                $slider.find('img').attr('src', imgSrc).fadeIn('slow');
-            });
-            slides().eq($i + 1).addClass('active');
-        }
-        , $transition_time + $time_between_slides);
-
-        jQuery('.product-image-thumbs li a:not(.floorplan)').click(function(){
-            window.clearInterval($interval);
+        jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
+            if(myInterval !== null){
+                window.clearInterval(myInterval);
+                myInterval = null;
+            }
         });
 
         jQuery('.floorplans-title, .rooms-floorplans').hover(function(){

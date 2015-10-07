@@ -47,14 +47,18 @@ if (count($this->getGalleryImages()) > 0 || !empty($floorplans)): ?>
     <div class="more-views grid12-2">
         <h2><img src="<?php echo $this->getSkinUrl('images/view-title.png'); ?>"></h2>
         <ul class="product-image-thumbs">
+          <?php $inspirationCounter = 0; ?>
             <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
               <?php
                 $label = $_image->getLabel();
                 $label = strtolower(trim($label));
+                if($label == 'inspiration'){
+                  $inspirationCounter++;
+                }
               ?>
-              <?php if($label != 'background'): ?>
+              <?php if(($label != 'background') && ($inspirationCounter <= 1)): ?>
                 <li class="<?php echo ($mainImage->getPosition() == $_image->getPosition()) ? 'active' : '' ?>">
-                    <a class="thumb-link" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image->getLabel(); ?></h4>
+                    <a class="thumb-link <?php echo $label; ?>" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image->getLabel(); ?></h4>
                         <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $_image->getFile()); ?>"
                               alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" class="<?php echo $i; ?>" />
                     </a>
@@ -76,6 +80,17 @@ if (count($this->getGalleryImages()) > 0 || !empty($floorplans)): ?>
                     <?php endforeach; ?>
                     </ul>
                   <?php endif; ?>
+        </ul>
+        <ul class="inspiration-carousel" style="display: none;">
+          <?php foreach($this->getGalleryImages() as $img): ?>
+            <?php
+              $label = $img->getLabel();
+              $label = strtolower(trim($label));
+            ?>
+            <?php if($label == 'inspiration'): ?>
+              <li><a href="#"><img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $img->getFile()); ?>" alt="<?php echo $this->escapeHtml($img->getLabel()); ?>"></a></li>
+            <?php endif; ?>
+          <?php endforeach; ?>
         </ul>
     </div>
 <?php endif; ?>
