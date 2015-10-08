@@ -29,10 +29,11 @@ $_categories = Mage::getModel('catalog/category')
     <ul class="products-grid products-grid--max-2-col board-list">
     <?php
             $children = Mage::getModel('catalog/category')->getCategories($_current_category->getId());
+            $i = 1;
             foreach ($children as $subcategory):
                 $boardsCollection = Mage::getResourceModel('validoc_board/board_collection')->addCategoryFilter($subcategory);
     ?>
-                    <?php $i = 1; foreach ($boardsCollection as $_board): ?>
+                    <?php /*$i = 1;*/ foreach ($boardsCollection as $_board): ?>
                         <?php if($_board->getIsActive()): ?>
                             <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
                             <!-- <h3><?php //echo $subcategory->getName(); ?> | <?php echo $cur_board->getName(); ?> | <?php echo $cur_board->getDesigner()->getFirmName(); ?></h3> --><!-- separator -->
