@@ -47,12 +47,21 @@ if (count($bgimage) > 0 || !empty($floorplansSiblings)): ?>
         <h2><img src="<?php echo $this->getSkinUrl('images/view-title.png'); ?>"></h2>
         <ul class="product-image-thumbs">
             <?php $i=0; foreach ($bgimage as $_image): ?>
+              <?php
+                $label = $_image['label'];
+                $label = strtolower(trim($label));
+                if($label == 'inspiration'){
+                  $inspirationCounter++;
+                }
+              ?>
+              <?php if(($label != 'background') && ($inspirationCounter <= 1)): ?>
                 <li>
                     <a class="thumb-link" href="<?php echo Mage::getBaseUrl()."designer-board/board/view/id/".$relatedBoard->getBoardId(); ?>" title="<?php echo $this->escapeHtml($_image[$i]['label']); ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image['label']; ?></h4>
                         <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."validoc/board".$_image['file']; ?>"
                               alt="<?php echo $this->escapeHtml($_image[$i]['label']); ?>" class="<?php echo $i; ?>" />
                     </a>
                 </li>
+              <?php endif; ?>
                 <?php $i++; endforeach; ?>
                 <?php
                   if(!empty($floorplansSiblings)): ?>
