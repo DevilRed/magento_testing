@@ -96,7 +96,7 @@
             $index = 0;
             if(count($cats) != 0):
     ?>
-            <div class="subcategory-pagination">
+            <div class="subcategory-pagination"><!-- for pieces page -->
                 <p class="title_2">
                     <?php foreach($cats as $key => $cat): ?>
                         <?php $index++; ?>
@@ -106,6 +106,33 @@
                 </p>
             </div>
             <?php endif;//!empty cats ?>
+    <?php endif; ?>
+    <?php
+        //sitting rooms filter
+        $isSittingsCat = Mage::registry('current_category');
+        if($isSittingsCat->getId() == 121):
+    ?>
+        <div class="subcategory-pagination sitting"><!-- for sittings category -->
+            <?php
+                $byStyleP = array(
+                    'id' => $isSittingsCat->getId(),
+                    /*'_query' => array(
+                        'filter' => 'bystyle'
+                    )*/
+                );
+                $allRoomsP = array(
+                    'id' => $isSittingsCat->getId(),
+                    '_query' => array(
+                        'filter' => 'allrooms'
+                    )
+                );
+            ?>
+            <p class="title_2">
+                <a href="<?php echo Mage::getUrl('catalog/category/view', $byStyleP); ?>"><span><?php echo __('browse by style'); ?></span></a>
+                <span class="separator"> | </span>
+                <a href="<?php $isSittingsCat->getUrl(); ?>?filter=allrooms"><span><?php echo __('view all rooms'); ?></span></a>
+            </p>
+        </div>
     <?php endif; ?>
 </div>
 

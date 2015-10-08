@@ -21,6 +21,57 @@ $_categories = Mage::getModel('catalog/category')
     /*->addAttributeToFilter('level', array('eq'=>2))*/
     ->load();
 
+    //isset filter param
+    $filterParam = $this->getRequest()->getParam('filter');
+    if($_current_category->getId() == 121 && isset($filterParam)):
+?>
+    <?php if($filterParam == 'allrooms'): ?>
+    <ul class="products-grid products-grid--max-2-col board-list">
+    <?php
+            $children = Mage::getModel('catalog/category')->getCategories($_current_category->getId());
+            foreach ($children as $subcategory):
+                $boardsCollection = Mage::getResourceModel('validoc_board/board_collection')->addCategoryFilter($subcategory);
+    ?>
+                    <?php $i = 1; foreach ($boardsCollection as $_board): ?>
+                        <?php if($_board->getIsActive()): ?>
+                            <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
+                            <!-- <h3><?php //echo $subcategory->getName(); ?> | <?php echo $cur_board->getName(); ?> | <?php echo $cur_board->getDesigner()->getFirmName(); ?></h3> --><!-- separator -->
+                            <li class="grid12-6 <?php if($i%2 == 0) echo 'no-right-gutter'; else echo 'no-left-gutter';echo ($_board->getType() == 2) ? ' vignettes': ''; ?>">
+                                <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->htmlEscape($cur_board->getName()) ?>" class="product-image">
+                                    <?php $_imgSizeWidth = 450; ?>
+                                    <?php $_imgSizeHeight = 275; ?>
+                                    <img id="product-collection-image-<?php echo $cur_board->getId(); ?>"
+                                    src="<?php echo $this->helper('validoc_board/image')->init($cur_board, 'small_image')->keepFrame(false)->resize($_imgSizeWidth,$_imgSizeHeight); ?>"
+                                    alt="<?php echo $this->htmlEscape($cur_board->getName()) ?>" />
+                                    <div class="product-info">
+                                        <h2 class="product-name">
+                                            <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->stripTags($cur_board->getName(), null, true) ?>">
+                                                <?php echo $cur_board->getName(); ?>
+                                            </a>
+                                            <span><?php echo ' by '; ?></span>
+                                            <?php if($_board->getType() == 2): ?>
+                                                 <span class="firmname"><?php echo $cur_board->getDesigner()->getFirmName(); ?></span>
+                                             <?php else: ?>
+                                            <a href="<?php echo Mage::getUrl("designers/designer/view",array("id"=>$cur_board->getDesigner()->getId())); ?>" title="<?php echo $this->stripTags($cur_board->getDesigner()->getName(), null, true) ?>" class="owner">
+                                                <?php echo $cur_board->getDesigner()->getName(); ?>
+                                            </a>
+                                            <span><?php echo ' of '; ?></span>
+                                            <span class="firmname"><?php echo $cur_board->getDesigner()->getFirmName(); ?></span>
+                                            <?php endif; ?>
+                                        </h2>
+                                    </div>
+                                </a>
+                            </li>
+                            <?php $i++; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+    <?php
+            endforeach;//children
+        endif;//if allrooms filter
+    ?>
+    </ul>
+<?php
+    else:
 $_collectionSize = $_categories->count();
 ?>
     <?php if ($_collectionSize > 0) { ?>
@@ -51,5 +102,6 @@ $_collectionSize = $_categories->count();
 
         </div>
     <?php } ?>
+<?php endif;//if isset filter param ?>
 
 <div class="clearer"></div>

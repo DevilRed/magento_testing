@@ -65,4 +65,16 @@ class Validoc_Floorplan_Block_Detail_View extends Mage_Core_Block_Template
         $row = $connection->fetchAll($sql);
         return $row;
     }
+    public function getRoomBg(){
+        $collection = $this->getBoard()->getMediaGalleryImages();
+        $bgImg = null;
+        foreach ($collection as $image) {
+            $label = $image->getLabel();
+            $label = strtolower(trim($label));
+            if($label == 'background'){
+                $bgImg = $image;
+            }
+        }
+        return $bgImg;
+    }
 }

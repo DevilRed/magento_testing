@@ -144,8 +144,9 @@
                 <?php echo $this->getChildHtml('other');?>
 
             </div>
-
-            <div class="bg-box">
+            
+            <?php $roomBg = $this->getRoomBg(); ?>
+            <div class="bg-box" <?php echo (($roomBg) ? 'style="background-image: url('.$roomBg->getUrl().');"' : ''); ?>>
                 <div class="container-board">
                     <div class="product-img-box">
                         <?php echo $this->getChildHtml('media') ?>
