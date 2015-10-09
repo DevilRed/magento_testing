@@ -2947,6 +2947,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .boards-list.decor-list ul li h3{
     max-width: 96.5%;
     text-align: center;
+    display: inline-block;
+    width: 96.5%;
 }
 .board-list li.no-right-gutter a img{
     max-width: 96.5%;
