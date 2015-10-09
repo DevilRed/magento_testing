@@ -2091,19 +2091,19 @@ body{
 .main-container{
     overflow-x: hidden;
 }
-.validoc-board-board-view .bg-box{
+/*.validoc-board-board-view .bg-box{
     margin-left: -500%;
     margin-right: -500%;
-}
+}*/
 .validoc-floorplan-floorplan-view .bg-box{
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     padding: 30px 0;
     padding-bottom: 20px;
     background-image: url("../images/bg-designerBoard.png");
-    -moz-background-size: contain;
-    -webkit-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .validoc-floorplan-floorplan-view .bg-box{
     width: auto !important;
@@ -2452,10 +2452,10 @@ input:-webkit-autofill {
     .home_features_right.float.left{
         margin-left: -15px;
     }
-    .validoc-floorplan-floorplan-view .bg-box{
+    /*.validoc-floorplan-floorplan-view .bg-box{
         margin-left: -500%;
         margin-right: -500%;
-    }
+    }*/
 }
 /* add to my quote list button */
 .shop.clearer{
