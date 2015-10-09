@@ -2940,9 +2940,13 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .board-list li.no-right-gutter .product-name{
     padding-left: 14px;
 }
-.boards-list ul li.no-right-gutter h3{
+/*.boards-list ul li.no-right-gutter h3{
     text-align: left;
     padding-left: 16px;
+}*/
+.boards-list.decor-list ul li h3{
+    max-width: 96.5%;
+    text-align: center;
 }
 .board-list li.no-right-gutter a img{
     max-width: 96.5%;
