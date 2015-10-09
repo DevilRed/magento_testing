@@ -1371,7 +1371,7 @@ img.big{
 .validoc-board-board-view .container-board{width: 96%; max-width: 960px; margin: 0 auto;}
 .validoc-board-board-view .container-board .product-img-box{overflow: hidden;}
 .validoc-board-board-view .container-board .inner-container-board{padding: 30px 0;}
-.validoc-board-board-view .bg-box{background-repeat: repeat; padding: 30px 0; background-image: url("../images/bg-designerBoard.png");padding-bottom: 5px;-moz-background-size: contain;-webkit-background-size: contain;-o-background-size: contain;background-size: contain;}
+.validoc-board-board-view .bg-box{background-repeat: no-repeat; padding: 30px 0; background-image: url("../images/bg-designerBoard.png");padding-bottom: 5px;-moz-background-size: 100% 100%;-webkit-background-size: 100% 100%;-o-background-size: 100% 100%;background-size: 100% 100%;}
 
 
 .product-img-box .product-image.product-image-zoom{
