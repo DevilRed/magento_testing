@@ -55,15 +55,16 @@ if (count($this->getGalleryImages()) > 0 || !empty($floorplans)): ?>
                 if($label == 'inspiration'){
                   $inspirationCounter++;
                 }
+                if( ($label == 'background') || (($inspirationCounter > 1) && ($label == 'inspiration')) ){
+                  continue;
+                }
               ?>
-              <?php if(($label != 'background') && ($inspirationCounter <= 1)): ?>
                 <li class="<?php echo ($mainImage->getPosition() == $_image->getPosition()) ? 'active' : '' ?>">
                     <a class="thumb-link <?php echo $label; ?>" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>"><h4 class="to-uppercase"><?php echo $_image->getLabel(); ?></h4>
                         <img src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $_image->getFile()); ?>"
                               alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" class="<?php echo $i; ?>" />
                     </a>
                 </li>
-              <?php endif; ?>
                 <?php $i++; endforeach; ?>
                 <?php
                     if(!empty($floorplans)): ?>
