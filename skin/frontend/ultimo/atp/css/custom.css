@@ -2942,7 +2942,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .boards-list ul li.no-right-gutter h3{
     text-align: left;
-    padding-left: 14px;
+    padding-left: 16px;
 }
 .board-list li.no-right-gutter a img{
     max-width: 96.5%;
