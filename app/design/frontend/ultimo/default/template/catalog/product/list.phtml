@@ -414,6 +414,12 @@
         </div>
     </div>
 <?php endforeach; ?>
+<?php
+    //link to most recent visited page
+    $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+    $session = Mage::getSingleton("core/session", array('name' => 'frontend'));
+    $session->setData("last_visited_page", $currentUrl);
+?>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('.products-grid').equalizer({
