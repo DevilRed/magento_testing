@@ -3018,3 +3018,8 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .cms-how-to-shop .text-content p{
     letter-spacing: 0.035em;
 }
+.quotation-quote-requestfromcart .title-quote h1{
+    font-family: 'PetraScriptEF-Alternate';
+    font-size: 47px;
+    text-transform: capitalize;
+}

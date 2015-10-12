@@ -13,7 +13,7 @@ function SubmitCreateForm()
 
 <form id="form_create" name="form_create" method="POST" action="<?php echo $this->getSubmitUrl(); ?>">
 
-<div class="page-title">
+<div class="page-title title-quote">
     <h1><?php echo $this->__('Request for a new quotation') ?></h1>
 </div>
 
@@ -59,3 +59,20 @@ function SubmitCreateForm()
 </center>
 
 </form>
+<script type="text/javascript">
+    var Handler = (function(){
+        var dom = {
+            headerTitle: '.title-quote h1'
+        };
+        var wrap = function(){
+            //changing header content
+            jQuery(dom.headerTitle).empty().html('My Quote List');
+        };
+        return {
+            onReady: function(){
+                wrap();
+            }
+        };
+    })();
+    jQuery(document).on('ready', Handler.onReady());
+</script>
