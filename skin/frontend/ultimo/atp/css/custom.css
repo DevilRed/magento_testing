@@ -3026,3 +3026,13 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .totals.grid-full.alpha.omega{
     background-color: #fff;
 }
+/*align to right quote list button in cart page*/
+.totals.grid-full.alpha.omega .checkout-types li{
+    text-align: right;
+}
+.totals.grid-full.alpha.omega .checkout-types li center{
+    display: inline-block;
+}
+.totals.grid-full.alpha.omega .totals-inner{
+    padding-right: 0;
+}
