@@ -16,5 +16,21 @@
                 <!-- add more layouts here -->
                  </layouts>
                </page>
+               <blocks>
+                 <customer>
+                   <rewrite>
+                    <account_navigation>Validoc_Pagetemplates_Block_Customer_Account_Navigation</account_navigation>
+                   </rewrite>
+                 </customer>
+               </blocks>
           </global>
+          <frontend>
+            <layout>
+              <updates>
+                <validoc_pagetemplates>
+                  <file>validoc/pagetemplates.xml</file>
+                </validoc_pagetemplates>
+              </updates>
+            </layout>
+          </frontend>
  </config>
