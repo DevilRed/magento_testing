@@ -3023,3 +3023,6 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-size: 47px;
     text-transform: capitalize;
 }
+.totals.grid-full.alpha.omega{
+    background-color: #fff;
+}
