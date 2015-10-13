@@ -18,7 +18,7 @@ class MDN_Quotation_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_For
         $this->_addButton(
                 'notify_customer',
                 array(
-                    'label' => Mage::helper('quotation')->__('Notify'),
+                    'label' => Mage::helper('quotation')->__('Send quote'),
                     'onclick' => "window.location.href='" . $this->getUrl('Quotation/Admin/notify', array('quote_id' => $this->getRequest()->getParam('quote_id'))) . "'"
                 )
         );
@@ -54,9 +54,10 @@ class MDN_Quotation_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_For
                 array(
                     'label' => Mage::helper('quotation')->__('Delete'),
                     'class' => 'delete',
-                    'onclick' => "if (confirm('".$this->__('Are you sure ?')."')) { window.location.href='" . $this->getUrl('Quotation/Admin/delete', array('quote_id' => $this->getRequest()->getParam('quote_id'))) . "' }"
+                    'onclick' => "window.location.href='" . $this->getUrl('Quotation/Admin/delete', array('quote_id' => $this->getRequest()->getParam('quote_id'))) . "' "
                 )
         );
+        $this->_removeButton('reset');
 
         $this->_updateButton('save', 'onclick', 'beforeSaveQuote()');
 
