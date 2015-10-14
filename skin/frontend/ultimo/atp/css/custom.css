@@ -3076,3 +3076,15 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     text-transform: uppercase;
     font-size: 13px;
 }
+/*checkout quotation buttons*/
+.checkout-cart-index  .button, .quotation-quote-requestfromcart .button{
+    background-color: #fff;
+    color: #77787b;
+    border: 1px solid #77787b;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    line-height: normal;
+}
+.checkout-cart-index  .button:hover, .quotation-quote-requestfromcart .button:hover{
+    background-color: #fff;
+}
