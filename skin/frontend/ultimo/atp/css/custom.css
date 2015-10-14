@@ -3055,3 +3055,13 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .all-link-container img{
     border: 0 !important;
 }
+/*customizing default magento messages*/
+.messages .success-msg{
+    background-color: #fff;
+    background-image: url(../images/i_msg-success2.png);
+}
+.messages .success-msg ul li span{
+    font-family: 'Open Sans';
+    font-size: 13px;
+    color: #000;
+}

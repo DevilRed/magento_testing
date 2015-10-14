@@ -463,5 +463,9 @@
                 mainImg.attr('src', jQuery(this).attr('src'));
             });
         });
+        //setting time to magento messages
+        if(jQuery('.messages').length > 0){
+            jQuery('.messages').delay(3000).slideUp(500);
+        }
     });
 </script>
