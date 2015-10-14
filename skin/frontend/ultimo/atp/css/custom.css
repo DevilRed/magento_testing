@@ -2525,7 +2525,7 @@ input:-webkit-autofill {
     border: 0;
 }
 .data-table.cart-table tbody tr{
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #808080;
 }
 .data-table.cart-table tbody tr .product-image-field{
     padding: 4px;
@@ -3087,4 +3087,10 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .checkout-cart-index  .button:hover, .quotation-quote-requestfromcart .button:hover{
     background-color: #fff;
+    border: 1px solid  #000;
+    color: #000;
+}
+/*last element in quote table*/
+td.a-right.last{
+    border-top: 1px solid #808080 !important;
 }
