@@ -50,8 +50,8 @@
                 <tr>
                     <td class="label"><label for="myform[caption]"><?php echo $this->__('Caption') ?> <span class="required">*</span></label></td>
                     <td class="input-ele"><input style="width:400px;" class="input-text required-entry" id="myform[caption]" name="myform[caption]" value="<?php echo $this->getQuote()->getcaption(); ?>" /></td>
-                    <td class="label" width="25%"><?php echo $this->__('Associated Promotion'); ?></td>
-                    <td>
+                    <!-- <td class="label" width="25%"><?php echo $this->__('Associated Promotion'); ?></td> -->
+                    <!--<td>
                     <?php
                         $promo = $this->getQuote()->GetPromo();
                         if ($promo == null)
@@ -59,7 +59,7 @@
                         else
                             echo $promo->getname();
                     ?>
-                    </td>
+                    </td>-->
                 </tr>
                 <tr>
                     <td class="label"><label for="myform[valid_end_time]"><?php echo $this->__('Valid until') ?></label></td>
@@ -76,8 +76,8 @@
                             });
                         </script>
                     </td>
-                    <td class="label" width="25%"><?php echo $this->__('Associated product'); ?></td>
-                    <td>
+                    <!-- <td class="label" width="25%"><?php echo $this->__('Associated product'); ?></td> -->
+                    <!--<td>
                     <?php
                         $product = $this->GetProduct();
                         if ($product == null)
@@ -85,18 +85,18 @@
                         else
                             echo '<a href="' . $this->geturl('adminhtml/catalog_product/edit', array('id' => $product->getid())) . '">' . $product->getname() . '</a>';
                     ?>
-                    </td>
+                    </td>-->
                 </tr>
                 <tr>
                     <td rowspan="2" class="label"><label for="myform[message]"><?php echo $this->__('Comments') ?></label></td>
                     <td rowspan="2" class="input-ele"><textarea style="width: 400px; height: 90px;" id="myform[message]" name="myform[message]"><?php echo $this->getQuote()->getmessage(); ?></textarea></td>
                 </tr>
                 <tr>
-                    <td class="label" width="25%"><label for="myform[weight]"><?php echo $this->__('Weight') ?></label></td>
-                    <td>
+                    <!-- <td class="label" width="25%"><label for="myform[weight]"><?php echo $this->__('Weight') ?></label></td> -->
+                    <!--<td>
                         <?php echo $this->__('Calculate from subitems : ') ?><?php echo $this->getYesNoCombo('myform[auto_calculate_weight]', $this->getQuote()->getauto_calculate_weight(), 'ToggleQuoteWeightFieldVisibility();'); ?>
                         <br><input type="text" id="myform[weight]"  id="myform[weight]" name="myform[weight]" value="<?php echo $this->getQuote()->getweight() ?>" />
-                    </td>
+                    </td>-->
                 </tr>
                 <?php if ($this->getQuote()->getcustomer_msg()): ?>
                 <tr>
