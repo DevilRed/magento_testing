@@ -23,6 +23,7 @@ $_categories = Mage::getModel('catalog/category')
 
     //isset filter param
     $filterParam = $this->getRequest()->getParam('filter');
+    $counter = 0;
     if($_current_category->getId() == 121 && isset($filterParam)):
 ?>
     <?php if($filterParam == 'allrooms'): ?>
@@ -63,11 +64,30 @@ $_categories = Mage::getModel('catalog/category')
                                     </div>
                                 </a>
                             </li>
+                            <?php $counter = $i; ?>
                             <?php $i++; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
     <?php
             endforeach;//children
+            ?>
+            <!-- last item browse by style link -->
+                <?php
+                    //sitting rooms filter
+                    $isSittingsCat = Mage::registry('current_category');
+                    $allRoomsP = array(
+                        'id' => $isSittingsCat->getId(),
+                    );
+                    if($isSittingsCat->getId() == 121):
+                ?>
+                            <li class="grid12-6 no-right-gutter all-link-container" style="<?php echo ($counter % 2 == 0) ? 'display: none;' : 'display: block;'; ?>">
+                                <a class="product-image all-rooms-link" href="<?php echo Mage::getUrl('catalog/category/view', $allRoomsP); ?>" title="Browse by style">
+                                    <img src="<?php echo $this->getSkinUrl('images'); ?>/imgFondo.jpg">
+                                        <h3>browse by style</h3>
+                                </a>
+                            </li>
+                <?php endif;//isSittingCat ?>
+        <?php
         endif;//if allrooms filter
     ?>
     </ul>
@@ -93,9 +113,29 @@ $_collectionSize = $_categories->count();
                                     <?php endif; ?>
                                 </a>
                             </li>
+                            <?php $counter = $i; ?>
                         <?php $i++; endif ?>
                     <?php endif ?>
                 <?php endforeach ?>
+                <!-- last item view all styles link -->
+                <?php
+                    //sitting rooms filter
+                    $isSittingsCat = Mage::registry('current_category');
+                    $allRoomsP = array(
+                        'id' => $isSittingsCat->getId(),
+                        '_query' => array(
+                            'filter' => 'allrooms'
+                        )
+                    );
+                    if($isSittingsCat->getId() == 121):
+                ?>
+                            <li class="grid12-6 no-right-gutter all-link-container" style="<?php echo ($counter % 2 == 0) ? 'display: none;' : 'display: block;'; ?>">
+                                <a class="product-image all-rooms-link" href="<?php echo Mage::getUrl('catalog/category/view', $allRoomsP); ?>" title="View all rooms">
+                                    <img src="<?php echo $this->getSkinUrl('images'); ?>/imgFondo.jpg">
+                                        <h3>view all styles</h3>
+                                </a>
+                            </li>
+                <?php endif;//isSittingCat ?>
             </ul>
 
 

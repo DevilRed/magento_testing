@@ -3036,3 +3036,22 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .totals.grid-full.alpha.omega .totals-inner{
     padding-right: 0;
 }
+/*all link filter button in rooms page*/
+.all-link-container{
+    position: relative;
+}
+.all-link-container h3{
+    position: absolute;
+    top: 0;
+    left: 3%;
+    right: 0;
+    bottom: 0;
+    margin: auto !important;
+    padding-top: 27%;
+    text-transform: uppercase;
+    font-weight: 100;
+    text-align: center;
+}
+.all-link-container img{
+    border: 0 !important;
+}
