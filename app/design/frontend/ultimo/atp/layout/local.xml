@@ -573,7 +573,9 @@
 
 		<!-- Custom static blocks -->
 		<reference name="checkout.cart">
-		
+			<reference name="head">
+				<action method="setForcedTitle"><title>My Quote List</title></action>
+			</reference>
 			<block type="cms/block" name="block_cart_below_table">
 				<action method="setBlockId"><block_id>block_cart_below_table</block_id></action>
 			</block>

@@ -27,7 +27,7 @@
 <?php $theme = Mage::helper('ultimo'); ?>
 
 <meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
-<title><?php echo $this->getTitle() ?></title>
+<title><?php echo ($this->getForcedTitle()) ? $this->getForcedTitle() : $this->getTitle() ?></title>
 <?php if ($theme->getCfgLayout('responsive/responsive')): ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <?php endif; ?>
