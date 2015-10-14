@@ -3063,7 +3063,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .messages .success-msg ul li span{
     font-family: 'Open Sans';
     font-size: 13px;
-    color: #000;
+    color: #77787b;
 }
 .inquiry-button-wrapper{
     text-align: right;
@@ -3075,6 +3075,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-family: 'Open Sans';
     text-transform: uppercase;
     font-size: 13px;
+    color: #77787b;
 }
 /*checkout quotation buttons*/
 .checkout-cart-index  .button, .quotation-quote-requestfromcart .button{
