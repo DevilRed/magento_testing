@@ -3065,3 +3065,14 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-size: 13px;
     color: #000;
 }
+.inquiry-button-wrapper{
+    text-align: right;
+}
+.inquiry-button-wrapper button{
+    margin-left: 50px;
+}
+.inquiry-button-wrapper span{
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    font-size: 13px;
+}
