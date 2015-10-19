@@ -34,7 +34,7 @@
 ?>
 <div class="account-login clearer">
     <div class="page-title login">
-        <h1><span class="title_1"><span>Welcome! </span></span><strong><?php echo $this->__('CREATE AN ACCOUNT') ?></strong> or <strong>SIGN IN</strong></h1>
+        <h1><span class="title_1"><span>Welcome! </span></span><strong><?php echo $this->__('CREATE YOUR ACCOUNT') ?></strong> or <strong>SIGN IN</strong></h1>
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
@@ -46,7 +46,7 @@
 your information.') ?></p>
             </div>
             <div class="buttons-set">
-                <button type="button" title="<?php echo $this->__('Create an Account') ?>" class="button" onclick="window.location='<?php echo Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>';"><span><span><?php echo $this->__('Create an Account') ?></span></span></button>
+                <button type="button" title="<?php echo $this->__('Create your Account') ?>" class="button" onclick="window.location='<?php echo Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>';"><span><span><?php echo $this->__('Create your Account') ?></span></span></button>
             </div>
         </div>
         <div class="registered-users grid12-6">

@@ -1947,6 +1947,7 @@ img.big{
     text-transform: none;
     font-size: 23px;
     letter-spacing: 3px;
+    font-weight: 100;
 }
 .content > h2{
     color: #6f6f6f;
@@ -3077,6 +3078,15 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     font-size: 13px;
     color: #77787b;
 }
+.messages .error-msg{
+    background-color: #fff;
+    background-image: url(../images/i_msg-error2.png);
+}
+.messages .error-msg ul li span{
+    font-family: 'Open Sans';
+    font-size: 13px;
+    color: #77787b;
+}
 /*checkout quotation buttons*/
 .checkout-cart-index  .button, .quotation-quote-requestfromcart .button{
     background-color: #fff;
@@ -3143,4 +3153,24 @@ td.a-right.last{
 }
 #shopping-cart-table tbody tr:first-child .product-name-wrapper .product-name{
     margin-top: -4px;
+}
+.button{
+    background-color: #fff;
+    color: #77787b;
+    line-height: normal;
+    padding: 10px 30px;
+}
+.button:hover{
+    background-color: #fff;
+    color: #000;
+}
+.page-title.login h1 strong{
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+.account-login .button{
+    border: 1px solid #77787b;
+}
+.account-login .button:hover{
+    border: 1px solid #000;
 }
