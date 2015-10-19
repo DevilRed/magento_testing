@@ -3059,7 +3059,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 /*customizing default magento messages*/
 .messages .success-msg{
     background-color: #fff;
-    background-image: url(../images/i_msg-success2.png);
+    background-image: url(../images/check.png);
 }
 .messages .success-msg ul li span{
     font-family: 'Open Sans';
@@ -3080,7 +3080,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 }
 .messages .error-msg{
     background-color: #fff;
-    background-image: url(../images/i_msg-error2.png);
+    background-image: url(../images/X.png);
 }
 .messages .error-msg ul li span{
     font-family: 'Open Sans';
@@ -3286,3 +3286,8 @@ td.a-right.last{
 .account-create .buttons-set .required{
     margin-top: 40px;
 }
+.customer-account-logoutsuccess .page-title h1, .customer-account-logoutsuccess .page-title + p{
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 300;
+ }
