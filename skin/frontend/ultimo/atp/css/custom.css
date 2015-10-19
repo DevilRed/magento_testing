@@ -3095,3 +3095,15 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 td.a-right.last{
     border-top: 1px solid #808080 !important;
 }
+/*titles in request quote page*/
+#form_create h2{
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 18px;
+}
+.send-us-inquiry-title{
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #808080;
+}
