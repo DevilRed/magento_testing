@@ -3252,3 +3252,37 @@ td.a-right.last{
 .quotation-quote-list.customer-account #form_request .button{
     margin-bottom: 100px;
 }
+/*register page*/
+.account-create .page-title h1{
+    color: #77787b;
+    font-weight: 300;
+    font-size: 22px;
+}
+.account-create #form-validate{
+    margin-top: 20px;
+    display: block;
+}
+.account-create #form-validate .fieldset .legend{
+    text-transform: uppercase;
+    color: #77787b;
+    font-weight: 100;
+}
+.account-create .button{
+    margin-top: 7px;
+    border: 1px solid #77787b;
+}
+.account-create .button:hover{
+    border: 1px solid #000;
+}
+.account-create .buttons-set{
+    position: relative;
+}
+.account-create .buttons-set p.back-link{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+}
+.account-create .buttons-set .required{
+    margin-top: 40px;
+}
