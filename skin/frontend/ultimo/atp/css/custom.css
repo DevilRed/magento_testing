@@ -3107,3 +3107,9 @@ td.a-right.last{
     padding-bottom: 15px;
     border-bottom: 1px solid #808080;
 }
+#form_create h2{
+    margin: 20px 0;
+}
+#form_create .page-title.title-quote + h2{
+    margin: 0;
+}
