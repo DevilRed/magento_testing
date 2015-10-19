@@ -3218,8 +3218,30 @@ td.a-right.last{
 .my-account .box-title h3{
     text-transform: uppercase;
     font-size: 16px;
-    padding-bottom: 8px;    
+    padding-bottom: 8px;
 }
 .box-content p{
     font-size: 12px;
+}
+.my-account .button, .customer-account .button{
+    border: 1px solid #77787b;
+    text-transform: uppercase;
+}
+.my-account .button:hover{
+    border: 1px solid #000;
+}
+.my-account .buttons-set{
+    position: relative;
+}
+.my-account .buttons-set .back-link{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.my-account .buttons-set .required{
+    margin-top: 29px;
+}
+.customer-account .page-title h1, .customer-account .legend{
+    text-transform: uppercase;
+    font-weight: 100;
 }
