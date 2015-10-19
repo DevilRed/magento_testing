@@ -46,7 +46,7 @@ $imgHeight = 168;
 ?>
 <tr>
     <td class="product-image-field"><?php if ($this->hasProductUrl()):?><a href="#<?php //echo $this->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->getProductThumbnail()->resize(168); ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
-    <td>
+    <td class="product-name-wrapper">
     <?php /* TODO
     <td class="col-img"><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->helper('infortis/image')->getImg($_item->getProduct(), $imgWidth, $imgHeight, 'thumbnail'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
     <td>
@@ -107,6 +107,10 @@ $imgHeight = 168;
         <?php if ($addInfoBlock): ?>
             <?php echo $addInfoBlock->setItem($_item)->toHtml() ?>
         <?php endif;?>
+        <div class="product-qty-field">
+            <span class="cell-label"><?php echo $this->__('Qty') ?></span>
+            <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
+        </div>
     </td>
     <td class="col-edit a-center" style="display: none;">
         <?php if ($isVisibleProduct): ?>
@@ -239,12 +243,12 @@ $imgHeight = 168;
         </td>
         <?php endif; ?>
     <?php endif; ?>
-    <td class="a-center qty-field">
+    <!--<td class="a-center qty-field">
         
         <span class="cell-label"><?php echo $this->__('Qty') ?></span>
     
         <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
-    </td>
+    </td>-->
     <?php if (($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()) && !$_item->getNoSubtotal()): ?>
     <td class="<?php if($this->helper('tax')->displayCartBothPrices()) echo 'col-total-excl'; else echo 'col-total'; ?> a-right" style="display: none;">
     
@@ -354,5 +358,5 @@ $imgHeight = 168;
         <?php endif; ?>
     </td>
     <?php endif; ?>
-    <td class="col-delete a-center"><a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>" class="btn-remove btn-remove2"><?php echo $this->__('Remove item')?></a></td>
+    <td class="col-delete a-center"><a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>" class="btn-removeX btn-remove2X"><?php echo $this->__('Remove item')?></a></td>
 </tr>

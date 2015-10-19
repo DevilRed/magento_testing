@@ -2508,7 +2508,7 @@ input:-webkit-autofill {
     color: #77787b;
     font-weight: 100;
     font-family: 'Open Sans';
-    margin-left: 20px;
+    margin-left: 22px;
     font-size: 13px;
 }
 .data-table.cart-table .product-description p{
@@ -2548,7 +2548,7 @@ input:-webkit-autofill {
 }
 @media screen and (min-width: 768px){
     .data-table.cart-table tr .product-name{
-        margin-left: 20px;
+        margin-left: 22px;
     }
 }
 /* bug fixes */
@@ -3112,4 +3112,35 @@ td.a-right.last{
 }
 #form_create .page-title.title-quote + h2{
     margin: 0;
+}
+/*my quote list PDF styles simulatted*/
+.product-qty-field{
+    margin-left: 23px;
+}
+#shopping-cart-table tbody .product-name-wrapper{
+    position: relative;
+}
+#shopping-cart-table .product-qty-field{
+    position: absolute;
+    bottom: 30px;
+}
+#shopping-cart-table tbody .col-delete{
+    position: relative;
+}
+#shopping-cart-table tbody .col-delete a{
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-weight: 100;
+    font-size: 13px;
+    display: block;
+    width: 100px;
+    position: absolute;
+    bottom: 26px;
+    right: 0;
+}
+#shopping-cart-table tbody .product-name-wrapper .product-name{
+    margin-top: 16px;
+}
+#shopping-cart-table tbody tr:first-child .product-name-wrapper .product-name{
+    margin-top: -4px;
 }
