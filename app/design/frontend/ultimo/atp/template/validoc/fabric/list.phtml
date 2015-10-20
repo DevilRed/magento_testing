@@ -238,6 +238,11 @@ $_helper = $this->helper('catalog/output');
                                     endif;
                                     ?></span></p>
                                     <p class="description"><?php echo $_fabric->getDescription(); ?></p>
+                                    <?php
+                                        $construction = $_fabric->getConstruction();
+                                        if(isset($construction)): ?>
+                                        <p class="description construction"><span>CONSTRUCTION: </span><?php echo $construction; ?></p>
+                                    <?php endif; ?>
                                     <a href="<?php echo (!empty($firstBoard)) ? Mage::getBaseUrl().'designer-board/board/view/id/'.$firstBoard->getBoardId(): ''; ?>" class="shop">shop this room</a>
                                 </div>
                             </div>

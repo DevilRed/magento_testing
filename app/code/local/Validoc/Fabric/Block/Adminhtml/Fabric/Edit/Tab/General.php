@@ -75,6 +75,15 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Edit_Tab_General extends Mage_Adminh
                 'required' => false,
                 'style' => 'width:99%'
             ));
+        $fieldset->addField('construction', 'text', array(
+            'name' => 'construction',
+            'label' => Mage::helper('validoc_fabric')->__('Construction'),
+            'title' => Mage::helper('validoc_fabric')->__('Construction'),
+            'type' => 'text',
+            'visible' => true,
+            'required' => false,
+            'style' => 'width:99%'
+        ));
         $form->addValues(Mage::registry('current_fabric')->toArray());
         $this->setForm($form);
         

@@ -3291,3 +3291,6 @@ td.a-right.last{
     font-family: 'Open Sans';
     font-weight: 300;
  }
+ .popup-info p.description.construction span{
+    font-style: normal;
+ }
