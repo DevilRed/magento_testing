@@ -30,11 +30,17 @@ function SubmitCreateForm()
 	<?php foreach($this->getCartProducts() as $item): ?>
 		<?php if (($item->getProduct()->gettype_id() == 'simple') || ($item->getProduct()->gettype_id() == 'virtual') || ($item->getProduct()->gettype_id() == 'downloadable')): ?>
             <tr>
-                <td>
-                	<a href="<?php echo $item->getProduct()->getProductUrl(); ?>"><?php echo $item->getName(); ?></a>
+                <td class="product-name quote-page2">
+                    <div class="product-img quote-page2">
+                        <?php
+                            $imageUrl = Mage::helper('catalog/image')->init($item->getProduct(), 'thumbnail');
+                        ?>
+                        <img src="<?php echo $imageUrl; ?>">
+                    </div>
+                	<a href="#<?php //echo $item->getProduct()->getProductUrl(); ?>"><?php echo $item->getName(); ?></a>
                 	<?php echo $this->getProductOptions($item); ?>
                 </td>
-                <td width="100"><input size="5" type="text" name="qty_<?php echo $item->getProduct()->getId(); ?>" id="qty_<?php echo $item->getProduct()->getId(); ?>" value="<?php echo $this->getItemQty($item); ?>"></td>
+                <td width="100" class="product-qty"><input size="5" type="text" name="qty_<?php echo $item->getProduct()->getId(); ?>" id="qty_<?php echo $item->getProduct()->getId(); ?>" value="<?php echo $this->getItemQty($item); ?>"></td>
             </tr>
         <?php endif; ?>
 	<?php endforeach; ?>

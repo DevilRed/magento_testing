@@ -24,7 +24,7 @@
 			$attributes = Mage::getSingleton('catalog/config')->getProductAttributes();
 			$_productCollection = Mage::getModel('catalog/product')
 			                    ->getCollection()
-			                    ->addAttributeToSort('created_at', 'DESC')
+			                    ->addAttributeToSort('created_at', 'ASC')
 			                    ->addAttributeToFilter('entity_id',  array('in' => $productsId))
 			                    ->addAttributeToSelect($attributes)
 			                    ->load();
@@ -43,7 +43,7 @@
 				                    ->addAttributeToSelect('*')
 				                    ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
 				                    ->addAttributeToFilter('category_id', array($ctf))
-				                    ->addAttributeToSort('created_at', 'DESC')
+				                    ->addAttributeToSort('created_at', 'ASC')
 				                    ->load();
 			}
 			return $_productCollection;
