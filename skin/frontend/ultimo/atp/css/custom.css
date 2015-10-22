@@ -3338,3 +3338,9 @@ td.a-right.last{
 .customer-account .dashboard .box-account .box-content address{
     margin-top: 30px;
 }
+.product-name.quote-page2 + td input{
+    padding: 10px;
+    width: 25px;
+    text-align: center;
+    border: 1px solid rgb(221, 221, 221);
+}
