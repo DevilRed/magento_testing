@@ -14,7 +14,7 @@
 </div>
 
 <div class="col2-set generic-box">
-	<div style="float: left">
+	<div style="float: left" class="valid-advice">
 		<b><?php echo $this->__('Valid until : %s', $this->formatDate($quote->getValidEndTime(),'long')); ?></b>
                 
 	</div>
@@ -22,7 +22,7 @@
 		<?php if ($quote->isValid()): ?>
 			<p align="right">
 				<?php if ($this->canAddToCart()): ?>
-					<button type="button" onclick="document.location.href = '<?php echo $this->getCommitUrl() ?>'" title="Save" class="button"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>  &nbsp;
+					<button type="button" onclick="document.location.href = '<?php echo $this->getCommitUrl() ?>'" title="Save" class="button" style="display: none;"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>  &nbsp;
 				<?php endif; ?>
 				<?php if ($this->hasAttachment()): ?>
 					<button type="button" onclick="document.location.href = '<?php echo $this->getViewAttachmentUrl() ?>'" title="Save" class="button"><span><span><?php echo $this->__('Download %s', $quote->getadditional_pdf()); ?></span></span></button>  &nbsp;
@@ -87,26 +87,26 @@
 <p>&nbsp;</p>
 
 <!-- totals -->
-<div align="right">
+<div align="right" class="totals">
 <table border="0">
 	<tr>
-		<td width="150" align="right"><h2><?php echo $this->__('Sub total'); ?></h2></td>
+		<td width="150" align="right"><h2 class="legend"><?php echo $this->__('Sub total'); ?></h2></td>
 		<td width="30">&nbsp;</td>
 		<td align="right"><h2><?php echo $quote->FormatPrice($quote->GetFinalPriceWithoutTaxes()); ?></h2></td>
 	</tr>
 	<tr>
-		<td align="right"><h2><?php echo $this->__('Tax'); ?></h2></td>
+		<td align="right"><h2 class="legend"><?php echo $this->__('Tax'); ?></h2></td>
 		<td>&nbsp;</td>
 		<td align="right"><h2><?php echo $quote->FormatPrice($quote->GetTaxAmount()); ?></h2></td>
 	</tr>
 	<tr>
-		<td align="right"><h2><?php echo $this->__('Grand Total'); ?></h2></td>
+		<td align="right"><h2 class="legend"><?php echo $this->__('Grand Total'); ?></h2></td>
 		<td>&nbsp;</td>
 		<td align="right"><h2><?php echo $quote->FormatPrice($quote->GetFinalPriceWithTaxes()); ?></h2></td>
 	</tr>
         <?php if($quote->getreduction() > 0): ?>
         <tr>
-            <td align="right"><h2><?php echo $this->__('Discount'); ?></h2></td>
+            <td align="right"><h2 class="legend"><?php echo $this->__('Discount'); ?></h2></td>
             <td>&nbsp;</td>
             <td align="right"><h2><?php echo $quote->FormatDiscount($quote->getreduction()); ?></h2></td>
         </tr>

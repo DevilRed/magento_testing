@@ -3354,3 +3354,19 @@ td.a-right.last{
 .newsletter-manage-index.customer-account .my-account .fieldset h2.legend{
     display: none;
 }
+/* quote view */
+.quotation-quote-view .col2-set.generic-box .valid-advice{
+    padding: 10px;
+}
+.quotation-quote-view .page-title h1{
+    padding-left: 9px;
+}
+.quotation-quote-view .totals h2.legend{
+    font-size: 22px;
+    margin-top: 2px;
+    color: #77787b;
+}
+.quotation-quote-view b, .quotation-quote-view th{
+    font-weight: 600 !important;
+    color: #000 !important;
+}
