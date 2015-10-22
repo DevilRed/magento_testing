@@ -3081,6 +3081,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .messages .error-msg{
     background-color: #fff;
     background-image: url(../images/X.png);
+    background-size: 26px;
 }
 .messages .error-msg ul li span{
     font-family: 'Open Sans';
