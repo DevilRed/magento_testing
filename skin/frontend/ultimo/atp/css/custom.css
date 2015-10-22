@@ -3344,3 +3344,6 @@ td.a-right.last{
     text-align: center;
     border: 1px solid rgb(221, 221, 221);
 }
+.customer-account-edit.customer-account .my-account .page-title{
+    margin-bottom: 30px;
+}
