@@ -3347,3 +3347,10 @@ td.a-right.last{
 .customer-account-edit.customer-account .my-account .page-title{
     margin-bottom: 30px;
 }
+/* to hide second header in customer newsletter subscription page */
+.newsletter-manage-index.customer-account .my-account .fieldset{
+    margin-top: 30px;
+}
+.newsletter-manage-index.customer-account .my-account .fieldset h2.legend{
+    display: none;
+}
