@@ -3081,7 +3081,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .messages .error-msg{
     background-color: #fff;
     background-image: url(../images/X.png);
-    background-size: 26px;
+    background-size: 24px;
 }
 .messages .error-msg ul li span{
     font-family: 'Open Sans';
@@ -3317,4 +3317,24 @@ td.a-right.last{
 .product-name.quote-page2 + td input{
     position: relative;
     top: 15px;
+}
+/*account links*/
+.customer-account .dashboard .box-account .box-content a{
+    border: 1px solid #77787b;
+    /*color: #77787b;*/
+    padding: 10px 30px;
+    margin-top: 30px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.customer-account .dashboard .box-account .box-content a:hover{
+    border: 1px solid #000;
+    color: #000;
+}
+.customer-account .dashboard .box-account .box-content p{
+    margin-top: 30px;
+}
+.customer-account .dashboard .box-account .box-content address{
+    margin-top: 30px;
 }
