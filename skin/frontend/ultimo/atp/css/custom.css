@@ -3401,3 +3401,57 @@ label[for="is_subscribed"].customized p{
     font-size: 10px;
     text-align: center;
 }
+/*buttons*/
+.buttons-set{
+    position: relative;
+}
+.buttons-set .back-link{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.button{
+    border: 1px solid #77787b;
+    text-transform: uppercase;
+}
+.button:hover{
+    border: 1px solid #000;
+}
+.customer-account-forgotpassword .page-title h1{
+    font-weight: 300;
+}
+.customer-account-forgotpassword .legend{
+    font-family: 'Open Sans';
+    margin-top: 10px;
+    font-weight: 400;
+}
+.cms-faq .page-title h1{
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-size: 26px;
+}
+.cms-faq .std h2:first-child{
+    margin-top: 20px;
+}
+.cms-faq h2{
+    font-family: 'Open Sans';
+    font-weight: 300;
+    color: #000;
+}
+.page-title.no-items{
+    text-align: center;
+    margin-top: 50px;
+}
+.cart-empty p{
+    text-align: center;
+}
+ .contacts-index-index .button{
+    border: 1px solid #77787b;
+    text-transform: uppercase;
+    background-color: #fff !important;
+    color: #000 !important;
+    padding: 10px 30px !important;
+}
+.contacts-index-index .button:hover{
+    border: 1px solid #000;
+}
