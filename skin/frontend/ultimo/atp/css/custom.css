@@ -2410,6 +2410,9 @@ input:-webkit-autofill {
     font-size: 13px;
     font-weight: 300;
 }
+.validoc-fabric-fabric-list .popup-info .shop{
+    border: 1px solid  #77787b;
+}
 .popup-info .shop:hover{
     color: #000;
     /*font-weight: bold;*/
