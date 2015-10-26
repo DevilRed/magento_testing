@@ -62,6 +62,12 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_General extends Mage_
             'wysiwyg' => true,
             'required' => true
         ));
+        $fieldset->addField('approximate_cost', 'text', array(
+            'name' => 'approximate_cost',
+            'label' => Mage::helper('validoc_floorplan')->__('Approximate Cost'),
+            'title' => Mage::helper('validoc_floorplan')->__('Approximate Cost'),
+            'required' => false
+        ));
         
         $form->addValues(Mage::registry('current_floorplan')->toArray());
         $this->setForm($form);

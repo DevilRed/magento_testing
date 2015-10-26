@@ -190,8 +190,13 @@
             <div class="floorplan-featured-title grid-container">
                 <h5><?php echo "Pieces Featured in this Floorplan"; ?></h5>
                 <div class="grid12-4 add-quote-list">
+                    <?php
+                        $floorplanCost = $_floorplan->getApproximateCost();
+                        if(!isset($floorplanCost))
+                            $floorplanCost = 0;
+                    ?>
                     <a href="<?php echo $this->getUrl('validoc_floorplan/addmultiple'); ?>">ADD ALL to MY QUOTE LIST</a>
-                    <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                    <p><?php echo "(approximate cost: &#36;".$floorplanCost.")"; ?></p>
                 </div>
             </div>
             <?php $counter = 0; ?>
@@ -760,7 +765,7 @@
                 <div class="floorplan-featured-title grid-container bottom">
                     <div class="grid12-4 add-quote-list">
                         <a href="#">ADD ALL to MY QUOTE LIST</a>
-                        <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                        <p><?php echo "(approximate cost: &#36;".$floorplanCost.")"; ?></p>
                     </div>
                 </div>
             </div><!-- product list -->
@@ -807,7 +812,7 @@
                         <div class="floorplan-featured-title grid-container bottom">
                             <div class="grid12-4 add-quote-list">
                                 <a href="#">ADD ALL to MY QUOTE LIST</a>
-                                <p><?php echo "(approximate cost: &#36;".$totalPrice.")"; ?></p>
+                                <p><?php echo "(approximate cost: &#36;".$floorplanCost.")"; ?></p>
                             </div>
                         </div>
                     </div>
