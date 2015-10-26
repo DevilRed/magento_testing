@@ -2402,7 +2402,7 @@ input:-webkit-autofill {
 }
 .popup-info .shop{
     text-transform: uppercase;
-    border: 1px solid #77787b;
+    /*border: 1px solid #77787b;*/
     position: absolute;
     bottom: 25px;
     right: 20px;
@@ -3313,6 +3313,7 @@ td.a-right.last{
     display: inline-block;
     position: relative;
     top: 15px;
+    text-transform: uppercase;
 }
 .product-name.quote-page2 + td input{
     position: relative;
@@ -3371,7 +3372,7 @@ td.a-right.last{
     color: #000 !important;
 }
 .quotation-quote-requestfromcart .product-img.quote-page2{
-    border: 1px solid #77787b;
+    border: 1px solid rgb(221, 221, 221);
 }
 /* is_subscribed */
 .control.subscribe-wrapper{
@@ -3454,4 +3455,9 @@ label[for="is_subscribed"].customized p{
 }
 .contacts-index-index .button:hover{
     border: 1px solid #000;
+}
+.inquiry-button-wrapper .legend{
+    position: relative;
+    top: 2px;
+}
 }

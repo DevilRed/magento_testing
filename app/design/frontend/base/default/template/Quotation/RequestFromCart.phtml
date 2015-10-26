@@ -3,9 +3,9 @@
 function SubmitCreateForm()
 {
 	//check if msg is filled
-	if (document.getElementById('description').value == '')	
+	/*if (document.getElementById('description').value == '')	
 		alert('<?php echo $this->__('Please fill description field'); ?>');
-	else
+	else*/
 		document.getElementById('form_create').submit();
 }
 
@@ -17,7 +17,7 @@ function SubmitCreateForm()
     <h1><?php echo $this->__('Request for a new quotation') ?></h1>
 </div>
 
-<h2><?php echo $this->__('1. Select products from your cart') ?></h2>
+<h2><?php echo $this->__('1. Please review your quote') ?></h2>
 <p>&nbsp;</p>
 <table cellspacing="0" class="data-table" id="quotation-request-products">
 <thead>
@@ -48,22 +48,22 @@ function SubmitCreateForm()
 </table>
 <p>&nbsp;</p>
 
-<h2><?php echo $this->__('2. Type your message') ?></h2>
+<!-- <h2><?php echo $this->__('2. Type your message') ?></h2>
 
 <p>&nbsp;</p>
 
 <center>
 <textarea cols="110" rows="10" id="description" name="description"></textarea>
-</center>
+</center> -->
 
 <p>&nbsp;</p>
 
-<h2 class="send-us-inquiry-title"><?php echo $this->__('3. Send us your inquiry') ?></h2>
+<h2 class="send-us-inquiry-title"><?php echo $this->__('2. Send us your quote list') ?></h2>
 
 <center>
 <p style="margin-bottom: 50px;" class="inquiry-button-wrapper">
-    <span>A Tailored Space will contact you with purchasing options</span>
-    <button type="button" onclick="SubmitCreateForm();" title="Save" class="button"><span><span><?php echo $this->__('Send Inquiry') ?></span></span></button>
+    <span class="legend">A Tailored Space will contact you with purchasing options</span>
+    <button type="button" onclick="SubmitCreateForm();" title="Save" class="button"><span><span><?php echo $this->__('Submit your quote list') ?></span></span></button>
 </p>
 </center>
 
