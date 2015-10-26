@@ -54,7 +54,7 @@ class MDN_Quotation_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_For
                 array(
                     'label' => Mage::helper('quotation')->__('Delete'),
                     'class' => 'delete',
-                    'onclick' => "window.location.href='" . $this->getUrl('Quotation/Admin/delete', array('quote_id' => $this->getRequest()->getParam('quote_id'))) . "' "
+                    'onclick' => "if (confirm('".$this->__('Are you sure you want to delete ?')."')) { window.location.href='" . $this->getUrl('Quotation/Admin/delete', array('quote_id' => $this->getRequest()->getParam('quote_id'))) . "' }"
                 )
         );
         $this->_removeButton('reset');
