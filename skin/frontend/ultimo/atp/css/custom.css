@@ -3463,4 +3463,6 @@ label[for="is_subscribed"].customized p{
     position: relative;
     top: 2px;
 }
+#quotation-request-products tbody tr .product-img.quote-page2{
+    margin-left: 50px;
 }
