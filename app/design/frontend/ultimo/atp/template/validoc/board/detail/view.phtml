@@ -802,11 +802,11 @@
         })
     });
     //popup behavior
-    jQuery('.grid-container .inner > div').on('click',  function(){
+    jQuery('.grid-container .inner > div, .grid-container .product-row > div').on('click',  function(){
         var target = jQuery(this).attr('id');
         jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
         jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
-        jQuery('.grid-container .inner > div').fancybox({
+        jQuery('.grid-container .inner > div, .grid-container .product-row > div').fancybox({
             href: '#popup-' + target,
             titleShow: false,
             transitionIn: 'elastic',
