@@ -243,13 +243,13 @@
                     <div class="product-row 8-4-line">
                         <?php for($i = 0; $i < count($firstRow); $i++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-8 on">
+                                <div class="grid12-8 on" id="<?php echo $firstRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $firstRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-4 two">
+                                <div class="grid12-4 two" id="<?php echo $firstRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $firstRow[$i]->getName(); ?></p>
                                 </div>
@@ -263,19 +263,19 @@
                     <div class="product-row 3-line">
                         <?php for($i = 0; $i < count($secondRow); $i++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-4 three">
+                                <div class="grid12-4 three" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-4 four">
+                                <div class="grid12-4 four" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 2): ?>
-                                <div class="grid12-4 five">
+                                <div class="grid12-4 five" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $secondRow[$i]->getName(); ?></p>
                                 </div>
@@ -289,19 +289,19 @@
                     <div class="product-row 3-line">
                         <?php for($i = 0; $i < count($thirdRow); $i ++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-4 six">
+                                <div class="grid12-4 six" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-4 seven">
+                                <div class="grid12-4 seven" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 2): ?>
-                                <div class="grid12-4 eight">
+                                <div class="grid12-4 eight" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $thirdRow[$i]->getName(); ?></p>
                                 </div>
@@ -315,26 +315,26 @@
                     <div class="product-row 4-8-line">
                         <?php for($i = 0; $i < count($fourthRow); $i++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-4 nine big">
+                                <div class="grid12-4 nine big" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                                 <!-- <div class="grid12-8"> -->
                                     <?php if($i == 1): ?>
-                                        <div class="ten">
+                                        <div class="ten" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                             <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
                                         </div>
                                     <?php endif; ?>
                                     <?php if($i == 2): ?>
-                                        <div class="grid12-6 eleven">
+                                        <div class="grid12-6 eleven" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                             <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
                                         </div>
                                     <?php endif; ?>
                                     <?php if($i == 3): ?>
-                                        <div class="grid12-6 twelve">
+                                        <div class="grid12-6 twelve" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                             <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p>
                                         </div>
@@ -348,19 +348,19 @@
                     <div class="product-row 3-line">
                         <?php for($i = 0; $i < count($fiveRow); $i ++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-4 thirteen">
+                                <div class="grid12-4 thirteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-4 fourteen">
+                                <div class="grid12-4 fourteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 2): ?>
-                                <div class="grid12-4 fifteen">
+                                <div class="grid12-4 fifteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $fiveRow[$i]->getName(); ?></p>
                                 </div>
@@ -373,13 +373,13 @@
                     <div class="product-row 8-4-line estito">
                         <?php for($i = 0; $i < count($sixRow); $i++): ?>
                             <?php if($i == 0): ?>
-                                <div class="grid12-8 sixteen">
+                                <div class="grid12-8 sixteen" id="<?php echo $sixRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $sixRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-4 seventeen">
+                                <div class="grid12-4 seventeen" id="<?php echo $sixRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
                                     <p class="image-name"><?php echo $sixRow[$i]->getName(); ?></p>
                                 </div>
@@ -393,26 +393,26 @@
                         <?php for($i = 0; $i < count($sevenRow); $i++): ?>
                         <!-- <div class="grid12-8"> -->
                             <?php if($i == 0): ?>
-                                <div class="grid12-6 nineteen">
+                                <div class="grid12-6 nineteen" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-6 twenty">
+                                <div class="grid12-6 twenty" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 2): ?>
-                                <div class="eighteen">
+                                <div class="eighteen" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                         <!-- </div> -->
                         <?php if($i == 3): ?>
-                            <div class="grid12-4 twenty-one big">
+                            <div class="grid12-4 twenty-one big" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo $sevenRow[$i]->getName(); ?></p>
                             </div>
@@ -425,13 +425,13 @@
                     <div class="product-row 4-8-line">
                     <?php for($i = 0; $i < count($eightRow); $i++): ?>
                         <?php if($i == 0): ?>
-                            <div class="grid12-4 twenty-two">
+                            <div class="grid12-4 twenty-two" id="<?php echo $eightRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo $eightRow[$i]->getName(); ?></p>
                             </div>
                         <?php endif; ?>
                         <?php if($i == 1): ?>
-                            <div class="grid12-8 twenty-three">
+                            <div class="grid12-8 twenty-three" id="<?php echo $eightRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo $eightRow[$i]->getName(); ?></p>
                             </div>
@@ -445,26 +445,26 @@
                     <?php for($i = 0; $i < count($nineRow); $i++): ?>
                         <!-- <div class="grid12-8"> -->
                             <?php if($i == 0): ?>
-                                <div class="twenty-four">
+                                <div class="twenty-four" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 1): ?>
-                                <div class="grid12-6 twenty-five">
+                                <div class="grid12-6 twenty-five" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                             <?php if($i == 2): ?>
-                                <div class="grid12-6 twenty-six">
+                                <div class="grid12-6 twenty-six" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                     <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                     <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
                                 </div>
                             <?php endif; ?>
                         <!-- </div> -->
                         <?php if($i == 3): ?>
-                            <div class="grid12-4 twenty-seven big">
+                            <div class="grid12-4 twenty-seven big"  id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo $nineRow[$i]->getName(); ?></p>
                             </div>
@@ -477,19 +477,19 @@
                     <div class="product-row 3-line">
                     <?php for($i = 0; $i < count($tenRow); $i++): ?>
                         <?php if($i == 0): ?>
-                            <div class="grid12-4 twenty-eight">
+                            <div class="grid12-4 twenty-eight" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
                             </div>
                         <?php endif; ?>
                         <?php if($i == 1): ?>
-                            <div class="grid12-4 twenty-nine">
+                            <div class="grid12-4 twenty-nine" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
                             </div>
                         <?php endif; ?>
                         <?php if($i == 2): ?>
-                            <div class="grid12-4 thirty">
+                            <div class="grid12-4 thirty" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo $tenRow[$i]->getName(); ?></p>
                             </div>
@@ -505,7 +505,8 @@
                     ?>
                             <div class="product-row 3-line extra">
                                 <?php for($j = 0; $j < count($genericRow); $j++): ?>
-                                    <div class="grid12-4">
+                                    <div class="grid12-4"  id="<?php echo $genericRow[$j]->getEntityId(); ?>">
+                                        <?php //var_dump($genericRow[$j]); ?>
                                         <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($genericRow[$j]->getSmallImage()); ?>" alt="">
                                         <p class="image-name"><?php echo $genericRow[$j]->getName(); ?></p>
                                     </div>
