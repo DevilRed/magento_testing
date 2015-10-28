@@ -3473,6 +3473,19 @@ label[for="is_subscribed"].customized p{
 .container.popup.rooms .popup-images .main-img img{
     margin: 0 auto;
 }
-.grid-container .product-row > div{
+.container.popup.rooms .extra-imgs{
+    padding-left: 2px;
+}
+.validoc-board-board-view .container.popup.rooms{
+    width: 96% !important;
+    max-width: 96% !important;
+}
+.grid-container .product-row > div, .grid-container .inner > div{
     cursor: pointer;
+}
+.validoc-floorplan-floorplan-view .container.popup.floorplan .main-img{
+    padding-left: 7px;
+}
+.validoc-floorplan-floorplan-view .container.popup.floorplan .extra-imgs{
+    padding-left: 2px;
 }

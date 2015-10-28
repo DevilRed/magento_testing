@@ -71,7 +71,13 @@
     }
 
 ?>
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div id="messages_product_view">
+    <?php
+        //for custom system messages
+        $lastProductId = Mage::getSingleton('checkout/session')->getLastAddedProductId(true);
+        $productAdded = Mage::getModel('catalog/product')->load($lastProductId);
+    ?>
+</div>
 <div class="product-view atp designer-floorplan">
     <div class="product-essential">
         <?php
@@ -101,6 +107,14 @@
                     <span class="title_2" style="font-weight: 100;"> <?php echo Mage::getSingleton('core/session')->getBoardTitle2(); ?></span>
                 </h1>
             </div>
+            <?php
+                if(isset($lastProductId)):
+                    $msg = $this->__('%s was added to your shopping cart.', Mage::helper('core')->escapeHtml($productAdded->getName()));
+            ?>
+                <ul class="messages"><li class="success-msg"><ul><li><span><?php echo $msg; ?></span></li></ul></li></ul>
+            <?php
+                endif;
+            ?>
             <div class="no-display">
                 <input type="hidden" name="product" value="<?php echo $_floorplan->getId() ?>" />
                 <input type="hidden" name="related_product" id="related-products-field" value="" />
@@ -209,7 +223,7 @@
                     <?php for($i = 0; $i < count($firstRow); $i++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-8 on">
+                            <div class="grid12-8 on" id="<?php echo $firstRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$firstRow[$i]->getName(); ?>
                                     <?php
@@ -224,7 +238,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 two">
+                            <div class="grid12-4 two" id="<?php echo $firstRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($firstRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$firstRow[$i]->getName(); ?>
                                     <?php
@@ -247,7 +261,7 @@
                     <?php for($i = 0; $i < count($secondRow); $i++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 three">
+                            <div class="grid12-4 three" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
                                     <?php
@@ -262,7 +276,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 four">
+                            <div class="grid12-4 four" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
                                     <?php
@@ -277,7 +291,7 @@
                         <?php endif; ?>
                         <?php if($i == 2): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 five">
+                            <div class="grid12-4 five" id="<?php echo $secondRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($secondRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$secondRow[$i]->getName(); ?>
                                     <?php
@@ -300,7 +314,7 @@
                     <?php for($i = 0; $i < count($thirdRow); $i ++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 six">
+                            <div class="grid12-4 six" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
                                     <?php
@@ -315,7 +329,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 seven">
+                            <div class="grid12-4 seven" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
                                     <?php
@@ -330,7 +344,7 @@
                         <?php endif; ?>
                         <?php if($i == 2): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 eight">
+                            <div class="grid12-4 eight" id="<?php echo $thirdRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($thirdRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$thirdRow[$i]->getName(); ?>
                                     <?php
@@ -353,7 +367,7 @@
                     <?php for($i = 0; $i < count($fourthRow); $i++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 nine big">
+                            <div class="grid12-4 nine big" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                 <!-- <p class="image-name"><?php echo $fourthRow[$i]->getName(); ?></p> -->
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
@@ -370,7 +384,7 @@
                             <!-- <div class="grid12-8"> -->
                                 <?php if($i == 1): ?>
                                     <?php $counter++; ?>
-                                    <div class="ten">
+                                    <div class="ten" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                         <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                         <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
                                     <?php
@@ -385,7 +399,7 @@
                                 <?php endif; ?>
                                 <?php if($i == 2): ?>
                                     <?php $counter++; ?>
-                                    <div class="grid12-6 eleven">
+                                    <div class="grid12-6 eleven" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                         <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                         <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
                                     <?php
@@ -400,7 +414,7 @@
                                 <?php endif; ?>
                                 <?php if($i == 3): ?>
                                     <?php $counter++; ?>
-                                    <div class="grid12-6 twelve">
+                                    <div class="grid12-6 twelve" id="<?php echo $fourthRow[$i]->getEntityId(); ?>">
                                         <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fourthRow[$i]->getSmallImage()); ?>">
                                         <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fourthRow[$i]->getName(); ?>
                                     <?php
@@ -423,7 +437,7 @@
                     <?php for($i = 0; $i < count($fiveRow); $i ++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 thirteen">
+                            <div class="grid12-4 thirteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
                                     <?php
@@ -438,7 +452,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 fourteen">
+                            <div class="grid12-4 fourteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
                                     <?php
@@ -453,7 +467,7 @@
                         <?php endif; ?>
                         <?php if($i == 2): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 fifteen">
+                            <div class="grid12-4 fifteen" id="<?php echo $fiveRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($fiveRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$fiveRow[$i]->getName(); ?>
                                     <?php
@@ -475,7 +489,7 @@
                     <?php for($i = 0; $i < count($sixRow); $i++): ?>
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-8 sixteen">
+                            <div class="grid12-8 sixteen" id="<?php echo $sixRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sixRow[$i]->getName(); ?>
                                     <?php
@@ -490,7 +504,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-4 seventeen">
+                            <div class="grid12-4 seventeen" id="<?php echo $sixRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sixRow[$i]->getSmallImage()); ?>" alt="">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sixRow[$i]->getName(); ?>
                                     <?php
@@ -513,7 +527,7 @@
                     <!-- <div class="grid12-8"> -->
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-6 nineteen">
+                            <div class="grid12-6 nineteen" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
                                     <?php
@@ -528,7 +542,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-6 twenty">
+                            <div class="grid12-6 twenty" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
                                     <?php
@@ -543,7 +557,7 @@
                         <?php endif; ?>
                         <?php if($i == 2): ?>
                             <?php $counter++; ?>
-                            <div class="eighteen">
+                            <div class="eighteen" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
                                     <?php
@@ -559,7 +573,7 @@
                     <!-- </div> -->
                     <?php if($i == 3): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 twenty-one big">
+                        <div class="grid12-4 twenty-one big" id="<?php echo $sevenRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($sevenRow[$i]->getSmallImage()); ?>">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$sevenRow[$i]->getName(); ?>
                                 <?php
@@ -581,7 +595,7 @@
                 <?php for($i = 0; $i < count($eightRow); $i++): ?>
                     <?php if($i == 0): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 twenty-two">
+                        <div class="grid12-4 twenty-two" id="<?php echo $eightRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$eightRow[$i]->getName(); ?>
                                 <?php
@@ -596,7 +610,7 @@
                     <?php endif; ?>
                     <?php if($i == 1): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-8 twenty-three">
+                        <div class="grid12-8 twenty-three" id="<?php echo $eightRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($eightRow[$i]->getSmallImage()); ?>" alt="">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$eightRow[$i]->getName(); ?>
                                 <?php
@@ -619,7 +633,7 @@
                     <!-- <div class="grid12-8"> -->
                         <?php if($i == 0): ?>
                             <?php $counter++; ?>
-                            <div class="twenty-four">
+                            <div class="twenty-four" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
                                     <?php
@@ -634,7 +648,7 @@
                         <?php endif; ?>
                         <?php if($i == 1): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-6 twenty-five">
+                            <div class="grid12-6 twenty-five" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
                                     <?php
@@ -649,7 +663,7 @@
                         <?php endif; ?>
                         <?php if($i == 2): ?>
                             <?php $counter++; ?>
-                            <div class="grid12-6 twenty-six">
+                            <div class="grid12-6 twenty-six" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                                 <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
                                     <?php
@@ -665,7 +679,7 @@
                     <!-- </div> -->
                     <?php if($i == 3): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 twenty-seven big">
+                        <div class="grid12-4 twenty-seven big" id="<?php echo $nineRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($nineRow[$i]->getSmallImage()); ?>">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$nineRow[$i]->getName(); ?>
                                 <?php
@@ -687,7 +701,7 @@
                 <?php for($i = 0; $i < count($tenRow); $i++): ?>
                     <?php if($i == 0): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 twenty-eight">
+                        <div class="grid12-4 twenty-eight" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
                                 <?php
@@ -702,7 +716,7 @@
                     <?php endif; ?>
                     <?php if($i == 1): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 twenty-nine">
+                        <div class="grid12-4 twenty-nine" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
                                 <?php
@@ -717,7 +731,7 @@
                     <?php endif; ?>
                     <?php if($i == 2): ?>
                         <?php $counter++; ?>
-                        <div class="grid12-4 thirty">
+                        <div class="grid12-4 thirty" id="<?php echo $tenRow[$i]->getEntityId(); ?>">
                             <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($tenRow[$i]->getSmallImage()); ?>" alt="">
                             <p class="image-name"><?php echo "# ".$counter." <span class='separator-name'>|</span> ".$tenRow[$i]->getName(); ?>
                                 <?php
@@ -742,7 +756,7 @@
                     <?php //var_dump($genericRow); ?>
                         <div class="product-row 3-line extra">
                             <?php for($j = 0; $j < count($genericRow); $j++): ?>
-                            <div class="grid12-4">
+                            <div class="grid12-4" id="<?php echo $genericRow[$j]->getEntityId(); ?>">
                                 <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($genericRow[$j]->getSmallImage()); ?>" alt="">
                                 <p class="image-name">
                                     <?php echo "# ".$extraCounter." <span class='separator-name'>|</span> ".$genericRow[$j]->getName(); ?>
@@ -781,7 +795,15 @@
                                 <div id="<?php echo $cell['id']; ?>" data-row="<?php echo $cell['row']; ?>" data-col="<?php echo $cell['col']; ?>" data-sizex="<?php echo $cell['size_x']; ?>" data-sizey="<?php echo $cell['size_y']; ?>">
                                     <?php foreach($productsFloorplan as $item): ?>
                                         <?php if($cell['id'] == $item->getEntityId()): ?>
-                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
+                                            <?php
+                                                $gridImg = Mage::getModel('catalog/product')->load($item->getEntityId())->getMediaGalleryImages()->getItemByColumnValue('label', 'grid');
+                                                if(!isset($gridImg)){
+                                                    $pImage = $item->getSmallImage();
+                                                }else{
+                                                    $pImage = $gridImg['file'];
+                                                }
+                                            ?>
+                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($pImage); ?>">
                                             <?php $counter++; ?>
                                             <p class="image-name">
                                                 <?php //echo $item->getName();//only name ?>
@@ -817,6 +839,78 @@
                         </div>
                     </div>
             <?php endif; ?>
+            <?php foreach($productsFloorplan as $key => $_product): ?>
+                 <div class="container popup floorplan" id="popup-<?php echo $_product->getEntityId(); ?>" style="display: none;">
+                    <?php
+                        $mainImg = null;
+                        $images = Mage::getModel('catalog/product')->load($_product->getEntityId())->getMediaGalleryImages();
+                        foreach ($images as $img) {
+                            if($img['label'] == 'popup'){
+                                $mainImg = $img;
+                            }
+                        }
+                        //var_dump($mainImg);
+                    ?>
+                    <div class="grid12-6 popup-images">
+                        <div class="main-img">
+                            <?php if($mainImg): ?>
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $mainImg['file']); ?>">
+                            <?php else: ?>
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $_product->getImage()); ?>" alt="">
+                            <?php endif; ?>
+                        </div>
+                        <div class="extra-imgs">
+                            <ul>
+                                <?php foreach($images as $img): ?>
+                                    <?php if($img['label'] == 'popup'): ?>
+                                        <li>
+                                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $img['file']); ?>" alt="">
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid12-6 popup-info">
+                        <h2><?php echo $_product->getName(); ?></h2>
+                        <p>featured in <span>
+                            <?php
+                                $prod = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                $rooms = $prod->getBoardId();
+                                if(!empty($rooms)){
+                                    $roomIds = explode(",", $rooms);
+                                    $boardsCollection = array();
+                                    foreach ($roomIds as $key => $roomId) {
+                                        $board = Mage::getModel('validoc_board/board')->load($roomId);
+                                        array_push($boardsCollection, $board);
+                                    }
+                                }
+                                foreach ($boardsCollection as $key => $board) {
+                                    echo '<a class="popup-link" href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
+                                    if($key != count($boardsCollection)-1){
+                                        echo "</a>, ";
+                                    }else{
+                                        echo "</a>";
+                                    }
+                                }
+                                $firstBoard = $boardsCollection[0];
+                            ?>
+                        </span></p>
+                        <p class="description"><?php echo $_product->getShortDescription(); ?></p>
+                        <p class="description dimensions"><?php echo $_product->getDimensions(); ?></p>
+                        <p class="description arrival" style="display: none;">ESTIMATED ARRIVAL: <?php echo $_product->getEstimatedArrival(); ?></p>
+                        <p class="description upon">PRICE UPON REQUEST</p>
+                        <div class="actions clearer<?php echo $actionsClasses; ?> shop">
+                                <?php //Cart button ?>
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                    <?php else: ?>
+                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                    <?php endif; ?>
+                            </div>
+                    </div>
+                 </div>
+            <?php endforeach; ?>
 
 
 
@@ -842,10 +936,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        /*//banner bg
-        var heightImgBox = jQuery('.product-image').height();
-        var heightToAdd = jQuery('.product-name h1').height() + 30;
-        jQuery('.bg-box').height((heightImgBox + heightToAdd) + 'px');*/
         //slider
         var flagString = new RegExp("[Ff]loorplan");
         jQuery('.product-image-thumbs li a').each(function(){
@@ -942,5 +1032,44 @@
             'margin-left': '-' + bgLeft + 'px',
             'margin-right': '-' + bgLeft + 'px'
         });
+
+        //popup behavior
+        jQuery('.grid-container .inner > div, .grid-container .product-row > div').on('click',  function(){
+            var target = jQuery(this).attr('id');
+            jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
+            jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
+            jQuery('.grid-container .inner > div, .grid-container .product-row > div').fancybox({
+                href: '#popup-' + target,
+                titleShow: false,
+                transitionIn: 'elastic',
+                transitionOut: 'elastic',
+                autoscale: true,
+                scrolling: 'no',
+                maxWidth: 800,
+                maxHeight: 550,
+                width: '100%',
+                height: 550,
+                autoSize: false,
+                afterClose: function(){
+                    jQuery('.logo.logo--regular, #nav, .footer-container, .sticky-container, .footer-container').removeAttr('style');
+                    jQuery('.page-title.category-title h1 span.title_1').removeAttr('style');
+                    jQuery('.container-board .product-name.to-uppercase.grid-container').css('z-index', '100');
+                },
+                beforeShow: function(){
+                    jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
+                    jQuery('.logo.logo--regular').css('z-index', '6');
+                    jQuery('.container-board .product-name.to-uppercase.grid-container').css('z-index', 'auto');
+                }
+            });
+            //change imgs
+            jQuery('.extra-imgs ul li img').click(function(){
+                var mainParentContainer = jQuery(this).parent().parent().parent().parent().parent();
+                mainParentContainer.find('.main-img').find('img').attr('src', jQuery(this).attr('src'));
+            });
+        });
+        //setting time to magento messages
+        if(jQuery('.messages').length > 0){
+            jQuery('.messages').delay(6000).slideUp(500);
+        }
     });
 </script>
