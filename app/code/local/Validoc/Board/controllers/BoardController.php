@@ -22,6 +22,7 @@ class Validoc_Board_BoardController extends Mage_Core_Controller_Front_Action
             Mage::register('current_board', $board);
         }
         $this->loadLayout();
+        $this->_initLayoutMessages('core/session');
         $this->renderLayout();
     }
 }

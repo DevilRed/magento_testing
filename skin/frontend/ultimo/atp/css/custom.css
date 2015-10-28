@@ -2472,7 +2472,7 @@ input:-webkit-autofill {
 }
 .shop.clearer button:hover{
     color: #000;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 /* quote customer backend */
 .cart .page-title h1{
@@ -3465,4 +3465,11 @@ label[for="is_subscribed"].customized p{
 }
 #quotation-request-products tbody tr .product-img.quote-page2{
     margin-left: 50px;
+}
+/*popup in rooms page*/
+.validoc-board-board-view .grid-container .inner .gs-w{
+    cursor: pointer;
+}
+.container.popup.rooms .popup-images .main-img img{
+    margin: 0 auto;
 }

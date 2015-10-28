@@ -458,9 +458,9 @@
                 }
             });
             //change imgs
-            var mainImg = jQuery('.main-img img');
             jQuery('.extra-imgs ul li img').click(function(){
-                mainImg.attr('src', jQuery(this).attr('src'));
+                var mainParentContainer = jQuery(this).parent().parent().parent().parent().parent();
+                mainParentContainer.find('.main-img').find('img').attr('src', jQuery(this).attr('src'));
             });
         });
         //setting time to magento messages
