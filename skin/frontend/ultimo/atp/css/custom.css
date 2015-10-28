@@ -3474,7 +3474,7 @@ label[for="is_subscribed"].customized p{
     margin: 0 auto;
 }
 .container.popup.rooms .extra-imgs{
-    padding-left: 2px;
+    /*padding-left: 2px;*/
 }
 .validoc-board-board-view .container.popup.rooms{
     width: 96% !important;
@@ -3486,6 +3486,12 @@ label[for="is_subscribed"].customized p{
 .validoc-floorplan-floorplan-view .container.popup.floorplan .main-img{
     padding-left: 7px;
 }
-.validoc-floorplan-floorplan-view .container.popup.floorplan .extra-imgs{
-    padding-left: 2px;
+.container.popup.floorplan .popup-images{
+    padding-left: 1px;
+}
+.container.popup.rooms .popup-images .extra-imgs li:first-child{
+    margin-left: 0;
+}
+.container.popup.floorplan .popup-images .extra-imgs li:first-child{
+    margin-left: 0;
 }
