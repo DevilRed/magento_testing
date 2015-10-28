@@ -273,7 +273,7 @@ class MDN_Quotation_QuoteController extends Mage_Core_Controller_Front_Action {
         $customerId = Mage::Helper('customer')->getCustomer()->getId();
         $NewQuotation = Mage::getModel('Quotation/Quotation')
                         ->setcustomer_id($customerId)
-                        ->setcaption($this->__('New request'))
+                        ->setcaption($this->__('Web Request'))
                         ->setcustomer_msg($this->getRequest()->getPost('description'))
                         ->setcustomer_request(1)
                         ->setstatus(MDN_Quotation_Model_Quotation::STATUS_CUSTOMER_REQUEST)

@@ -58,7 +58,7 @@ class MDN_Quotation_Block_Adminhtml_Grid extends Mage_Adminhtml_Block_Widget_Gri
         ));
 
         $this->addColumn('caption', array(
-            'header' => Mage::helper('quotation')->__('Caption'),
+            'header' => Mage::helper('quotation')->__('Quote Source'),
             'index' => 'caption',
         ));
 
