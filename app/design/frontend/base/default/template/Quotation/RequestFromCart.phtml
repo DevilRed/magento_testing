@@ -37,10 +37,10 @@ function SubmitCreateForm()
                         ?>
                         <img src="<?php echo $imageUrl; ?>">
                     </div>
-                	<a href="#<?php //echo $item->getProduct()->getProductUrl(); ?>"><?php echo $item->getName(); ?></a>
+                	<a><?php echo $item->getName(); ?></a>
                 	<?php echo $this->getProductOptions($item); ?>
                 </td>
-                <td width="100" class="product-qty"><input size="5" type="text" name="qty_<?php echo $item->getProduct()->getId(); ?>" id="qty_<?php echo $item->getProduct()->getId(); ?>" value="<?php echo $this->getItemQty($item); ?>"></td>
+                <td width="100" class="product-qty"><input size="5" type="text" name="qty_<?php echo $item->getProduct()->getId(); ?>" id="qty_<?php echo $item->getProduct()->getId(); ?>" value="<?php echo $this->getItemQty($item); ?>" readonly></td>
             </tr>
         <?php endif; ?>
 	<?php endforeach; ?>
@@ -62,8 +62,8 @@ function SubmitCreateForm()
 
 <center>
 <p style="margin-bottom: 50px;" class="inquiry-button-wrapper">
-    <span class="legend">A Tailored Space will contact you with purchasing options</span>
-    <button type="button" onclick="SubmitCreateForm();" title="Save" class="button"><span><span><?php echo $this->__('Submit your quote list') ?></span></span></button>
+    <span class="legend">Personal quotes are provided within 72 hours via email</span>
+    <button type="button" onclick="SubmitCreateForm();" title="Save" class="button"><span><span><?php echo $this->__('Submit quote request') ?></span></span></button>
 </p>
 </center>
 
