@@ -758,9 +758,9 @@
         var myInterval = null;
         var inspirationCounter = jQuery('.inspiration-carousel li');
         jQuery('.product-image-thumbs li a.inspiration').on('click', function(e){
-            jQuery('.inspiration-buttons').css('display','block');
             e.preventDefault();
             if(inspirationCounter.length > 1){
+                jQuery('.inspiration-buttons').css('display','block');
                 if(myInterval !== null) return;
 
                 var firstImg = jQuery(this).find('img').attr('src');
@@ -811,6 +811,7 @@
         });
 
         jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
+            jQuery('.inspiration-buttons').css('display','none');
             if(myInterval !== null){
                 window.clearInterval(myInterval);
                 myInterval = null;
