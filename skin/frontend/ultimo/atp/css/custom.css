@@ -3495,3 +3495,39 @@ label[for="is_subscribed"].customized p{
 .container.popup.floorplan .popup-images .extra-imgs li:first-child{
     margin-left: 0;
 }
+
+.product-image-gallery{
+    width: 100%!important;
+    position: relative;
+}
+.inspiration-buttons{
+    z-index: 1000!important;
+    position: absolute;
+    background-color: transparent;
+    font-size: 60px;
+    opacity: 1;
+    color: #fff;
+    font-family: ThemeIcons;
+    width: 100%;
+    top: 50%;
+}
+
+.inspiration-prev{
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+}
+.inspiration-next{
+    right: 0;
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.inspiration-prev:before{
+    content: "\e260";
+}
+.inspiration-next:before{
+    content: "\e263";
+}

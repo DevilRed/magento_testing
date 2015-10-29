@@ -758,6 +758,7 @@
         var myInterval = null;
         var inspirationCounter = jQuery('.inspiration-carousel li');
         jQuery('.product-image-thumbs li a.inspiration').on('click', function(e){
+            jQuery('.inspiration-buttons').css('display','block');
             e.preventDefault();
             if(inspirationCounter.length > 1){
                 if(myInterval !== null) return;
@@ -779,6 +780,34 @@
                 var src = jQuery(this).find('img').attr('src');
                 jQuery('.product-image-gallery img').attr('src', src);
             }
+
+            jQuery('.inspiration-next').on('click',
+                function(e){
+                    e.preventDefault();
+                    var $i = jQuery('.inspiration-carousel li.active').index();
+                    slides().eq($i).removeClass('active');
+                    if(slides().length == $i +1)
+                        $i = -1;
+                    var imgSrc = slides().eq($i + 1).find('img').attr('src');
+                    $slider.find('img').fadeOut('fast', function(){
+                        $slider.find('img').attr('src', imgSrc).fadeIn('slow');
+                    });
+                    slides().eq($i + 1).addClass('active');
+                });
+
+            jQuery('.inspiration-prev').on('click',
+                function(e){
+                    e.preventDefault();
+                    var $i = jQuery('.inspiration-carousel li.active').index();
+                    slides().eq($i).removeClass('active');
+                    if($i == -1)
+                        $i = slides().length;
+                    var imgSrc = slides().eq($i - 1).find('img').attr('src');
+                    $slider.find('img').fadeOut('fast', function(){
+                        $slider.find('img').attr('src', imgSrc).fadeIn('slow');
+                    });
+                    slides().eq($i - 1).addClass('active');
+                });
         });
 
         jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
