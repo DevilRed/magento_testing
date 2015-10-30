@@ -53,7 +53,7 @@ $imgHeight = 168;
     */ ?>
         <h2 class="product-name">
         <?php if ($this->hasProductUrl()):?>
-            <a href="#<?php //echo $this->getProductUrl() ?>"><?php echo $this->escapeHtml($this->getProductName()) ?></a>
+            <h2><?php echo  strtoupper($this->escapeHtml($this->getProductName())) ?></h2>
         <?php else: ?>
             <?php echo $this->escapeHtml($this->getProductName()) ?>
         <?php endif; ?>
