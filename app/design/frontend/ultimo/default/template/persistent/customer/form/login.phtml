@@ -70,10 +70,10 @@ your information.') ?></p>
                     <?php echo $this->getChildHtml('persistent.remember.me'); ?>
                 </ul>
                 <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+                <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a>
                 <p class="required"><?php echo $this->__('* Required Fields') ?></p>
             </div>
             <div class="buttons-set">
-                <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a>
                 <button type="submit" class="button" title="<?php echo $this->__('Sign in') ?>" name="send" id="send2"><span><span><?php echo $this->__('sign in') ?></span></span></button>
             </div>
         </div>

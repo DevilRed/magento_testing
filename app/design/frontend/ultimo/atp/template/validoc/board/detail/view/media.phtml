@@ -9,6 +9,10 @@ $mainImage = $this->getMainImage();//var_dump($mainImage);die('die here');
 <div class="product-image product-image-zoom grid12-10">
     <div class="product-image-gallery">
         <?php if(!empty($mainImage)): ?>
+          <div class="inspiration-buttons" style="display:none">
+            <div class="inspiration-prev"></div>
+            <div class="inspiration-next"></div>
+          </div>
           <img id="image-main"
                class="gallery-image visible"
                src="<?php echo $this->helper('validoc_board/image')->init($this->getBoard(), 'thumbnail', $mainImage->getFile()); ?>"

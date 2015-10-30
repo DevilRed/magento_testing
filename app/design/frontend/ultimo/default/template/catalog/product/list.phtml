@@ -336,9 +336,11 @@
         <?php
             $mainImg = null;
             $pieceImgs = $_product->getMediaGallery();
+            $counter=0;
             foreach ($pieceImgs['images'] as $img) {
-                if($img['label']== 'popup'){
+                if(($img['label']== 'popup')&&($counter==0)) {
                     $mainImg = $img;
+                    $counter++;
                 }
             }
         ?>

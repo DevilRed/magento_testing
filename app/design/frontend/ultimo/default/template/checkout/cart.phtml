@@ -115,7 +115,7 @@
                                 ?>
                                 <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue btn-inline" onclick="setLocation('<?php echo $lastUrl; ?>')" style="display: noneXXX;"><span><span><?php echo $this->__('Continue Browsing') ?></span></span></button>
                             <?php endif; ?>
-                            <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="button btn-update btn-inline"><span><span><?php echo $this->__('Update Quote'); ?></span></span></button>
+                            <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="button btn-update btn-inline"><span><span><?php echo $this->__('Update'); ?></span></span></button>
 
 							<?php /*?>
                             <a id="link-cart-update" href="#">Test submit</a>
@@ -210,3 +210,11 @@
         </div> <!-- end: cart-left-column -->
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        //setting time to magento messages
+        if(jQuery('.messages').length > 0){
+            jQuery('.messages').delay(6000).slideUp(500);
+        }
+    });
+</script>
