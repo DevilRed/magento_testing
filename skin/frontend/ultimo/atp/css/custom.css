@@ -3429,15 +3429,17 @@ label[for="is_subscribed"].customized p{
     margin-top: 10px;
     font-weight: 400;
 }
-.cms-faq .page-title h1{
+.cms-faq .page-title h1,
+.cms-privacy-policy .page-title h1{
     font-family: 'Open Sans';
     font-weight: 300;
     font-size: 26px;
 }
-.cms-faq .std h2:first-child{
+.cms-faq .std h2:first-child,
+.cms-privacy-policy .std h2:first-child{
     margin-top: 20px;
 }
-.cms-faq h2{
+.cms-faq h2, .cms-privacy-policy h2{
     font-family: 'Open Sans';
     font-weight: 300;
     color: #000;
