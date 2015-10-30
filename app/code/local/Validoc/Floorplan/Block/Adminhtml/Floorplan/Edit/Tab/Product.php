@@ -8,7 +8,11 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
         $this->setDefaultDir('ASC');
         $this->setUseAjax(true);
         if ($this->getFloorplan()->getId()) {
-            $this->setDefaultFilter(array('in_products'=>1));
+            //$this->setDefaultFilter(array('in_products'=>1));//old code, limit products showed for only checked
+            $selected = $this->_getSelectedProducts();
+            if(!empty($selected)){
+                $this->setDefaultFilter(array('in_products'=>1));
+            }
         }
     }
     protected function _prepareCollection() {
@@ -28,15 +32,6 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
             'product_id=entity_id',
             $constraint,
             'left');
-        /*$collection->joinAttribute(
-            'room_code',
-            'catalog_product/entity_varchar',
-            'entity_id',
-            null,
-            'inner',
-            $adminStore
-        );*/
-        //$collection->addAttributeToFilter('room_code', 'value');
         $collection->addAttributeToSelect('room_code');
         $this->setCollection($collection);
         parent::_prepareCollection();
@@ -114,6 +109,14 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_Product
         foreach ($selected as $product) {
             $products[$product->getId()] = array('position' => $product->getPosition(), 'quantity' => $product->getQuantity());
         }
+        //checking if product is alive or valid
+        foreach ($products as $key => $value) {
+            $isAliveP = Mage::getModel('catalog/product')->load($key);
+            if(!$isAliveP){
+                unset($products[$key]);
+            }
+        }
+        //
         return $products;
     }
     public function getRowUrl($item){

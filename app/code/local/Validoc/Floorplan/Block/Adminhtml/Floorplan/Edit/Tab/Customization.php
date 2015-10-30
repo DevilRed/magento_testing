@@ -33,7 +33,8 @@
 				                        ->addAttributeToFilter('entity_id',  array('in' => $productsId))
 				                        ->addAttributeToSelect($attributes);
 				                        //->load();
-			$_productCollection->getSelect()->order(new Zend_Db_Expr($orderString));
+			if(!empty($floorplanProducts))
+				$_productCollection->getSelect()->order(new Zend_Db_Expr($orderString));
 			$_productCollection->load();
 			return $_productCollection;
 		}
