@@ -40,7 +40,7 @@
                             ->addAttributeToFilter('category_id', array($ctf))
                             ->addAttributeToSort('created_at', 'DESC')
                             ->load();
-    }
+    }var_dump(count($_productCollection));
 
     $productsBoard = $_productCollection->getItems();
     $indexes = array_keys($productsBoard);
