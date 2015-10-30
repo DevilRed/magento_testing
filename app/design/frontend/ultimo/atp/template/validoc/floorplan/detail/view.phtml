@@ -844,9 +844,11 @@
                     <?php
                         $mainImg = null;
                         $images = Mage::getModel('catalog/product')->load($_product->getEntityId())->getMediaGalleryImages();
+                        $counter=0;
                         foreach ($images as $img) {
-                            if($img['label'] == 'popup'){
-                                $mainImg = $img;
+                            if(($img['label']== 'popup')&&($counter==0)){
+                                    $mainImg = $img;
+                                    $counter++;
                             }
                         }
                         //var_dump($mainImg);
