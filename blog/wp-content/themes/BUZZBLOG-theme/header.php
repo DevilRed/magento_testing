@@ -218,6 +218,38 @@ wp_head();
 .header-black .span-custom-left ul li:last-child:after{
 	content: "";
 }
+/*removing last border in nav*/
+.header-black .span-custom-right li:last-child:after{
+	content: "" !important;
+}
+/*submenu behavior*/
+.header-black .span-custom-right > ul{
+	position: relative;
+}
+.header-black .span-custom-right > ul > li:first-child{
+	position: relative;
+	top: -50px;
+}
+.header-black .span-custom-right > ul > li{
+	position: relative;
+	display: inline-block;
+}
+.top-header .header-black .span-custom-right > ul > li:hover .custom{
+	display: block;
+}
+.top-header .header-black .custom{
+	background-color: #000;
+	width: 150px;
+	padding-left: 13px;
+	position: absolute;
+	left: -16px;
+	top: 40px;
+	display: none;
+}
+.header-black .custom li{
+	position: relative;
+	left: -15px;
+}
 
 </style>
 <script type="text/javascript">
@@ -243,10 +275,14 @@ jQuery(document).ready(function(){
 				
 				<div class="span-custom-right">
 					<ul>
-						<li class="border-right"><a href="/how-to-shop/">HOW TO SHOP</a> </li>
-						<li class="border-right"><a href="/customer/account/login/">MY ACCOUNT</a> </li>
-						<li><a href="/Quotation/Quote/List">MY QUOTE LIST</a> </li>
-						<li><a hfref="/checkout/cart/"><img src="/skin/frontend/ultimo/atp/images/bg-cart-mini.png"></a></li>
+						<li class="border-right" class="how-to"><a href="/how-to-shop/">HOW TO SHOP</a> </li>
+						<li class="border-right"><a href="/customer/account/login/">MY ACCOUNT</a>
+							<ul class="sub-menu custom">
+								<li><a href="/Quotation/Quote/List/">VIEW MY QUOTES</a></li>
+							</ul>
+						</li>
+						<!-- <li><a href="/Quotation/Quote/List">MY QUOTE LIST</a> </li>
+						<li><a hfref="/checkout/cart/"><img src="/skin/frontend/ultimo/atp/images/bg-cart-mini.png"></a></li> -->
 					</ul>
 				</div>
 			</div>
