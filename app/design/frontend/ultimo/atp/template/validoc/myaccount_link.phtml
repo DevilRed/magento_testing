@@ -1,0 +1,5 @@
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	<a href="/customer/account/">My Account</a>
+<?php else: ?>
+	<a>My Account</a>
+<?php endif; ?>
