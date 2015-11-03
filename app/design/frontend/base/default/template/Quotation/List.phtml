@@ -1,6 +1,8 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+    
+
+
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
-
 <div class="page-title">
     <h1><?php echo $this->__('My Quotations') ?></h1>
 </div>
@@ -67,3 +69,12 @@
 </form>
 
 <?php endif; ?>
+
+<?php else: ?>
+    <?php
+        Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::helper('core/url')->getCurrentUrl());
+        $redirect_url = Mage::getUrl('customer/account/login/');
+        Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
+    ?>
+
+<?php endif;//if logged in ?>
