@@ -1,0 +1,8 @@
+<li class="level1 view-quotes">
+	<a href="/Quotation/Quote/List/" title="View my Quotes">View my Quotes</a>
+</li>
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	<li class="level1">
+		<a href="<?php echo Mage::helper('customer')->getLogoutUrl(); ?>" title="<?php echo $this->__('Sign Out') ?>"><?php echo $this->__('Sign Out') ?></a>
+	</li>
+<?php endif; ?>
