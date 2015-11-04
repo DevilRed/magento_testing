@@ -262,6 +262,12 @@ wp_head();
 	font-size: 12px;
 	padding-bottom: 5px;
 }
+@media screen and (max-width: 767px){
+	.top-header .header-black .custom{
+		right: -10px;
+		left: inherit;
+	}
+}
 </style>
 <script type="text/javascript">
 jQuery(document).ready(function(){
