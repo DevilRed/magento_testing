@@ -650,190 +650,65 @@
     <?php echo $this->getChildHtml('product_additional_data') ?>
 
 </div>
+<style>
+    
+    #carouselInspirationContent .owl-controls .owl-buttons div{
+        background-image: none !important;
+    text-indent: 0;
+
+    /* Font icons */
+    display: inline-block;
+    font-family: ThemeIcons;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    /*line-height: 1em;*/ /* Important: don't overrid line height, it depends on the size of the icon */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Icon size */
+    font-size: 50px;
+    position: absolute;
+    color: #fff;
+
+    }
+
+    #carouselInspirationContent .owl-controls .owl-buttons .owl-prev{
+         left:0; top:48%;
+    }
+    #carouselInspirationContent .owl-controls .owl-buttons .owl-next{
+         right:0; top:48%;
+    }
+</style>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-    //slider
-    var flagString = new RegExp("[Ff]loorplan");
-    jQuery('.product-image-thumbs li a').each(function(){
-        var stringView = jQuery(this).find('h4').text()
-            if(flagString.test(stringView)){
-                jQuery(this).addClass('floorplan');
-            }
+        //Slider Inspiration
+        jQuery('#carouselInspiration').owlCarousel({
+          navigation : true,
+          pagination : false,
+          slideSpeed : 300,
+          paginationSpeed : 400,
+          singleItem:true,
+          items : 1,
+          transitionStyle : "fade",
+          navigationText : ['','']
         });
-        //
-        var bannerImg = jQuery('.product-image-gallery img');
-        jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
-                var src = jQuery(this).find('img').attr('src');
-                bannerImg.attr('src', src);
-                var currentImg = jQuery(this).find('img').attr('class');
-                bannerImg.attr('src', src);
-                        //session storage
-                if(window.sessionStorage){
-                    sessionStorage.setItem('board-img', currentImg);
-                }
-                jQuery('.product-image-thumbs li').removeClass('active');
-                jQuery(this).parent().addClass('active');
 
-                return false;
-            });
-        if(window.sessionStorage){
-            //retrieving selected image from floorplan page
-            var savedImg = sessionStorage.getItem('selected-floorplan-img');
-            if(savedImg !== null){
-                jQuery('.product-image-gallery img').attr('src', savedImg);
-            }
-        }
-        //wrap
-        jQuery('.ten, .eleven, .twelve').wrapAll("<div class='grid12-8'></div>");
-        jQuery('.eighteen, .nineteen, .twenty').wrapAll("<div class='grid12-8'></div>");
-        jQuery('.twenty-four, .twenty-five, .twenty-six').wrapAll("<div class='grid12-8'></div>");
-        //equalizer
-        jQuery('.product-row div:not(.big)').equalizer({
-            min: 226,
-            max: 226,
-            columns: '> img',
-        });
-        jQuery('.product-row div.big').equalizer({
-            min: 603,
-            max: 603,
-            columns: '> img',
-        });
-        <?php $serializedGrid = $_board->getSerializedGrid(); ?>
-        <?php if(!empty($serializedGrid)): ?>
-            var gridster = jQuery('.products-list .inner').gridster({
-                max_cols: 3,
-                widget_margins: [20, 60],
-                widget_base_dimensions: [300, 300],
-                widget_selector: "div",
-                resize: {
-                    enabled: false
-                }
-            }).data('gridster');
-            gridster.disable();
-        <?php endif; ?>
-        //height of quote section
-        quoteContent = jQuery('.designer-board .description-board p').text();
-        maxLength = 129;
-        if(jQuery.trim(quoteContent).length > maxLength){
-            jQuery('.designer-board .description-board .more-wrap').css('display', 'inline');
-            var newStr = quoteContent.substring(0, maxLength);
-            var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
-            var dots = jQuery('<span class="dots">...</span>');
-            jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
-            jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 87%');
-            jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
-        }else{
-            jQuery('.designer-board .description-board .more-wrap').css('display', 'none');
-            jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 95%');
-        }
-
-        jQuery('.designer-board .description-board .more').on('click', function(){
-            if(jQuery(this).hasClass('open')){
-                jQuery(this).text('More >').removeClass('open');
-                newStr = quoteContent.substring(0, maxLength);
-                var removedStr = quoteContent.substring(maxLength, jQuery.trim(quoteContent).length);
-                var dots = jQuery('<span class="dots">...</span>');
-                jQuery('.designer-board .description-board p').empty().html(newStr).append(dots);
-                jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 87%');
-                jQuery('.designer-board .description-board p').append('<span class="more-text">' + removedStr + '</span>');
-            }else{
-                jQuery(this).text('Less >').addClass('open');
-                jQuery('.designer-board .description-board p .dots').remove();
-                jQuery('.designer-board .description-board').css('background-position', '6% 0, 94% 92%');
-                jQuery('.designer-board .description-board p .more-text').contents().unwrap();
-            }
-            return false;
-        });
-        //custom slider
-        var $slider = jQuery('.product-image-gallery');
-        var $slide = 'li';
-        var $transition_time = 1000;
-        var $time_between_slides = 3000;
-
-        function slides(){
-            return jQuery('.inspiration-carousel > li');
-        }
-        slides().first().addClass('active');
-
-        //carousel on inspiration image click
-        var count = 0;
-        var myInterval = null;
-        var inspirationCounter = jQuery('.inspiration-carousel li');
-        jQuery('.product-image-thumbs li a.inspiration').on('click', function(e){
+        jQuery('.product-image-thumbs li a').on('click',function(e){
             e.preventDefault();
-            if(inspirationCounter.length > 1){
-                jQuery('.inspiration-buttons').css('display','block');
-                if(myInterval !== null) return;
-
-                var firstImg = jQuery(this).find('img').attr('src');
-                jQuery('.product-image-gallery img').attr('src', firstImg);
-                myInterval = setInterval(function(){
-                    var $i = jQuery('.inspiration-carousel li.active').index();
-                    slides().eq($i).removeClass('active');
-                    if(slides().length == $i +1)
-                        $i = -1;
-                    var imgSrc = slides().eq($i + 1).find('img').attr('src');
-                    $slider.find('img').fadeOut('fast', function(){
-                        $slider.find('img').attr('src', imgSrc).fadeIn('slow');
-                    });
-                    slides().eq($i + 1).addClass('active');
-                }, $time_between_slides);
+            if(jQuery(this).hasClass('inspiration')){
+                // console.log('tiene');
+                jQuery('#carouselInspirationContent').removeAttr('style');
+                jQuery('#image-main').css('display','none');
             }else{
-                var src = jQuery(this).find('img').attr('src');
-                jQuery('.product-image-gallery img').attr('src', src);
-            }
-
-            jQuery('.inspiration-next').on('click',
-                function(e){
-                    e.preventDefault();
-                    var $i = jQuery('.inspiration-carousel li.active').index();
-                    slides().eq($i).removeClass('active');
-                    if(slides().length == $i +1)
-                        $i = -1;
-                    var imgSrc = slides().eq($i + 1).find('img').attr('src');
-                    $slider.find('img').fadeOut('fast', function(){
-                        $slider.find('img').attr('src', imgSrc).fadeIn('slow');
-                    });
-                    slides().eq($i + 1).addClass('active');
-                });
-
-            jQuery('.inspiration-prev').on('click',
-                function(e){
-                    e.preventDefault();
-                    var $i = jQuery('.inspiration-carousel li.active').index();
-                    slides().eq($i).removeClass('active');
-                    if($i == -1)
-                        $i = slides().length;
-                    var imgSrc = slides().eq($i - 1).find('img').attr('src');
-                    $slider.find('img').fadeOut('fast', function(){
-                        $slider.find('img').attr('src', imgSrc).fadeIn('slow');
-                    });
-                    slides().eq($i - 1).addClass('active');
-                });
-        });
-
-        jQuery('.product-image-thumbs li a:not(.floorplan, .inspiration)').click(function(){
-            jQuery('.inspiration-buttons').css('display','none');
-            if(myInterval !== null){
-                window.clearInterval(myInterval);
-                myInterval = null;
+                console.log('tiene');
+                jQuery('#image-main').removeAttr('style');
+                jQuery('#carouselInspirationContent').css('display','none');
             }
         });
-
-        jQuery('.floorplans-title, .rooms-floorplans').hover(function(){
-            jQuery('.floorplans-title').css({
-                'color': '#000',
-                'font-weight': '500'
-            });
-        }, function(){
-            jQuery('.floorplans-title').removeAttr('style');
-        });
-        //fix default padding
-        jQuery('.bg-box').css({
-            'margin-left': '-12px',
-            'margin-right': '-12px'
-        })
     });
+    
     //popup behavior
     jQuery('.grid-container .inner > div, .grid-container .product-row > div').on('click',  function(){
         var target = jQuery(this).attr('id');
