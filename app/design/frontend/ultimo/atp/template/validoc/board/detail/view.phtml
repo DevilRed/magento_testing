@@ -688,25 +688,28 @@
           navigation : true,
           pagination : false,
           slideSpeed : 300,
+          autoPlay : 5000,
+          stopOnHover : true,
           paginationSpeed : 400,
           singleItem:true,
           items : 1,
           transitionStyle : "fade",
           navigationText : ['','']
         });
-
+        //Slider Inspiration Thumbs Events
         jQuery('.product-image-thumbs li a').on('click',function(e){
             e.preventDefault();
             if(jQuery(this).hasClass('inspiration')){
-                // console.log('tiene');
                 jQuery('#carouselInspirationContent').removeAttr('style');
                 jQuery('#image-main').css('display','none');
             }else{
-                console.log('tiene');
+                var src = jQuery(this).find('img').attr('src');
                 jQuery('#image-main').removeAttr('style');
+                jQuery('#image-main').attr('src', src);
                 jQuery('#carouselInspirationContent').css('display','none');
             }
         });
+        jQuery('.rooms-floorplans li a').unbind('click');
     });
     
     //popup behavior
