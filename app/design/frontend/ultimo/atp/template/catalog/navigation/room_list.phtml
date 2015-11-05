@@ -31,13 +31,25 @@ $_categories = Mage::getModel('catalog/category')
     <?php
             $children = Mage::getModel('catalog/category')->getCategories($_current_category->getId());
             $i = 1;
+            //for unrepeat behavior
+            $boardsArray = array();
+            $isRepeatted = false;
+
             foreach ($children as $subcategory):
                 $boardsCollection = Mage::getResourceModel('validoc_board/board_collection')->addCategoryFilter($subcategory);
     ?>
-                    <?php /*$i = 1;*/ foreach ($boardsCollection as $_board): ?>
+                    <?php foreach ($boardsCollection as $_board): ?>
                         <?php if($_board->getIsActive()): ?>
                             <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
-                            <!-- <h3><?php //echo $subcategory->getName(); ?> | <?php echo $cur_board->getName(); ?> | <?php echo $cur_board->getDesigner()->getFirmName(); ?></h3> --><!-- separator -->
+                            <?php
+                                //we check if board was printed
+                                foreach ($boardsArray as $old) {
+                                    if($_board->getId() == $old){
+                                        $isRepeatted = true;
+                                    }
+                                }
+                            ?>
+                            <?php if($isRepeatted == false): ?>
                             <li class="grid12-6 <?php if($i%2 == 0) echo 'no-right-gutter'; else echo 'no-left-gutter';echo ($_board->getType() == 2) ? ' vignettes': ''; ?>">
                                 <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->htmlEscape($cur_board->getName()) ?>" class="product-image">
                                     <?php $_imgSizeWidth = 450; ?>
@@ -64,10 +76,15 @@ $_categories = Mage::getModel('catalog/category')
                                     </div>
                                 </a>
                             </li>
+                            <?php endif;//isRepeatted ?>
                             <?php $counter = $i; ?>
                             <?php $i++; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                        <?php endif;//isActive ?>
+                        <?php
+                            //we save in $boardsArray the $cur_board already printed
+                            array_push($boardsArray, $cur_board->getId());
+                        ?>
+                    <?php endforeach;//boardsCollection ?>
     <?php
             endforeach;//children
             ?>
