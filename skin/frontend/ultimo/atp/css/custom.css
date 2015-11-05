@@ -197,7 +197,7 @@
     left: 38%;
     position: absolute;
     overflow: hidden;
-    z-index: 99999999999;
+    z-index: 2999;
     /*bottom: -40px;*/
 
     bottom: -35px;
