@@ -294,9 +294,9 @@ jQuery(document).ready(function(){
 					<ul>
 						<li class="border-right" class="how-to"><a href="/how-to-shop/">HOW TO SHOP</a> </li>
 						<li class="border-right"><a href="/customer/account/login/">MY ACCOUNT</a>
-							<ul class="sub-menu custom">
+							<!-- <ul class="sub-menu custom">
 								<li><a href="/Quotation/Quote/List/">VIEW MY QUOTES</a></li>
-							</ul>
+							</ul> -->
 						</li>
 						<!-- <li><a href="/Quotation/Quote/List">MY QUOTE LIST</a> </li>
 						<li><a hfref="/checkout/cart/"><img src="/skin/frontend/ultimo/atp/images/bg-cart-mini.png"></a></li> -->
