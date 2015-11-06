@@ -39,6 +39,7 @@ $_categories = Mage::getModel('catalog/category')
                 $boardsCollection = Mage::getResourceModel('validoc_board/board_collection')->addCategoryFilter($subcategory);
     ?>
                     <?php foreach ($boardsCollection as $_board): ?>
+                        <?php $isRepeatted = false; ?>
                         <?php if($_board->getIsActive()): ?>
                             <?php $cur_board = Mage::getModel('validoc_board/board')->load($_board->getId()); ?>
                             <?php
@@ -87,7 +88,7 @@ $_categories = Mage::getModel('catalog/category')
                     <?php endforeach;//boardsCollection ?>
     <?php
             endforeach;//children
-            var_dump($boardsArray);
+            //var_dump($boardsArray);
             ?>
             <!-- last item browse by style link -->
                 <?php
