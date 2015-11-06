@@ -50,7 +50,6 @@ $_categories = Mage::getModel('catalog/category')
                                     }
                                 }
                             ?>
-                            <?php var_dump($i); ?>
                             <?php if($isRepeatted == false): ?>
                             <li class="grid12-6 <?php if($i%2 == 0) echo 'no-right-gutter'; else echo 'no-left-gutter';echo ($_board->getType() == 2) ? ' vignettes': ''; ?>">
                                 <a href="<?php echo Mage::getUrl("designer-board/board/view",array("id"=>$cur_board->getId())); ?>" title="<?php echo $this->htmlEscape($cur_board->getName()) ?>" class="product-image">
