@@ -125,11 +125,11 @@ abstract class MDN_Quotation_Model_Pdfhelper extends Mage_Sales_Model_Order_Pdf_
     public function drawFooter($page, $StoreId = null) {
         //Background
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 10);
-        $page->setFillColor(new Zend_Pdf_Color_GrayScale(0.7));
+        $page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
         $page->drawRectangle(10, $this->_BLOC_FOOTER_HAUTEUR + 15, $this->_BLOC_FOOTER_LARGEUR, 15, Zend_Pdf_Page::SHAPE_DRAW_FILL);
 
         //text
-        $page->setFillColor(new Zend_Pdf_Color_GrayScale(0.2));
+        $page->setFillColor(new Zend_Pdf_Color_GrayScale(1));
         $this->DrawFooterMultilineText($page, Mage::getStoreConfig('quotation/pdf/pdf_footer', $StoreId), 20, $this->_BLOC_FOOTER_HAUTEUR, 10, 0, 15);
     }
 
