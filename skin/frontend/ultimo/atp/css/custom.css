@@ -3582,3 +3582,23 @@ table#my-quotations-table{
     width: 100%;
     margin-bottom: 50px;
 }
+/*board list childs*/
+.catalog-category-view .board-list li:nth-child(odd){
+    margin-right: 1%;
+    margin-left: 0;
+    text-align: left;
+}
+.catalog-category-view .board-list li:nth-child(even){
+    margin-left: 1%;
+    margin-right: 0;
+    text-align: right;
+}
+.catalog-category-view .board-list li:nth-child(even) .product-name{
+    padding-left: 14px;
+}
+@media screen and (min-width: 480px){
+    .catalog-category-view .board-list li a img{
+        width: 445px;
+        height: 259px;
+    }
+}
