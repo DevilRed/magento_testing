@@ -83,6 +83,7 @@ $_categories = Mage::getModel('catalog/category')
                         <?php
                             //we save in $boardsArray the $cur_board already printed
                             array_push($boardsArray, $cur_board->getId());
+                            var_dump($boardsArray);
                         ?>
                     <?php endforeach;//boardsCollection ?>
     <?php
