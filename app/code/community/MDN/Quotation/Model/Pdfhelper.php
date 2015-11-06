@@ -130,7 +130,7 @@ abstract class MDN_Quotation_Model_Pdfhelper extends Mage_Sales_Model_Order_Pdf_
 
         //text
         $page->setFillColor(new Zend_Pdf_Color_GrayScale(0.2));
-        $this->DrawFooterMultilineText($page, Mage::getStoreConfig('quotation/pdf/pdf_footer', $StoreId), 20, $this->_BLOC_FOOTER_HAUTEUR, 10, 0, 15);
+        $this->DrawFooterMultilineText($page, Mage::getStoreConfig('quotation/pdf/pdf_footer', $StoreId), 20, $this->_BLOC_FOOTER_HAUTEUR, 10, 1, 15);
     }
 
     /**
