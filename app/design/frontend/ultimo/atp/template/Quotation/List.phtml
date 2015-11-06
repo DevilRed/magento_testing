@@ -28,9 +28,14 @@
                 <td><?php echo $_quotation->getincrement_id() ?></td>
                 <td><?php echo $this->formatDate($_quotation->getcreated_time()) ?></td>
                 <!-- <td><?php echo $this->htmlEscape($_quotation->getcaption()); ?></td> -->
-                <td>
+                <td class="quote-product-name">
                     <?php foreach($_quotation->getItems() as $item): ?>
-                        <?php echo $item->getQty().'x '.$item->getCaption(); ?><br>
+                        <?php
+                            $product = Mage::getModel('catalog/product')->load($item->getProductId());
+                            $smallImage = Mage::helper('catalog/image')->init($product, 'small_image')->resize(75, 75);
+                        ?>
+                        <img src="<?php echo $smallImage; ?>" border="0" class="img" />
+                        <span class="product-name"><?php echo $item->getQty().'x '.$item->getCaption(); ?></span><br>
                     <?php endforeach; ?>
                 </td>
                 <!-- <td><?php echo $_quotation->FormatPrice($_quotation->GetFinalPriceWithTaxes()); ?></td> -->

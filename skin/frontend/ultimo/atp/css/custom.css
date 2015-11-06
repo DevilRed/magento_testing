@@ -3602,3 +3602,19 @@ table#my-quotations-table{
         height: 259px;
     }
 }
+/*products thumbnails in quote list page*/
+.quote-product-name{
+    padding: 5px !important;
+}
+.quote-product-name .img{
+    display: inline-block;
+    max-width: 40px;
+    margin-right: 10px;
+    position: relative;
+    top: -5px;
+}
+.quote-product-name .product-name{
+    display: inline-block;
+    position: relative;
+    top: 5px;
+}
