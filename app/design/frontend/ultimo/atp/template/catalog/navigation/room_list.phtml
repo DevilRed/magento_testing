@@ -45,7 +45,7 @@ $_categories = Mage::getModel('catalog/category')
                                 //we check if board was printed
                                 foreach ($boardsArray as $old) {
                                     if($_board->getId() == $old){
-                                        //$isRepeatted = true;
+                                        $isRepeatted = true;
                                     }
                                 }
                             ?>
@@ -83,7 +83,6 @@ $_categories = Mage::getModel('catalog/category')
                         <?php
                             //we save in $boardsArray the $cur_board already printed
                             array_push($boardsArray, $cur_board->getId());
-                            var_dump($boardsArray);
                         ?>
                     <?php endforeach;//boardsCollection ?>
     <?php
