@@ -38,7 +38,7 @@
 <table cellspacing="0" class="data-table" id="my-quotations-table">
     <thead>
         <tr>
-            <th><?php echo $this->__('Reference') ?></th>
+            <th><?php echo $this->__('Image') ?></th>
             <th><?php echo $this->__('Name') ?></th>
             <th><?php echo $this->__('Qty') ?></th>
             <th><?php echo $this->__('Discount') ?></th>
@@ -50,7 +50,7 @@
         <?php $_odd = ''; ?>
         <?php if ($quote->getshow_detail_price() == 0): ?>
 			<tr>
-				<td><?php echo $quote->GetLinkedProduct()->getSku(); ?></td>
+				<td class="first"><?php echo $quote->GetLinkedProduct()->getSku(); ?></td>
 				<td><b><?php echo $quote->GetLinkedProduct()->getName().'</b>'.$this->getSubItemsDescription(); ?></b></td>
 				<td>1</td>
 				<td>&nbsp;</td>
@@ -61,7 +61,16 @@
         <?php foreach ($quote->getItems() as $item): ?>
         	<?php if (($item->getexclude() == 1) || ($quote->getshow_detail_price() == 1)): ?>
 	            <tr>
-	                <td><?php echo $item->getsku() ?></td>
+	                <td class="">
+	                	<?php
+	                		//echo $item->getsku();
+	                		$product = Mage::getModel('catalog/product')->load($item->getProductId());
+	                		$smallImage = Mage::helper('catalog/image')->init($product, 'small_image')->resize(75, 75);
+	                	?>
+	                	<div class="img">
+                            <img src="<?php echo $smallImage; ?>" border="0" class="imgX" />
+                        </div>
+	                </td>
 	                <td><?php echo $item->getcaption() ?><br><?php echo $item->getOptionsValuesAsText(true) ?></td>
 	                <td><?php echo $item->getqty() ?></td>
 	                <td><?php echo ($item->getdiscount_purcent() > 0 ? $item->getdiscount_purcent().'%' :  ''); ?></td>

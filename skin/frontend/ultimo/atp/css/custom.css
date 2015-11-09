@@ -3606,15 +3606,26 @@ table#my-quotations-table{
 .quote-product-name{
     padding: 5px !important;
 }
-.quote-product-name .img{
+.quote-product-name .img, .quotation-quote-view .img{
     display: inline-block;
     max-width: 40px;
     margin-right: 10px;
     position: relative;
     top: -5px;
+    border: 1px solid #77787b;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+.quote-product-name .img img, .quotation-quote-view .img img{
+    max-width: 40px;
 }
 .quote-product-name .product-name{
     display: inline-block;
     position: relative;
-    top: 5px;
+    top: 3px;
+}
+.quotation-quote-view .img{
+    margin-top: 1px !important;
+    margin-botom: 1px !important;
 }

@@ -34,7 +34,9 @@
                             $product = Mage::getModel('catalog/product')->load($item->getProductId());
                             $smallImage = Mage::helper('catalog/image')->init($product, 'small_image')->resize(75, 75);
                         ?>
-                        <img src="<?php echo $smallImage; ?>" border="0" class="img" />
+                        <div class="img">
+                            <img src="<?php echo $smallImage; ?>" border="0" class="imgX" />
+                        </div>
                         <span class="product-name"><?php echo $item->getQty().'x '.$item->getCaption(); ?></span><br>
                     <?php endforeach; ?>
                 </td>
