@@ -49,4 +49,10 @@
 
 			return $data;
 		}
+		public function getProductNumber($fpId, $prodId){
+			$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+			$sql = "SELECT position FROM validoc_floorplan_product WHERE floorplan_id = $fpId AND product_id = $prodId";
+			$row = $connection->fetchAll($sql);
+			return $row;
+		}
 	}

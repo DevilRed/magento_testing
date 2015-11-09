@@ -37,7 +37,7 @@
 			<?php foreach($selectedItems as $item): ?>
 				<div id="<?php echo $item->getEntityId(); ?>" data-row="<?php echo $i; ?>" data-col="<?php echo $j; ?>" data-sizex="1" data-sizey="1">
 					<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
-					<p class="image-name"><?php echo $item->getName(); ?></p>
+					<p class="image-name empty-grid"><?php echo $item->getName(); ?></p>
 				</div>
 			<?php
 				$j++;
@@ -58,7 +58,12 @@
 							<?php foreach($selectedItems as $item): ?>
 								<?php if($cell['id'] == $item->getEntityId()): ?>
 									<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
-									<p class="image-name"><?php echo $item->getName(); ?>
+									<p class="image-name grid-exist">
+										<?php
+											$number = $this->getProductNumber($floorplanId, $item->getEntityId());
+											echo '#'.$number[0]['position']." <span class='separator-name'>|</span> ";
+										?>
+										<?php echo $item->getName(); ?>
 										<?php
 										    //manufacturer name
 										    $_productId = $item->getEntityId();
