@@ -625,8 +625,18 @@
                             <p class="description upon">PRICE UPON REQUEST</p>
                             <div class="actions clearer<?php echo $actionsClasses; ?> shop">
                                     <?php //Cart button ?>
+                                    <?php
+                                        $sameProduct = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                    ?>
                                         <?php if ($_product->isSaleable()): ?>
-                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                            <?php if($sameProduct->getAmazonUrl()): ?>
+                                            <div class="amazon-link">
+                                                <?php echo $sameProduct->getAmazonUrl(); ?>
+                                                <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
+                                            </div>
+                                        <?php else: ?>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                        <?php endif; ?>
                                         <?php else: ?>
                                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                                         <?php endif; ?>
@@ -806,6 +816,11 @@
                 jQuery('.designer-board .description-board p .more-text').contents().unwrap();
             }
             return false;
+        });
+    //buy from amazon link
+        jQuery('.amazon-link').each(function(){
+            amazonLink = jQuery(this).find(jQuery('a:not(.buy-amazon)')).attr('href');
+            jQuery(this).find(jQuery('.buy-amazon')).attr('href', amazonLink);
         });
 </script>
 

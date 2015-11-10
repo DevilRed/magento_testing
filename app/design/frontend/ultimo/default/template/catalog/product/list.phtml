@@ -400,7 +400,14 @@
                     <?php //Cart button ?>
                     <?php if ($gc['display_addtocart'] != 0): ?>
                         <?php if ($_product->isSaleable()): ?>
-                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                            <?php if($_product->getAmazonUrl()): ?>
+                                <div class="amazon-link">
+                                    <?php echo $_product->getAmazonUrl(); ?>
+                                    <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
+                                </div>
+                            <?php else: ?>
+                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                            <?php endif; ?>
                         <?php else: ?>
                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
@@ -468,5 +475,10 @@
         if(jQuery('.messages').length > 0){
             jQuery('.messages').delay(6000).slideUp(500);
         }
+        //buy from amazon link
+        jQuery('.amazon-link').each(function(){
+            amazonLink = jQuery(this).find(jQuery('a:not(.buy-amazon)')).attr('href');
+            jQuery(this).find(jQuery('.buy-amazon')).attr('href', amazonLink);
+        });
     });
 </script>

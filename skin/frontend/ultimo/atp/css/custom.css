@@ -3627,5 +3627,26 @@ table#my-quotations-table{
 }
 .quotation-quote-view .img{
     margin-top: 1px !important;
-    margin-botom: 1px !important;
+    margin-bottom: 1px !important;
+}
+/*amazon link*/
+.popup .amazon-link{
+    display: inline-block;
+    max-width: 200px;
+}
+.popup .amazon-link a:not(.buy-amazon){
+    display: none;
+}
+.popup .amazon-link a.buy-amazon img{
+    border: 0 !important;
+}
+a.buy-amazon{
+    height: 45px;
+    display: inline-block;
+    border: 1px solid #77787b;
+}
+a.buy-amazon img{
+    width: 75%;
+    display: inline-block;
+    margin-top: 2px;
 }
