@@ -2683,6 +2683,9 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
 .popup .main-img img{
     margin-left: -15px;
 }
+.popup.design-kit .main-img img{
+    margin-left: 0
+}
 .popup-images{
     margin-left: 0;
 }
