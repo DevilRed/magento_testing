@@ -84,6 +84,18 @@
     if(array_key_exists(27, $indexes)){
         $tenRow = array_slice($productsBoard, 27, 3);
     }
+    //getting product for design kit
+    $designKitProducts = Mage::getModel('catalog/product')
+                    ->getCollection()
+                    ->addAttributeToSelect('*')
+                    ->load()
+                    ->getItems();
+    $productDesign = null;
+    foreach ($designKitProducts as $myproduct) {
+        if(($myproduct->getAttributeText('design_kit') == 'Yes') && ( $myproduct->getBoardId() == $_board->getId())){
+            $productDesign = $myproduct;
+        }
+    }
 
 ?>
 <div id="messages_product_view">
@@ -223,12 +235,24 @@
                         <div class="clearer"></div>
                         <!-- get started -->
                         <div class="grid12-4 started">
-                            <img src="<?php echo $this->getSkinUrl('images'); ?>/started-img.png">
+                            <?php if(isset($productDesign)): ?>
+                                <?php
+                                    $designKitImage = Mage::getModel('catalog/product')->load($productDesign->getEntityId())->getMediaGalleryImages()->getItemByColumnValue('label', 'designkit');
+                                    if(isset($designKitImage)){
+                                        $myImage = $designKitImage['file'];
+                                    }
+                                ?>
+                                <?php if(isset($myImage)): ?>
+                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($myImage) ?>" alt="">
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <img src="<?php echo $this->getSkinUrl('images'); ?>/started-img.png">
+                            <?php endif; ?>
                         </div>
                         <div class="grid12-8 info">
                             <h4 class="Yesteryear">Get started</h4>
                             <h5>order your custom fabric & design kit</h5>
-                            <a href="#" class="more">Learn more ></a>
+                            <a href="#" id="<?php echo (isset($productDesign)) ? $productDesign->getEntityId() : ''; ?>" class="more">Learn more ></a>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -642,8 +666,91 @@
                                         <?php endif; ?>
                                 </div>
                         </div>
-                    </div>
+                    </div><!-- container popup rooms -->
                 <?php endforeach; ?>
+                <?php if(isset($productDesign)): ?>
+                    <div class="container popup design-kit" id="popup-<?php echo $productDesign->getEntityId();  ?>" style="display: none;">
+                        <?php
+                            $mainImg = null;
+                            $images = Mage::getModel('catalog/product')->load($productDesign->getEntityId())->getMediaGalleryImages();
+                            $counter=0;
+                            foreach ($images as $img) {
+                                if(($img['label']== 'popup')&&($counter==0)) {
+                                    $mainImg = $img;
+                                    $counter++;
+                                }
+                            }
+                        ?>
+                        <div class="grid12-6 popup-images">
+                            <div class="main-img">
+                                <?php if($mainImg): ?>
+                                    <img src="<?php echo $this->helper('catalog/image')->init($productDesign, 'thumbnail', $mainImg['file']); ?>">
+                                <?php else: ?>
+                                    <img src="<?php echo $this->helper('catalog/image')->init($productDesign, 'thumbnail', $productDesign->getImage()); ?>" alt="">
+                                <?php endif; ?>
+                            </div>
+                            <div class="extra-imgs">
+                                <ul>
+                                    <?php foreach($images as $img): ?>
+                                        <?php if($img['label'] == 'popup'): ?>
+                                            <li>
+                                                <img src="<?php echo $this->helper('catalog/image')->init($productDesign, 'thumbnail', $img['file']); ?>" alt="">
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid12-6 popup-info">
+                            <h2><?php echo $productDesign->getName(); ?></h2>
+                            <p>featured in <span>
+                                <?php
+                                    $prod = Mage::getModel('catalog/product')->load($productDesign->getEntityId());
+                                    $rooms = $prod->getBoardId();
+                                    if(!empty($rooms)){
+                                        $roomIds = explode(",", $rooms);
+                                        $boardsCollection = array();
+                                        foreach ($roomIds as $key => $roomId) {
+                                            $board = Mage::getModel('validoc_board/board')->load($roomId);
+                                            array_push($boardsCollection, $board);
+                                        }
+                                    }
+                                    foreach ($boardsCollection as $key => $board) {
+                                        echo '<a class="popup-link" href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
+                                        if($key != count($boardsCollection)-1){
+                                            echo "</a>, ";
+                                        }else{
+                                            echo "</a>";
+                                        }
+                                    }
+                                    $firstBoard = $boardsCollection[0];
+                                ?>
+                            </span></p>
+                            <p class="description"><?php echo $productDesign->getShortDescription(); ?></p>
+                            <p class="description dimensions"><?php echo $productDesign->getDimensions(); ?></p>
+                            <p class="description arrival" style="display: none;">ESTIMATED ARRIVAL: <?php echo $productDesign->getEstimatedArrival(); ?></p>
+                            <p class="description upon">PRICE UPON REQUEST</p>
+                            <div class="actions clearer<?php echo $actionsClasses; ?> shop">
+                                    <?php //Cart button ?>
+                                    <?php
+                                        $sameProduct = Mage::getModel('catalog/product')->load($productDesign->getEntityId());
+                                    ?>
+                                        <?php if ($productDesign->isSaleable()): ?>
+                                            <?php if($sameProduct->getAmazonUrl()): ?>
+                                            <div class="amazon-link">
+                                                <?php echo $sameProduct->getAmazonUrl(); ?>
+                                                <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
+                                            </div>
+                                        <?php else: ?>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($productDesign) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                        <?php endif; ?>
+                                        <?php else: ?>
+                                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                        <?php endif; ?>
+                                </div>
+                        </div>
+                    </div><!-- container popup design kit -->
+                <?php endif; ?>
 
 
                 <?php echo $this->getChildHtml('related_products') ?>
@@ -723,11 +830,15 @@
     });
     
     //popup behavior
-    jQuery('.grid-container .inner > div, .grid-container .product-row > div').on('click',  function(){
+    jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more').on('click',  function(e){
+        e.preventDefault();
         var target = jQuery(this).attr('id');
+        if(target.length === 0){
+            return;
+        }
         jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
         jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
-        jQuery('.grid-container .inner > div, .grid-container .product-row > div').fancybox({
+        jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more').fancybox({
             href: '#popup-' + target,
             titleShow: false,
             transitionIn: 'elastic',
