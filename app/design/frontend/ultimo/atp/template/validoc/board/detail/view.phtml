@@ -659,7 +659,7 @@
                                                 <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
                                             </div>
                                         <?php else: ?>
-                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
                                         <?php endif; ?>
                                         <?php else: ?>
                                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
@@ -742,7 +742,7 @@
                                                 <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
                                             </div>
                                         <?php else: ?>
-                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($productDesign) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($productDesign) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
                                         <?php endif; ?>
                                         <?php else: ?>
                                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
