@@ -230,7 +230,7 @@
                         <div class="grid12-8 info">
                             <h4 class="Yesteryear title">Designer</h4>
                             <h5><?php echo $_designer->getName() ?> <br> <?php echo $_designer->getFirmName(); ?></h5>
-                            <a href="#" class="more">See more designs from <?php echo $_designer->getName() ?> ></a>
+                            <a href="<?php echo "/designers/designer/view/id/" . $_designer->getDesignerId(); ?>" class="more designer">See more designs from <?php echo $_designer->getName() ?> ></a>
                         </div>
                         <div class="clearer"></div>
                         <!-- get started -->
@@ -830,7 +830,7 @@
     });
     
     //popup behavior
-    jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more').on('click',  function(e){
+    jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more:not(.designer)').on('click',  function(e){
         e.preventDefault();
         var target = jQuery(this).attr('id');
         if(target.length === 0){
@@ -838,7 +838,7 @@
         }
         jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
         jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
-        jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more').fancybox({
+        jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more:not(.designer)').fancybox({
             href: '#popup-' + target,
             titleShow: false,
             transitionIn: 'elastic',
