@@ -703,7 +703,7 @@
                         </div>
                         <div class="grid12-6 popup-info">
                             <h2><?php echo $productDesign->getName(); ?></h2>
-                            <p>featured in <span>
+                            <p>for <span>
                                 <?php
                                     $prod = Mage::getModel('catalog/product')->load($productDesign->getEntityId());
                                     $rooms = $prod->getBoardId();
@@ -729,7 +729,7 @@
                             <p class="description"><?php echo $productDesign->getShortDescription(); ?></p>
                             <p class="description dimensions"><?php echo $productDesign->getDimensions(); ?></p>
                             <p class="description arrival" style="display: none;">ESTIMATED ARRIVAL: <?php echo $productDesign->getEstimatedArrival(); ?></p>
-                            <p class="description upon">PRICE UPON REQUEST</p>
+                            <!-- <p class="description upon">PRICE UPON REQUEST</p> -->
                             <div class="actions clearer<?php echo $actionsClasses; ?> shop">
                                     <?php //Cart button ?>
                                     <?php
@@ -866,6 +866,10 @@
             var mainParentContainer = jQuery(this).parent().parent().parent().parent().parent();
             mainParentContainer.find('.main-img').find('img').attr('src', jQuery(this).attr('src'));
         });
+    });
+    jQuery('.designers-list .started img').on('click', function(e){
+        e.preventDefault();
+        jQuery('.designers-list .info .more:not(.designer)').click();
     });
     //setting time to magento messages
     if(jQuery('.messages').length > 0){
