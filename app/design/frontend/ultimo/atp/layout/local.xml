@@ -578,6 +578,78 @@
             <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
         </reference>
 	</CATEGORY_18>
+	<CATEGORY_37>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_37>
+	<CATEGORY_23>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_23>
+	<CATEGORY_28>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_28>
+	<CATEGORY_47>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_47>
+	<CATEGORY_42>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_42>
+	<CATEGORY_32>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_32>
+	<CATEGORY_54>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_54>
+	<CATEGORY_136>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_136>
+	<CATEGORY_133>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_133>
+	<CATEGORY_139>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_139>
+	<CATEGORY_142>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_142>
+	<CATEGORY_143>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_143>
 	<!-- CART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 	<checkout_cart_index>
 
