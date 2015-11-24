@@ -646,7 +646,14 @@
                             <p class="description"><?php echo $_product->getShortDescription(); ?></p>
                             <p class="description dimensions"><?php echo $_product->getDimensions(); ?></p>
                             <p class="description arrival" style="display: none;">ESTIMATED ARRIVAL: <?php echo $_product->getEstimatedArrival(); ?></p>
-                            <p class="description upon">PRICE UPON REQUEST</p>
+                            <?php
+                                $same2 = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                $amazonUrl = $same2->getAmazonUrl();
+                            ?>
+                            <?php if(empty($amazonUrl)): ?>
+                                <p class="description upon">PRICE UPON REQUEST</p>
+                            <?php endif; ?>
+
                             <div class="actions clearer<?php echo $actionsClasses; ?> shop">
                                     <?php //Cart button ?>
                                     <?php
