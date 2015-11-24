@@ -2681,7 +2681,7 @@ a:hover, .vertnav li.current > a, h2.product-name a:hover, h3.product-name a:hov
     margin-left: 0;
 }
 .popup .main-img img{
-    margin-left: -15px;
+    /*margin-left: -15px;*/
 }
 .popup.design-kit .main-img img{
     margin-left: 0
@@ -3489,7 +3489,7 @@ label[for="is_subscribed"].customized p{
     cursor: pointer;
 }
 .validoc-floorplan-floorplan-view .container.popup.floorplan .main-img{
-    padding-left: 7px;
+    /*padding-left: 7px;*/
 }
 .container.popup.floorplan .popup-images{
     padding-left: 1px;
@@ -3655,4 +3655,15 @@ a.buy-amazon img{
 }
 .designer-board .designers-list .started img{
     cursor: pointer;
+}
+/*popup in all pages*/
+.popup .extra-imgs ul li{
+    min-width: 104px;
+    max-width: 104px;
+}
+.popup .extra-imgs ul li:nth-child(3n + 1){
+    margin-left: 0;
+}
+.popup .main-img img{
+    width: 100%;
 }
