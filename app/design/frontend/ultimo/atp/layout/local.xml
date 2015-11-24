@@ -567,7 +567,17 @@
 	    <reference name="product_list">
 		    <action method="setTemplate"><name>catalog/product/list_new.phtml</name></action>
 		</reference>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>16</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>16</limit></action>
+        </reference>
 	</CATEGORY_15>
+	<CATEGORY_18>
+		<reference name="product_list_toolbar">
+            <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+            <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+        </reference>
+	</CATEGORY_18>
 	<!-- CART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 	<checkout_cart_index>
 
