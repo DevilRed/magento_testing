@@ -44,8 +44,8 @@ class Validoc_Fabric_Block_List extends Mage_Core_Block_Template
     protected function _getFabricCollection()
     {
         if (is_null($this->_fabricCollection)) {
-            $fabricType = Mage::registry('fabricType');
-            $type_id = Mage::registry('type_id');
+            $fabricType = Mage::registry('fabricType');//for group filter from nav
+            $type_id = Mage::registry('type_id');//for get a single item
             if($fabricType == 'all'){
                 $this->_fabricCollection = Mage::getModel('validoc_fabric/fabric')->getCollection();
             }else if($fabricType == 'source'){
