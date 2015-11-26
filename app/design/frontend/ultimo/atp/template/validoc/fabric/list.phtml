@@ -190,7 +190,10 @@ $_helper = $this->helper('catalog/output');
                                 <div class="product-info <?php echo Mage::registry('fabricType'); ?>">
                                     <p>
                                         <?php if($fabricType != 'source'): ?>
-                                        <a href="<?php echo $_fabric->getId(); ?>"><?php echo $_fabric->getName(); ?></a>
+                                        <a href="<?php echo $_fabric->getId(); ?>"><?php
+                                                //echo $_fabric->getName();//old code
+                                                echo $this->getFabricSource($_fabric->getManufacturer());
+                                            ?></a>
                                         <?php endif; ?>
                                     </p>
                                 </div>
@@ -212,7 +215,10 @@ $_helper = $this->helper('catalog/output');
                                     </div>
                                 </div>
                                 <div class="grid12-6 popup-info">
-                                    <h2><?php echo $title_2; ?></h2>
+                                    <h2><?php
+                                        //echo $title_2;//old code
+                                        echo $this->getFabricSource($_fabric->getManufacturer());
+                                        ?></h2>
                                     <?php
                                         $rooms = $_fabric->getRoom();
                                         if(!empty($rooms)){
