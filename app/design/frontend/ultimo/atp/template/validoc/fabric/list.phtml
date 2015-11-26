@@ -177,10 +177,10 @@ $_helper = $this->helper('catalog/output');
                     <?php endforeach; ?>
                 </ul>
                 <?php else: ?>
-                    <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col"><?php var_dump("collection size ".$_fabricCollection->count()); ?>
+                    <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col"><?php //var_dump("collection size ".$_fabricCollection->count()); ?>
                         <?php foreach($_fabricCollection as $_fabric): ?>
                             <?php $_fabric->load($_fabric->getId()); ?>
-                            <?php var_dump("fabric id ".$_fabric->getFabricId()); ?>
+                            <?php //var_dump("fabric id ".$_fabric->getFabricId()); ?>
                             <li class="grid12-3">
                                 <a href="<?php echo $_fabric->getId(); ?>" class="product-image">
                                     <?php $_imgSize = 324; ?>
