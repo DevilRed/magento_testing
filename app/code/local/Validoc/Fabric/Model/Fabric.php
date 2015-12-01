@@ -92,4 +92,25 @@ class Validoc_Fabric_Model_Fabric extends Mage_Core_Model_Abstract
 
         return $this->getData('media_gallery_image_fabric')->getUrl();
     }
+
+    /**
+     * deleted images behavior
+     */
+    public function deleteImages($imgs){
+        if(!empty($imgs)){
+            $imgs = json_decode($imgs);
+            foreach ($imgs as $k => $img) {
+                if($img->removed){
+                    $fileName = $img->file;
+                    unset($imgs[$k]);
+                    $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+                    $whereSelect = "file = '" . $fileName . "'";
+                    $write->query("delete from validoc_fabric_image where " . $whereSelect);
+                }
+            }
+
+            $this->setData('fabric[media_gallery][images]', $imgs);
+            return $imgs;
+        }
+    }
 }

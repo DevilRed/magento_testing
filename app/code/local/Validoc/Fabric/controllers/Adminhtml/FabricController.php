@@ -82,6 +82,12 @@ class Validoc_Fabric_Adminhtml_FabricController extends Mage_Adminhtml_Controlle
                 if ($id) {
                     $model->load($id);
                 }
+                //deleting image behavior
+                $decodedImages = $data['fabric']['media_gallery']['images'];
+                $imagesUpdated = $model->deleteImages($decodedImages);
+                $imagesUpdated = json_encode($imagesUpdated);
+                $data['fabric']['media_gallery']['images'] = $imagesUpdated;
+                //
                 if($data['color'] != ''){
                     $data['color']=implode(",", $data['color']);
                 }
