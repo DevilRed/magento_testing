@@ -48,6 +48,9 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Grid extends Mage_Adminhtml_Block_Wi
             'width' => '30%',
             'index' => 'manufacturer',
             'renderer'  => 'Validoc_Fabric_Model_Renderer_Column_Manufacturer',
+            //'filter_condition_callback' => array($this, '_manufacturerFilter'),
+            'type' => 'options',
+            'options' => $this->getManufacturers()
         ));
         $this->addColumn('color', array(
             'header' => Mage::helper('validoc_fabric')->__('Color'),
@@ -55,6 +58,8 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Grid extends Mage_Adminhtml_Block_Wi
             'width' => '30%',
             'index' => 'color',
             'renderer'  => 'Validoc_Fabric_Model_Renderer_Column_Color',
+            'type' => 'options',
+            'options' => $this->getColors()
         ));
         
         $this->addColumn('action',
@@ -119,5 +124,36 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Grid extends Mage_Adminhtml_Block_Wi
                 'store'=>$this->getRequest()->getParam('store'),
                 'id'=>$row->getId())
         );
+    }
+    protected function _manufacturerFilter($collection, $column){
+        $filterValue = $column->getFilter()->getValue();
+        if(!$filterValue){
+            return $this;
+        }
+
+        $this->getCollection()->addFieldToFilter('manufacturer', array('finset' => $filterValue));
+        return $this;
+    }
+    private function getManufacturers(){
+        $manArray = array();
+        $attributeInfo = Mage::getResourceModel('eav/entity_attribute_collection')->setCodeFilter('manufacturer')->getFirstItem();
+        $attributeId = $attributeInfo->getAttributeId();
+        $attribute = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+        $attributeOptions = $attribute ->getSource()->getAllOptions(false);
+        foreach ($attributeOptions as $option) {
+            $manArray[$option['value']] = $option['label'];
+        }
+        return $manArray;
+    }
+    private function getColors(){
+        $colorsArray = array();
+        $attributeInfo = Mage::getResourceModel('eav/entity_attribute_collection')->setCodeFilter('color')->getFirstItem();
+        $attributeId = $attributeInfo->getAttributeId();
+        $attribute = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+        $attributeOptions = $attribute->getSource()->getAllOptions(false);
+        foreach ($attributeOptions as $option) {
+            $colorsArray[$option['value']] = $option['label'];
+        }
+        return $colorsArray;
     }
 }
