@@ -46,6 +46,14 @@ class Validoc_Floorplan_Block_Adminhtml_Floorplan_Edit_Tab_General extends Mage_
             'values' => array('0' => 'No','1' => 'Yes')
         ));
 
+        $fieldset->addField('is_ghost', 'select', array(
+            'name' => 'is_ghost',
+            'label' => Mage::helper('validoc_floorplan')->__('Are these additional items?'),
+            'title' => Mage::helper('validoc_floorplan')->__('Are these additional items?'),
+            'required' => false,
+            'values' => array('0' => 'No', '1' => 'Yes')
+        ));
+
 	$fieldset->addField('image', 'image', array(
             'name' => 'image',
             'label' => Mage::helper('validoc_floorplan')->__('Picture'),

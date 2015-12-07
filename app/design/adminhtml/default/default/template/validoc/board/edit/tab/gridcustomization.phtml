@@ -2,6 +2,10 @@
 <?php if(!empty($boardId)): ?>
 	<?php
 		$productsBoard = $this->getProducts($boardId);
+		$ghostFp = $this->getGhostFloorplan($boardId);
+		if(!empty($ghostFp)){
+			$ghostProducts = $this->getGhostProducts($ghostFp);
+		}
 		if(!empty($productsBoard)):
 	?>
 	<div id="messages">
@@ -30,6 +34,11 @@
 					$j = 1;
 				?>
 					<?php foreach($productsBoard as $product): ?>
+						<?php foreach($ghostProducts as $myGhostP): ?>
+							<?php if($myGhostP == $product->getEntityId()): ?>
+								<?php continue 2; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
 						<div id="<?php echo $product->getEntityId(); ?>" data-row="<?php echo $i; ?>" data-col="<?php echo $j; ?>" data-sizex="1" data-sizey="1">
 							<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($product->getSmallImage()); ?>">
 							<p class="image-name"><?php echo $product->getName(); ?></p>
@@ -39,6 +48,32 @@
 							if($j == 4){
 								$i++;
 								$j = 1;
+							}
+						?>
+					<?php endforeach; ?>
+					<?php //here ghost products are loaded ?>
+					<?php
+						$ghostAttributes = Mage::getSingleton('catalog/config')->getProductAttributes();
+						$extrasCollection = Mage::getModel('catalog/product')
+						                        ->getCollection()
+						                        ->addAttributeToSort('created_at', 'DESC')
+						                        ->addAttributeToFilter('entity_id',  array('in' => $ghostProducts))
+						                        ->addAttributeToSelect($ghostAttributes)
+						                        ->load();
+						//continuing the product collection grid
+						$k = $i;
+						$l = $j;
+					?>
+					<?php foreach($extrasCollection->getItems() as $gp): ?>
+						<div id="<?php echo $gp->getEntityId(); ?>" data-row="<?php echo $k; ?>" data-col="<?php echo $l; ?>" data-sizex="1" data-sizey="1">
+							<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($gp->getSmallImage()); ?>">
+							<p class="image-name hereIs"><?php echo $gp->getName(); ?></p>
+						</div>
+						<?php
+							$l++;
+							if($l == 4){
+								$k++;
+								$l = 1;
 							}
 						?>
 					<?php endforeach; ?>
@@ -55,6 +90,10 @@
 								<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($item->getSmallImage()); ?>">
 								<p class="image-name"><?php echo $item->getName(); ?></p>
 							<?php endif; ?>
+						<?php endforeach; ?>
+						<?php foreach($extrasCollection as $itemGp): ?>
+							<img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($itemGp->getSmallImage()); ?>">
+							<p class="image-name"><?php echo $itemGp->getName(); ?></p>
 						<?php endforeach; ?>
 					</div>
 				<?php endforeach; ?>

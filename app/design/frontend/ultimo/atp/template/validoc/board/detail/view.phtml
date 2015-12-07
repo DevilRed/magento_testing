@@ -43,6 +43,15 @@
     }//var_dump(count($_productCollection));//this gives 13
 
     $productsBoard = $_productCollection->getItems();
+
+    $ghostAttributes = Mage::getSingleton('catalog/config')->getProductAttributes();
+    $extrasCollection = Mage::getModel('catalog/product')
+                            ->getCollection()
+                            ->addAttributeToSort('created_at', 'DESC')
+                            ->addAttributeToFilter('entity_id',  array('in' => $ghostProducts))
+                            ->addAttributeToSelect($ghostAttributes)
+                            ->load();
+
     $indexes = array_keys($productsBoard);
 
     if(array_key_exists(0, $indexes)){
@@ -580,6 +589,34 @@
                                                 </p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
+                                        <?php //extra products ?>
+                                        <?php foreach($extrasCollection->getItems() as $gp): ?>
+                                            <div id="<?php echo $gp->getEntityId(); ?>" data-row="<?php echo $k; ?>" data-col="<?php echo $l; ?>" data-sizex="1" data-sizey="1">
+                                                <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($gp->getSmallImage()); ?>">
+                                                <p class="image-name hereIs">
+                                                    <?php
+                                                        $_product = Mage::getModel('catalog/product')->load($gp->getEntityId());
+                                                        $manufacturerPiece = $_product->getAttributeText('manufacturer_pieces');
+                                                        if(isset($manufacturerPiece))
+                                                            echo $manufacturerPiece;
+                                                    ?>
+                                                    <?php
+                                                        $_productId = $gp->getEntityId();
+                                                        $_product = Mage::getModel('catalog/product')->load($_productId);
+                                                        $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                                        if(isset($_manufacturerName) && $_manufacturerName != false)
+                                                            echo " <span class='separator-name'>|</span>".$_manufacturerName;
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <?php
+                                                $l++;
+                                                if($l == 4){
+                                                    $k++;
+                                                    $l = 1;
+                                                }
+                                            ?>
+                                        <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
@@ -674,6 +711,97 @@
                                 </div>
                         </div>
                     </div><!-- container popup rooms -->
+                <?php endforeach; ?>
+                <?php //extras collection, $extrasCollection->getItems() ?>
+                <?php foreach($extrasCollection->getItems() as $_product): ?>
+                    <div class="container popup extras" id="popup-<?php echo $_product->getEntityId(); ?>" style="display: none;">
+                        <?php
+                            $mainImg = null;
+                            $images = Mage::getModel('catalog/product')->load($_product->getEntityId())->getMediaGalleryImages();
+                            $counter=0;
+                            foreach ($images as $img) {
+                                if(($img['label']== 'popup')&&($counter==0)) {
+                                    $mainImg = $img;
+                                    $counter++;
+                                }
+                            }
+                        ?>
+                        <div class="grid12-6 popup-images">
+                            <div class="main-img">
+                                <?php if($mainImg): ?>
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $mainImg['file']); ?>">
+                                <?php else: ?>
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $_product->getImage()); ?>" alt="">
+                                <?php endif; ?>
+                            </div>
+                            <div class="extra-imgs">
+                                <ul>
+                                    <?php foreach($images as $img): ?>
+                                        <?php if($img['label'] == 'popup'): ?>
+                                            <li>
+                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail', $img['file']); ?>" alt="">
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid12-6 popup-info">
+                            <h2><?php echo $_product->getName(); ?></h2>
+                            <p>featured in <span>
+                                <?php
+                                    $prod = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                    $rooms = $prod->getBoardId();
+                                    if(!empty($rooms)){
+                                        $roomIds = explode(",", $rooms);
+                                        $boardsCollection = array();
+                                        foreach ($roomIds as $key => $roomId) {
+                                            $board = Mage::getModel('validoc_board/board')->load($roomId);
+                                            array_push($boardsCollection, $board);
+                                        }
+                                    }
+                                    foreach ($boardsCollection as $key => $board) {
+                                        echo '<a class="popup-link" href="'.Mage::getBaseUrl().'designer-board/board/view/id/'.$board->getBoardId().'">'.$board->getName();
+                                        if($key != count($boardsCollection)-1){
+                                            echo "</a>, ";
+                                        }else{
+                                            echo "</a>";
+                                        }
+                                    }
+                                    $firstBoard = $boardsCollection[0];
+                                ?>
+                            </span></p>
+                            <p class="description"><?php echo $_product->getShortDescription(); ?></p>
+                            <p class="description dimensions"><?php echo $_product->getDimensions(); ?></p>
+                            <p class="description arrival" style="display: none;">ESTIMATED ARRIVAL: <?php echo $_product->getEstimatedArrival(); ?></p>
+                            <?php
+                                $same2 = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                $amazonUrl = $same2->getAmazonUrl();
+                            ?>
+                            <?php if(empty($amazonUrl)): ?>
+                                <p class="description upon">PRICE UPON REQUEST</p>
+                            <?php endif; ?>
+
+                            <div class="actions clearer<?php echo $actionsClasses; ?> shop">
+                                    <?php //Cart button ?>
+                                    <?php
+                                        $sameProduct = Mage::getModel('catalog/product')->load($_product->getEntityId());
+                                    ?>
+                                        <?php if ($_product->isSaleable()): ?>
+                                            <?php if($sameProduct->getAmazonUrl()): ?>
+                                            <div class="amazon-link">
+                                                <?php echo $sameProduct->getAmazonUrl(); ?>
+                                                <a href="#" class="buy-amazon" target="_blank"><img src="<?php echo $this->getSkinUrl('images'); ?>/amazon-button.png"></a>
+                                            </div>
+                                        <?php else: ?>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('add to my quote list') ?></span></span></button>
+                                        <?php endif; ?>
+                                        <?php else: ?>
+                                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                        <?php endif; ?>
+                                </div>
+                        </div>
+                    </div><!-- container extras -->
                 <?php endforeach; ?>
                 <?php if(isset($productDesign)): ?>
                     <div class="container popup design-kit" id="popup-<?php echo $productDesign->getEntityId();  ?>" style="display: none;">

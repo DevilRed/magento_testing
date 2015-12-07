@@ -69,6 +69,7 @@ if (count($bgimage) > 0 || !empty($floorplansSiblings)): ?>
                     <h4 class="to-uppercase floorplans-title"><?php echo "floorplans"; ?></h4>
                     <ul class="rooms-floorplans">
                   <?php foreach($floorplansSiblings as $floorplan): ?>
+                    <?php if($floorplan['is_ghost'] != 1): ?>
                       <li class="<?php echo ($floorplan['image'] == $_floorplan->getImage()) ? 'active' : '' ?>">
                         <a class="floorplan" href="<?php echo Mage::getBaseUrl()."designer-floorplan/floorplan/view/id/".$floorplan["floorplan_id"]; ?>" title="<?php echo $floorplan["name"]; ?>">
                           <!-- <h4 class="to-uppercase"><?php //echo $floorplan["name"]; ?>
@@ -76,6 +77,7 @@ if (count($bgimage) > 0 || !empty($floorplansSiblings)): ?>
                           <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$floorplan["image"]; ?>">
                         </a>
                       </li>
+                    <?php endif; ?>
                     <?php endforeach; ?>
                     </ul>
                   <?php endif; ?>

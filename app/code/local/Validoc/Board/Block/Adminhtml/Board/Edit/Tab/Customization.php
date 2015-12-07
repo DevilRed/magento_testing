@@ -10,6 +10,7 @@
 			$floorplans = $board->getFloorPlans($boardId);
 			$floorplanProducts = array();
 			foreach ($floorplans as $fp) {
+				//var_dump($fp->getIsGhost());
 				$fpInstance = Mage::getModel('validoc_floorplan/floorplan')->load($fp->getFloorplanId());
 				$fpProducts = $fpInstance->getSelectedProducts();
 				foreach ($fpProducts as $p) {
@@ -61,5 +62,31 @@
 		        Mage::register('current_board', $board);
 		    }
 		    return Mage::registry('current_board');
+		}
+		//get ghost floorplans
+		public function getGhostFloorplan($boardId){
+    		$fpGhost = array();
+    		$m = Mage::getModel("validoc_floorplan/floorplan");
+        	$collection = $m->getCollection()
+                        ->addFieldToFilter('board_id', $boardId);
+            foreach ($collection as $key => $value) {
+            	if($value->getIsGhost()){
+            		$fpGhost[] = $value;
+            	}
+            }
+            return $fpGhost;
+		}
+		//get products of ghost floorplans
+		public function getGhostProducts($ghostArray){
+			foreach ($ghostArray as $value) {
+				$m = Mage::getModel("validoc_floorplan/floorplan")->load($value->getFloorplanId());
+				$selecteProducts = $m->getSelectedProducts();
+				//var_dump($selecteProducts);
+				$products = array();
+				foreach ($selecteProducts as $p) {
+					$products[] = $p->_data["entity_id"];
+				}
+				return $products;
+			}
 		}
 	}
