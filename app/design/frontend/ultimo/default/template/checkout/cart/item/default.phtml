@@ -45,7 +45,7 @@ $imgHeight = 168;
     }
 ?>
 <tr>
-    <td class="product-image-field"><?php if ($this->hasProductUrl()):?><span title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->helper('catalog/image')->init($_item->getProduct(), 'small_image')->resize(168); ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></span><?php endif;?></td>
+    <td class="product-image-field"><?php if ($this->hasProductUrl()):?><span title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->helper('catalog/image')->init($_item->getProduct(), 'small_image')->resize(350); ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></span><?php endif;?></td>
     <td class="product-name-wrapper">
     <?php /* TODO
     <td class="col-img"><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->helper('infortis/image')->getImg($_item->getProduct(), $imgWidth, $imgHeight, 'thumbnail'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
