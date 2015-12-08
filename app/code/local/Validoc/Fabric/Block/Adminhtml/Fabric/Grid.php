@@ -59,7 +59,8 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Grid extends Mage_Adminhtml_Block_Wi
             'index' => 'color',
             'renderer'  => 'Validoc_Fabric_Model_Renderer_Column_Color',
             'type' => 'options',
-            'options' => $this->getColors()
+            'options' => $this->getColors(),
+            'filter_condition_callback' => array($this, '_colorFilter')
         ));
         
         $this->addColumn('action',
@@ -155,5 +156,12 @@ class Validoc_Fabric_Block_Adminhtml_Fabric_Grid extends Mage_Adminhtml_Block_Wi
             $colorsArray[$option['value']] = $option['label'];
         }
         return $colorsArray;
+    }
+    protected function _colorFilter($collection, $column){
+        $filterValue = $column->getFilter()->getValue();
+        if(!$filterValue){
+            return this;
+        }
+        $this->getCollection()->addFieldToFilter('color', array('finset' => $filterValue));
     }
 }
