@@ -3684,6 +3684,11 @@ a.buy-amazon img{
 .category-products.fabrics-list .products-grid li:nth-child(4n + 1){
     margin-left: 0;
 }
+.fabrics-list .products-grid .grid12-3:nth-of-type(4n + 4){
+    margin-right: 0;
+    position: relative;
+    left: 0.8em;
+}
 @media screen and (min-width: 960px){
   .category-products.fabrics-list .products-grid li.grid12-3{
       box-sizing: border-box;
