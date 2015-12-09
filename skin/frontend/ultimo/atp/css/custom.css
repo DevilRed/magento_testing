@@ -3674,3 +3674,36 @@ a.buy-amazon img{
     width: 96% !important;
     max-width: 96% !important;
 }
+.fabrics-list .category-title h1{
+    padding-left: 4px;
+}
+/* FABRICS GRID FIX */
+.category-products.fabrics-list .products-grid li:nth-child(4n + 4){
+    margin-right: 0;
+}
+.category-products.fabrics-list .products-grid li:nth-child(4n + 1){
+    margin-left: 0;
+}
+@media screen and (min-width: 960px){
+  .category-products.fabrics-list .products-grid li.grid12-3{
+      box-sizing: border-box;
+      width: 23.23%;
+  }
+}
+/* firefox hacks */
+@-moz-document url-prefix(){
+    .category-products.fabrics-list .products-grid li.grid12-3{
+      width: 24.9%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 959px){
+    .category-products.fabrics-list .products-grid li.grid12-3{
+        width: 30%;
+    }
+    .category-products.fabrics-list .products-grid li.grid12-3:nth-child(3n + 3){
+        margin-right: 0;
+    }
+    .category-products.fabrics-list .products-grid li.grid12-3:nth-child(3n + 1){
+        margin-left: 0;
+    }
+}
