@@ -3689,6 +3689,10 @@ a.buy-amazon img{
     position: relative;
     left: 0.8em;
 }
+.fabrics-list .products-grid .grid12-3:nth-of-type(4n + 3){
+    position: relative;
+    left: 0.8em;
+}
 @media screen and (min-width: 960px){
   .category-products.fabrics-list .products-grid li.grid12-3{
       box-sizing: border-box;
