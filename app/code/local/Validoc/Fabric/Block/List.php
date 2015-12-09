@@ -43,7 +43,7 @@ class Validoc_Fabric_Block_List extends Mage_Core_Block_Template
      */
     protected function _getFabricCollection()
     {
-        if (is_null($this->_fabricCollection)) {
+        if (is_null($this->_fabricCollection) || TRUE) {
             $fabricType = Mage::registry('fabricType');//for group filter from nav
             $type_id = Mage::registry('type_id');//for get a single item
             if($fabricType == 'all'){
@@ -64,7 +64,7 @@ class Validoc_Fabric_Block_List extends Mage_Core_Block_Template
             }else if($fabricType == 'color'){
                 if(isset($type_id)){
                     $this->_fabricCollection = Mage::getModel('validoc_fabric/fabric')->getCollection()
-                                ->addFieldToFilter('color', $type_id)
+                                ->addFieldToFilter('color', array('finset' => $type_id))
                                 ->setOrder('color', 'desc')
                                 ->setOrder('name', 'desc');
                 }else{
