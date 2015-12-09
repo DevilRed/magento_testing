@@ -295,6 +295,7 @@ foreach($_afterChildren as $_afterChildName):
             Handler.popup();
             Handler.changeImgs();
             Handler.equalizeHeights();
+            Handler.cssFixes();
         },
         popup: function(){
             jQuery('.product-image, .product-info p a').on('click', function(){
@@ -333,6 +334,11 @@ foreach($_afterChildren as $_afterChildName):
         equalizeHeights: function(){
             var firstBlock = jQuery('.popup-images').height();
             jQuery('.popup-info').css('height', firstBlock);
+        },
+        cssFixes: function(){
+            if(!jQuery('div').hasClass('popup')){
+                jQuery('.fabrics-list .products-grid .grid12-3:nth-of-type(4n + 3)').css('left', '0.4em');
+            }
         }
     };
     jQuery(document).on('ready', Handler.onReady());
