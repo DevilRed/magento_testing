@@ -104,7 +104,7 @@ class MDN_Quotation_QuoteController extends Mage_Core_Controller_Front_Action {
         if ($action == 'RequestFromCart') {
             if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
                 $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-                Mage::getSingleton('customer/session')->addError($this->__('You must be logged in to request for a quotation.'));
+                Mage::getSingleton('customer/session')->addError($this->__('You must be logged in to request a quote.'));//old phase: You must be logged in to request for a quotation.
                 Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl('Quotation/Quote/RequestFromCart', array('_current' => true)));
                 $this->_redirectUrl(Mage::helper('customer')->getLoginUrl());
             }
@@ -112,7 +112,7 @@ class MDN_Quotation_QuoteController extends Mage_Core_Controller_Front_Action {
         if ($action == 'IndividualRequest') {
             if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
                 $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-                Mage::getSingleton('customer/session')->addError($this->__('You must be logged in to request for a quotation.'));
+                Mage::getSingleton('customer/session')->addError($this->__('You must be logged in to request a quote.'));//old phase: You must be logged in to request for a quotation.
                 Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl('Quotation/Quote/IndividualRequest', array('_current' => true, 'product_id' => $this->getRequest()->getParam('product_id'))));
                 $this->_redirectUrl(Mage::helper('customer')->getLoginUrl());
             }
