@@ -32,7 +32,7 @@
                     <?php foreach($_quotation->getItems() as $item): ?>
                         <?php
                             $product = Mage::getModel('catalog/product')->load($item->getProductId());
-                            $smallImage = Mage::helper('catalog/image')->init($product, 'small_image')->resize(75, 75);
+                            $smallImage = Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(75, 75);
                         ?>
                         <div class="img">
                             <img src="<?php echo $smallImage; ?>" border="0" class="imgX" />
