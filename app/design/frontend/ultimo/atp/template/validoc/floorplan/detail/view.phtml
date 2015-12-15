@@ -797,13 +797,20 @@
                                         <?php if($cell['id'] == $item->getEntityId()): ?>
                                             <?php
                                                 $gridImg = Mage::getModel('catalog/product')->load($item->getEntityId())->getMediaGalleryImages()->getItemByColumnValue('label', 'grid');
-                                                if(!isset($gridImg)){
-                                                    $pImage = $item->getSmallImage();
-                                                }else{
-                                                    $pImage = $gridImg['file'];
-                                                }
+                                                if(!isset($gridImg)):
+                                                    //$pImage = $item->getSmallImage();
+                                                    $sameProduct = Mage::getModel('catalog/product')->load($item->getEntityId());
                                             ?>
-                                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($pImage); ?>">
+                                                    <img src="<?php echo Mage::helper('catalog/image')->init($sameProduct, 'image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                                            <?php
+                                                else:
+                                                    $pImage = $gridImg['file'];
+                                            ?>
+                                                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($pImage); ?>">
+                                            <?php
+                                                endif;
+                                            ?>
+                                            <!-- <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($pImage); ?>"> -->
                                             <?php $counter++; ?>
                                             <p class="image-name">
                                                 <?php //echo $item->getName();//only name ?>
