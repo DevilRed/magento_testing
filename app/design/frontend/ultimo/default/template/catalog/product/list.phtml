@@ -261,11 +261,18 @@
                         <?php
                             //echo $manufacturerName . " | " . $fabricProduct;//old value
                             $manufacturerPiece = $_product->getAttributeText('manufacturer_pieces');
-                            if(isset($manufacturerPiece))
-                                echo $manufacturerPiece;
-                            $_manufacturerName = $_product->getAttributeText('manufacturer');
-                            if(isset($_manufacturerName) && $_manufacturerName != false)
-                                echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                            $currentCategoryId = Mage::registry('current_category')->getId();
+                            if($currentCategoryId != 18){
+                                if(isset($manufacturerPiece))
+                                    echo $manufacturerPiece;
+                                $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                if(isset($_manufacturerName) && $_manufacturerName != false)
+                                    echo " <span class='separator-name'>|</span> ".$_manufacturerName;
+                            } else{
+                                $_manufacturerName = $_product->getAttributeText('manufacturer');
+                                if(isset($_manufacturerName) && $_manufacturerName != false)
+                                    echo $_manufacturerName;
+                            }
                         ?>
                     </a></h2>
                 <?php endif; ?>
