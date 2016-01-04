@@ -3741,11 +3741,11 @@ a.buy-amazon img{
 }
 @media screen and (min-width: 800px){
     .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened{
-        width: auto !important;
-        left: 33.3% !important;
+        /*width: auto !important;
+        left: 33.3% !important;*/
     }
     .fancybox-inner{
-        width: auto !important;
+        /*width: auto !important;*/
     }
 }
 .container-ar.popup.decor-arrangement .image-name{
