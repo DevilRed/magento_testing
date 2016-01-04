@@ -3719,3 +3719,43 @@ a.buy-amazon img{
         margin-left: 0;
     }
 }
+/*decor arrangement*/
+.arrangement-wrapper{
+    margin-top: 75px;
+}
+.container.popup.decor-arrangement .popup-images{
+    margin: 0;
+    padding: 0.5%;
+}
+.container.popup.decor-arrangement .popup-images p{
+    margin-top: 15px;
+    font-size: 1.8em;
+}
+.container.popup.decor-arrangement .popup-images img{
+    max-width: 100%;
+}
+@media screen and (max-width: 800px){
+    .container.popup.decor-arrangement .popup-images img{
+        max-width: 100%;
+    }
+}
+@media screen and (min-width: 800px){
+    .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened{
+        width: auto !important;
+        left: 33.3% !important;
+    }
+    .fancybox-inner{
+        width: auto !important;
+    }
+}
+.container-ar.popup.decor-arrangement .image-name{
+    font-size: 1.4em;
+    padding-bottom: 1px;
+    padding-top: 10px;
+}
+.product-row:last-child.arrangement-wrapper{
+    margin-bottom: 20px;
+}
+.product-row.arrangement-wrapper .image-name{
+    margin-top: 30px;
+}

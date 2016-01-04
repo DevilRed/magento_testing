@@ -549,7 +549,29 @@
                         $i = $i + 3;
                         endwhile;
                     ?>
-                </div>
+                    <?php if($_board->getType() == 2): ?>
+                        <?php
+                            $images = $_board->getMediaGalleryImages();
+                            $arrangementImg = null;
+                            //getting the arrangement img only for decor vignettes
+                            foreach ($images as $arImg) {
+                                $label = $arImg->getLabel();
+                                $label = strtolower(trim($label));
+                                if($label  == 'arrangement'){
+                                    $arrangementImg = $arImg;
+                                }
+                            }
+                        ?>
+                        <?php if(isset($arrangementImg)): ?>
+                            <div class="product-row 3-line arrangement-wrapper">
+                                <div class="grid12-4 decor-arrangement" id="arrangement">
+                                    <img src="<?php echo $arrangementImg['url']; ?>">
+                                    <p class="image-name">Arrangement</p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div><!-- products-list grid-container -->
                 <?php else://there is grid customization ?>
                     <?php
                         $savedGrid = $_board->getSerializedGrid();
@@ -624,8 +646,32 @@
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
-                            </div>
-                        </div>
+                                <!-- decor arrangement -->
+
+                            </div><!-- inner -->
+                            <?php if($_board->getType() == 2): ?>
+                                <?php
+                                $images = $_board->getMediaGalleryImages();
+                                $arrangementImg = null;
+                                                        //getting the arrangement img only for decor vignettes
+                                foreach ($images as $arImg) {
+                                    $label = $arImg->getLabel();
+                                    $label = strtolower(trim($label));
+                                    if($label  == 'arrangement'){
+                                        $arrangementImg = $arImg;
+                                    }
+                                }
+                                ?>
+                                <?php if(isset($arrangementImg)): ?>
+                                    <div class="product-row 3-line arrangement-wrapper" style="margin-top: 75px;margin-bottom: 50px;">
+                                        <div class="grid12-4 decor-arrangement" id="arrangement">
+                                            <img src="<?php echo $arrangementImg['url']; ?>">
+                                            <p class="image-name">Arrangement</p>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div><!-- products-list gridster -->
                 <?php endif; ?>
                 <?php foreach($productsBoard as $key => $_product): ?>
                     <div class="container popup rooms" id="popup-<?php echo $_product->getEntityId(); ?>" style="display: none;">
@@ -890,6 +936,14 @@
                                 </div>
                         </div>
                     </div><!-- container popup design kit -->
+                <?php endif;//isset $productDesign ?>
+                <?php if(isset($arrangementImg)): ?>
+                    <div class="container-ar popup decor-arrangement" id="popup-arrangement" style="display: none;">
+                        <div class="grid12-12 popup-images">
+                            <img src="<?php echo $arrangementImg['url']; ?>">
+                            <p class="image-name">Arrangement</p>
+                        </div>
+                    </div>
                 <?php endif; ?>
 
 
@@ -897,16 +951,16 @@
 
                 <?php echo $this->getChildHtml('board_related_products') ?>
                 <div class="clearer"></div>
-            </div>
-        </div>
-    </div>
+            </div><!-- inner-container-board -->
+        </div><!-- container-board -->
+    </div><!-- product-essential -->
 
 
 
     <?php echo $this->getChildHtml('upsell_products') ?>
     <?php echo $this->getChildHtml('product_additional_data') ?>
 
-</div>
+</div><!-- product-view atp designer-board -->
 <style>
     
     #carouselInspirationContent .owl-controls .owl-buttons div{
@@ -1006,7 +1060,7 @@
             var mainParentContainer = jQuery(this).parent().parent().parent().parent().parent();
             mainParentContainer.find('.main-img').find('img').attr('src', jQuery(this).attr('src'));
         });
-    });
+    });//popup click
     jQuery('.designers-list .started img').on('click', function(e){
         e.preventDefault();
         jQuery('.designers-list .info .more:not(.designer)').click();
