@@ -1030,6 +1030,7 @@
         if(target.length === 0){
             return;
         }
+        console.log(target);
         jQuery('.page-title.category-title h1 span.title_1').css('z-index', 'auto');
         jQuery('.logo.logo--regular, #nav, .footer-container').css('z-index', '9');
         jQuery('.grid-container .inner > div, .grid-container .product-row > div, .designers-list .info .more:not(.designer)').fancybox({
@@ -1053,6 +1054,11 @@
                 jQuery('#nav, .sticky-container, .footer-container').css('z-index', '5');
                 jQuery('.logo.logo--regular').css('z-index', '6');
                 jQuery('.container-board .product-name.to-uppercase.grid-container').css('z-index', 'auto');
+                console.log(jQuery(this));
+                if(target === 'arrangement'){
+                    jQuery('.fancybox-wrap').addClass('arrangement');
+                    jQuery('.fancybox-wrap').find('.fancybox-inner').addClass('arrangement');
+                }
             }
         });
         //change imgs

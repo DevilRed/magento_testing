@@ -3740,12 +3740,12 @@ a.buy-amazon img{
     }
 }
 @media screen and (min-width: 800px){
-    .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened{
-        /*width: auto !important;
-        left: 33.3% !important;*/
+    .fancybox-wrap.fancybox-desktop.fancybox-type-inline.arrangement.fancybox-opened{
+        width: auto !important;
+        left: 33.3% !important;
     }
-    .fancybox-inner{
-        /*width: auto !important;*/
+    .fancybox-inner.arrangement{
+        width: auto !important;
     }
 }
 .container-ar.popup.decor-arrangement .image-name{
