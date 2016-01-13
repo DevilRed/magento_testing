@@ -3759,3 +3759,7 @@ a.buy-amazon img{
 .product-row.arrangement-wrapper .image-name{
     margin-top: 30px;
 }
+/* pieces internal pages */
+body[class^=" catalog-category-view categorypath-pieces-"] .category-products .itemX{
+    margin-bottom: 30px;
+}
