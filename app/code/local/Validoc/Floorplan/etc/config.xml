@@ -1,60 +1,57 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Validoc_Floorplan>
+        <Validoc_Floorplan><!-- referencia camelCase al modulo, muy util para los updates -->
             <version>0.1.8</version>
         </Validoc_Floorplan>
     </modules>
+    <!-- se debe seguir la misma estructura de las carpetas para que funcione el xml -->
     <global>
         <models>
-            <validoc_floorplan>
-                <class>Validoc_Floorplan_Model</class>
-                <resourceModel>validoc_floorplan_resource</resourceModel>
+            <validoc_floorplan><!-- referencia definida en frontend > routers -->
+                <class>Validoc_Floorplan_Model</class><!-- apunta a la carpeta model del modulo -->
+                <resourceModel>validoc_floorplan_resource</resourceModel><!-- se define el resource q ejecutara el sql -->
             </validoc_floorplan>
-            <validoc_floorplan_resource>
-                <class>Validoc_Floorplan_Model_Resource</class>
-                <entities>
-                    <floorplan>
-                        <table>validoc_floorplan</table>
+            <validoc_floorplan_resource><!-- valor de la etiqueta resourceModel -->
+                <class>Validoc_Floorplan_Model_Resource</class><!-- apunta a la carpeta Model/Resource -->
+                <entities><!-- define las entidades para las tablas -->
+                    <floorplan><!-- tabla definida como floorplan -->
+                        <table>validoc_floorplan</table><!-- nombre de la tabla -->
                     </floorplan>
-                    <!--floorplan_image>
-                        <table>validoc_floorplan_image</table>
-                    </floorplan_image>
-                    <floorplan_image_flag>
-                        <table>validoc_floorplan_image_flag</table>
-                    </floorplan_image_flag-->
                     <floorplan_category>
                         <table>validoc_floorplan_category</table>
                     </floorplan_category>
-		    <floorplan_product>
-		        <table>validoc_floorplan_product</table>
-		    </floorplan_product>
+                    <floorplan_product><!-- referencia a la tabla para registrar los productos de cada floorplan -->
+                      <table>validoc_floorplan_product</table><!-- nombre de la tabla -->
+                    </floorplan_product>
                 </entities>
             </validoc_floorplan_resource>
         </models>
         <blocks>
-            <validoc_floorplan>
-                <class>Validoc_Floorplan_Block</class>
+            <validoc_floorplan><!-- referencia definida en el frontend > routers -->
+                <class>Validoc_Floorplan_Block</class><!-- apunta a la carpeta dentro el modulo Floorplan -->
             </validoc_floorplan>
         </blocks>
         <helpers>
-            <validoc_floorplan>
-                <class>Validoc_Floorplan_Helper</class>
+            <validoc_floorplan><!-- referencia definida en el frontend > routers -->
+                <class>Validoc_Floorplan_Helper</class><!-- apunta a la carpeta dentro el modulo Floorplan -->
             </validoc_floorplan>
         </helpers>
+        <!-- esta seccion es por convencion para definir el inicio del modulo -->
         <resources>
-            <validoc_floorplan_setup>
-                <setup>
-                    <module>Validoc_Floorplan</module>
-                    <class>Validoc_Floorplan_Model_Resource_Setup</class>
+            <validoc_floorplan_setup><!-- convencion, para q se reconozca la carpeta sql del modulo -->
+                <setup><!-- convencion -->
+                    <module>Validoc_Floorplan</module><!-- nombre del modulo -->
+                    <class>Validoc_Floorplan_Model_Resource_Setup</class><!-- apunta al archivo Setup dentro de Validoc_Floorplan_Model_Resource? -->
                 </setup>
             </validoc_floorplan_setup>
-            <validoc_floorplan_write>
+            <!-- conexiones para comunicar magento con la DB -->
+            <validoc_floorplan_write><!-- frontendReference_write -->
                 <connection>
                     <use>core_write</use>
                 </connection>
             </validoc_floorplan_write>
-            <validoc_floorplan_read>
+            <validoc_floorplan_read>><!-- frontendReference_read -->
                 <connection>
                     <use>core_read</use>
                 </connection>
@@ -73,6 +70,7 @@
         <!--</events>-->
     </global>
 
+    <!-- se define el acceso al modulo desde el admin -->
     <admin>
         <routers>
             <adminhtml>
@@ -84,12 +82,12 @@
             </adminhtml>
         </routers>
     </admin>
-
+    <!-- se define el layout usado por el modulo en el admin -->
     <adminhtml>
         <layout>
             <updates>
-                <validoc_floorplan>
-                    <file>validoc/floorplan.xml</file>
+                <validoc_floorplan><!-- referencia del admin > router definido arriba -->
+                    <file>validoc/floorplan.xml</file><!-- archivo esta en app/design/adminhtml/default/default/layout/validoc/floorplan.xml -->
                 </validoc_floorplan>
             </updates>
         </layout>
@@ -97,18 +95,19 @@
 
     <frontend>
         <routers>
-            <validoc_floorplan>
+            <validoc_floorplan><!-- router frontend q se usara como referencia para definir modelos, blocks, MUY IMPORTANTE -->
                 <use>standard</use>
                 <args>
-                    <module>Validoc_Floorplan</module>
-                    <frontName>designer-floorplan</frontName>
+                    <module>Validoc_Floorplan</module><!-- nombre del modulo -->
+                    <frontName>designer-floorplan</frontName><!-- frontName para acceder desde el browser -->
                 </args>
             </validoc_floorplan>
         </routers>
+        <!-- layout usado por el frontend tag -->
         <layout>
             <updates>
                 <validoc_floorplan>
-                    <file>validoc/floorplan.xml</file>
+                    <file>validoc/floorplan.xml</file><!-- file esta en app/design/frontend/packageName/themeName/layout/validoc/floorplan.xml -->
                 </validoc_floorplan>
             </updates>
         </layout>
